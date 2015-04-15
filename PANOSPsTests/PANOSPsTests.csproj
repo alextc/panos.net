@@ -68,9 +68,9 @@
     <Compile Include="Utils\PsRunner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PANOSLibTests\PANOSLibTest.csproj">
+    <ProjectReference Include="..\PANOSLibTests\PANOSLibTests.csproj">
       <Project>{b4ff731f-7340-4673-85d1-e70b39540390}</Project>
-      <Name>PANOSLibTest</Name>
+      <Name>PANOSLibTests</Name>
     </ProjectReference>
     <ProjectReference Include="..\PANOSLib\PANOSLib.csproj">
       <Project>{9200b95e-ce93-428d-83c3-6af0d35eac7c}</Project>
