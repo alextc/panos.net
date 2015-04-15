@@ -1,0 +1,2 @@
+﻿#read-host -AsSecureString 'LUFRPT01blZDWTBkSDZ6bHBuU04zRjZLU1FwTnJlT0U9ZTRpREEyNlVoSmcyWEVRZ2l6K1BqZ0J1WXJxTGU2b3ptV2tuSllBcFdKYz0=' | Export-Clixml PAAccessToken
+$connectionProperties = New-PANOSConnectionProperties -HostName palab.redmond.corp.microsoft.com -AccessToken (Import-Clixml PAAccessToken) -Vsys vsys1

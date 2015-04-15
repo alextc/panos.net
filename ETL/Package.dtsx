@@ -1,0 +1,1980 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/6/2015 2:34:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JUPITER-HV"
+  DTS:CreatorName="REDMOND\alextc"
+  DTS:DTSID="{85F2DF5D-9576-456B-AB40-8E1FDC78CBBD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{7138BF76-741E-44B6-8FED-6458E8316751}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Firewall1CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{E1CD5C2E-C518-4153-8D6E-4A0796CEC866}"
+      DTS:ObjectName="Firewall1CSV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\PANOSData\panoslog.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ReceiveTime"
+              DTS:DTSID="{0F277A2A-003B-4646-9983-0DE8890B9063}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="45"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source"
+              DTS:DTSID="{DE80701E-F530-49A5-A8FA-6F65A4D546DD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="45"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Destination"
+              DTS:DTSID="{F365199F-30D8-4AB1-A78B-A410A1693A93}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Rule"
+              DTS:DTSID="{75255630-B332-418F-A175-C34CB3FD3E45}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="App"
+              DTS:DTSID="{9B958192-7F90-4EB9-94D2-60ED26C34813}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationPort"
+              DTS:DTSID="{22FCE045-F652-46F7-AB9B-115068A1240B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Action"
+              DTS:DTSID="{C4D474FA-9B20-44C9-BF3F-167A0EFA665E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceHostName"
+              DTS:DTSID="{C4702634-7693-43B2-A652-DD02A46A7FD6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationHostName"
+              DTS:DTSID="{B699B0A6-224D-474A-9AD8-AFDA06F0FC26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FwSerialNumber"
+              DTS:DTSID="{2DA966F1-0509-487C-B26D-A83E579F4803}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="21"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Id"
+              DTS:DTSID="{DB37DD4A-3F86-45C4-83B5-F8C106C5B691}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Vsys"
+              DTS:DTSID="{41FC5874-61A5-4432-A93B-2B18E288A792}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FromZone"
+              DTS:DTSID="{1F67E71F-BBF9-4F85-B5B9-55962F69012D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ToZone"
+              DTS:DTSID="{76EB44A3-1429-453C-8CD4-3370BD3F98A5}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Firewall2CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{338f8522-2ad4-49a8-9265-1c570b7d3f82}"
+      DTS:ObjectName="Firewall2CSV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\PANOSData\panoslog2.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ReceiveTime"
+              DTS:DTSID="{702DC616-A80D-4842-8B7B-A877DAE303E8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="45"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source"
+              DTS:DTSID="{03C65BA6-FC46-4066-B3B8-5F1E62594627}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="45"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Destination"
+              DTS:DTSID="{D445B9E1-4DA3-419F-AA07-DCAE383A60B4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Rule"
+              DTS:DTSID="{4A9342FF-8B38-4257-ADB3-63314F97988B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="App"
+              DTS:DTSID="{5F3AFDDD-DD94-4A68-8E9E-59191470E66C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationPort"
+              DTS:DTSID="{BE5A5947-0ACD-4112-90CA-D15876AF06CE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Action"
+              DTS:DTSID="{F2FD1F36-33C3-43AE-ADB4-9984645FF353}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceHostName"
+              DTS:DTSID="{1DD66422-B9A3-416C-A4B3-DA78274DCD66}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationHostName"
+              DTS:DTSID="{5E14E867-BCDB-45D8-812A-A31416328D3F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FwSerialNumber"
+              DTS:DTSID="{23D2CD93-E28B-481F-825F-8D04FA36E33B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="21"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Id"
+              DTS:DTSID="{24614459-C328-4FB0-9FF1-F760A7C75546}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Vsys"
+              DTS:DTSID="{7375A87A-FB17-4BDC-9A9E-E4282BDE9ACB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FromZone"
+              DTS:DTSID="{819C78DF-BE63-418B-9796-3B106FE32390}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ToZone"
+              DTS:DTSID="{50E09411-4603-4ACD-9DAF-F71BB9A18993}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PANOSSQL]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9918C95F-DF5D-4287-B725-B88A6A34A5BD}"
+      DTS:ObjectName="PANOSSQL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=PANOS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Firewall1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C74EB901-4D53-4FDF-8FD4-B4E9E495CEB2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Firewall1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Firewall1\Firewall1CSV"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Firewall1CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Firewall1\Firewall1CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Firewall1CSV]"
+                  connectionManagerRefId="Package.ConnectionManagers[Firewall1CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[ReceiveTime]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[ReceiveTime]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[ReceiveTime]"
+                      name="ReceiveTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Source]"
+                      length="45"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Source]"
+                      name="Source"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Destination]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Destination]"
+                      length="45"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Destination]"
+                      name="Destination"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Rule]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Rule]"
+                      length="30"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Rule]"
+                      name="Rule"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[App]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[App]"
+                      length="256"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[App]"
+                      name="App"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[DestinationPort]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationPort]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[DestinationPort]"
+                      name="DestinationPort"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Action]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Action]"
+                      length="5"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Action]"
+                      name="Action"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[SourceHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[SourceHostName]"
+                      length="255"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[SourceHostName]"
+                      name="SourceHostName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[DestinationHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationHostName]"
+                      length="255"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[DestinationHostName]"
+                      name="DestinationHostName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[FwSerialNumber]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[FwSerialNumber]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[FwSerialNumber]"
+                      name="FwSerialNumber"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Id]"
+                      dataType="ui8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Vsys]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Vsys]"
+                      length="5"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Vsys]"
+                      name="Vsys"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[FromZone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[FromZone]"
+                      length="5"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[FromZone]"
+                      name="FromZone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[ToZone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[ToZone]"
+                      length="5"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[ToZone]"
+                      name="ToZone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[ReceiveTime]"
+                      dataType="date"
+                      name="ReceiveTime" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Destination]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Rule]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Rule" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[App]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="App" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationPort]"
+                      dataType="i4"
+                      name="DestinationPort" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Action]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Action" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[SourceHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SourceHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DestinationHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[FwSerialNumber]"
+                      dataType="i8"
+                      name="FwSerialNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      dataType="ui8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[Vsys]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Vsys" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[FromZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="FromZone" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].ExternalColumns[ToZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="ToZone" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Firewall1\PANOSSQL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PANOSSQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[TrafficLog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Firewall1\PANOSSQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PANOSSQL]"
+                  connectionManagerRefId="Package.ConnectionManagers[PANOSSQL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[ReceiveTime]"
+                      cachedDataType="date"
+                      cachedName="ReceiveTime"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReceiveTime]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[ReceiveTime]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Source]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Source]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Destination]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="Destination"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Destination]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Rule]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Rule"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Rule]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Rule]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[App]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="App"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[App]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[App]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[DestinationPort]"
+                      cachedDataType="i4"
+                      cachedName="DestinationPort"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationPort]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[DestinationPort]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Action]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Action"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Action]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[SourceHostName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="SourceHostName"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[SourceHostName]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[SourceHostName]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[DestinationHostName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DestinationHostName"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationHostName]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[DestinationHostName]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[FwSerialNumber]"
+                      cachedDataType="i8"
+                      cachedName="FwSerialNumber"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FwSerialNumber]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[FwSerialNumber]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Id]"
+                      cachedDataType="ui8"
+                      cachedName="Id"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Id]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Vsys]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Vsys"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Vsys]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[Vsys]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[FromZone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="FromZone"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FromZone]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[FromZone]" />
+                    <inputColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].Columns[ToZone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="ToZone"
+                      externalMetadataColumnId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ToZone]"
+                      lineageId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output].Columns[ToZone]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReceiveTime]"
+                      dataType="dbTimeStamp"
+                      name="ReceiveTime" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Rule]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Rule" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[App]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="App" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationPort]"
+                      dataType="i4"
+                      name="DestinationPort" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Action" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[SourceHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SourceHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DestinationHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FwSerialNumber]"
+                      dataType="i8"
+                      name="FwSerialNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="numeric"
+                      name="Id"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Vsys]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Vsys" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FromZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="FromZone" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ToZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="ToZone" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Firewall1\PANOSSQL.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Firewall1\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Firewall1\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Firewall1\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Firewall1\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Firewall1.Paths[Flat File Source Output]"
+              endId="Package\Firewall1\PANOSSQL.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Firewall1\Firewall1CSV.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Firewall2"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{e69a5dda-9f7f-4d9e-817e-82e2311b855f}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Firewall2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Firewall2\Firewall2CSV"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Firewall2CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Firewall2\Firewall2CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Firewall2CSV]"
+                  connectionManagerRefId="Package.ConnectionManagers[Firewall2CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[ReceiveTime]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[ReceiveTime]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[ReceiveTime]"
+                      name="ReceiveTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Source]"
+                      length="45"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Source]"
+                      name="Source"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Destination]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Destination]"
+                      length="45"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Destination]"
+                      name="Destination"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Rule]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Rule]"
+                      length="30"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Rule]"
+                      name="Rule"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[App]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[App]"
+                      length="256"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[App]"
+                      name="App"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[DestinationPort]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationPort]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[DestinationPort]"
+                      name="DestinationPort"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Action]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Action]"
+                      length="5"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Action]"
+                      name="Action"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[SourceHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[SourceHostName]"
+                      length="255"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[SourceHostName]"
+                      name="SourceHostName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[DestinationHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationHostName]"
+                      length="255"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[DestinationHostName]"
+                      name="DestinationHostName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[FwSerialNumber]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[FwSerialNumber]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[FwSerialNumber]"
+                      name="FwSerialNumber"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Id]"
+                      dataType="ui8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Vsys]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Vsys]"
+                      length="5"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Vsys]"
+                      name="Vsys"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[FromZone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[FromZone]"
+                      length="5"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[FromZone]"
+                      name="FromZone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[ToZone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[ToZone]"
+                      length="5"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[ToZone]"
+                      name="ToZone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[ReceiveTime]"
+                      dataType="date"
+                      name="ReceiveTime" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Destination]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Rule]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Rule" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[App]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="App" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationPort]"
+                      dataType="i4"
+                      name="DestinationPort" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Action]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Action" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[SourceHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SourceHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[DestinationHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DestinationHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[FwSerialNumber]"
+                      dataType="i8"
+                      name="FwSerialNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      dataType="ui8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[Vsys]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Vsys" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[FromZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="FromZone" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].ExternalColumns[ToZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="ToZone" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Firewall2\PANOSSQL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PANOSSQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[TrafficLog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Firewall2\PANOSSQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PANOSSQL]"
+                  connectionManagerRefId="Package.ConnectionManagers[PANOSSQL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[ReceiveTime]"
+                      cachedDataType="date"
+                      cachedName="ReceiveTime"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReceiveTime]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[ReceiveTime]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Source]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Source]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Destination]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="Destination"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Destination]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Rule]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Rule"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Rule]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Rule]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[App]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="App"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[App]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[App]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[DestinationPort]"
+                      cachedDataType="i4"
+                      cachedName="DestinationPort"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationPort]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[DestinationPort]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Action]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Action"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Action]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[SourceHostName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="SourceHostName"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[SourceHostName]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[SourceHostName]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[DestinationHostName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DestinationHostName"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationHostName]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[DestinationHostName]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[FwSerialNumber]"
+                      cachedDataType="i8"
+                      cachedName="FwSerialNumber"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FwSerialNumber]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[FwSerialNumber]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Id]"
+                      cachedDataType="ui8"
+                      cachedName="Id"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Id]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[Vsys]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Vsys"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Vsys]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[Vsys]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[FromZone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="FromZone"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FromZone]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[FromZone]" />
+                    <inputColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].Columns[ToZone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="ToZone"
+                      externalMetadataColumnId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ToZone]"
+                      lineageId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output].Columns[ToZone]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReceiveTime]"
+                      dataType="dbTimeStamp"
+                      name="ReceiveTime" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Rule]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Rule" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[App]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="App" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationPort]"
+                      dataType="i4"
+                      name="DestinationPort" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Action" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[SourceHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SourceHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DestinationHostName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DestinationHostName" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FwSerialNumber]"
+                      dataType="i8"
+                      name="FwSerialNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="numeric"
+                      name="Id"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Vsys]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Vsys" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FromZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="FromZone" />
+                    <externalMetadataColumn
+                      refId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ToZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="ToZone" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Firewall2\PANOSSQL.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Firewall2\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Firewall2\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Firewall2\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Firewall2\PANOSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Firewall2.Paths[Flat File Source Output]"
+              endId="Package\Firewall2\PANOSSQL.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Firewall2\Firewall2CSV.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{27B9EFD5-BCE4-4CC0-B52A-E7939DBA01ED}"
+      DTS:From="Package\Firewall1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Firewall2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Firewall1"
+          TopLeft="476.5,114.5" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Firewall2"
+          TopLeft="478,275" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="537.75,156.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,118.5"
+              Start="0,0"
+              End="0,111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Firewall1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Firewall1\Firewall1CSV"
+          TopLeft="415,179" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Firewall1\PANOSSQL"
+          TopLeft="448,367" />
+        <EdgeLayout
+          Id="Package\Firewall1.Paths[Flat File Source Output]"
+          TopLeft="484.5,221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29,146"
+              Start="0,0"
+              End="29,138.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69"
+                    Point2="0,73"
+                    Point3="4,73" />
+                  <mssgle:LineSegment
+                    End="25,73" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25,73"
+                    Point2="29,73"
+                    Point3="29,77" />
+                  <mssgle:LineSegment
+                    End="29,138.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Firewall1\PANOSSQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Firewall2">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Firewall2\Firewall2CSV"
+          TopLeft="415,179" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Firewall2\PANOSSQL"
+          TopLeft="448,367" />
+        <EdgeLayout
+          Id="Package\Firewall2.Paths[Flat File Source Output]"
+          TopLeft="484.5,221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29,146"
+              Start="0,0"
+              End="29,138.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69"
+                    Point2="0,73"
+                    Point3="4,73" />
+                  <mssgle:LineSegment
+                    End="25,73" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25,73"
+                    Point2="29,73"
+                    Point3="29,77" />
+                  <mssgle:LineSegment
+                    End="29,138.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,192 @@
+﻿<response status="success">
+  <result>
+		<job>
+			<tenq>13:13:56</tenq>
+			<tdeq>13:13:56</tdeq>
+			<tlast>13:13:56</tlast>
+			<status>FIN</status>
+			<id>33</id>
+		</job>
+		<log>
+			<logs count="20" progress="100">
+				<entry logid="6124018632700766931">
+					<domain>1</domain>
+					<receive_time>2015/03/09 13:13:52</receive_time>
+					<serial>001606022871</serial>
+					<seqno>7600012</seqno>
+					<actionflags>0x0</actionflags>
+					<type>TRAFFIC</type>
+					<subtype>end</subtype>
+					<config_ver>1</config_ver>
+					<time_generated>2015/03/09 13:13:52</time_generated>
+					<src>2001:4898:e8:2002:11ba:d6f:43f1:ae58</src>
+					<dst>2607:f8b0:400a:807::200e</dst>
+					<rule>rule1</rule>
+					<srcloc>Unknown</srcloc>
+					<dstloc>Unknown</dstloc>
+					<app>webdav</app>
+					<vsys>vsys1</vsys>
+					<from>trust</from>
+					<to>untrust</to>
+					<inbound_if>ethernet1/2</inbound_if>
+					<outbound_if>ethernet1/1</outbound_if>
+					<logset>Logs-to-Panorama</logset>
+					<time_received>2015/03/09 13:13:52</time_received>
+					<sessionid>10208</sessionid>
+					<repeatcnt>1</repeatcnt>
+					<sport>61223</sport>
+					<dport>80</dport>
+					<natsport>0</natsport>
+					<natdport>0</natdport>
+					<flags>0</flags>
+					<flag-pcap>no</flag-pcap>
+					<flag-flagged>no</flag-flagged>
+					<flag-proxy>no</flag-proxy>
+					<flag-url-denied>no</flag-url-denied>
+					<flag-nat>no</flag-nat>
+					<captive-portal>no</captive-portal>
+					<exported>no</exported>
+					<transaction>no</transaction>
+					<pbf-c2s>no</pbf-c2s>
+					<pbf-s2c>no</pbf-s2c>
+					<temporary-match>no</temporary-match>
+					<sym-return>no</sym-return>
+					<decrypt-mirror>no</decrypt-mirror>
+					<proto>tcp</proto>
+					<action>allow</action>
+					<cpadding>0</cpadding>
+					<bytes>2740</bytes>
+					<bytes_sent>617</bytes_sent>
+					<bytes_received>2123</bytes_received>
+					<packets>12</packets>
+					<start>2015/03/09 13:12:38</start>
+					<elapsed>60</elapsed>
+					<category>not-resolved</category>
+					<padding>0</padding>
+					<pkts_sent>6</pkts_sent>
+					<pkts_received>6</pkts_received>
+					<session_end_reason>tcp-fin</session_end_reason>
+				</entry>
+				<entry logid="6124018632700766930">
+					<domain>1</domain>
+					<receive_time>2015/03/09 13:13:50</receive_time>
+					<serial>001606022871</serial>
+					<seqno>7600011</seqno>
+					<actionflags>0x0</actionflags>
+					<type>TRAFFIC</type>
+					<subtype>end</subtype>
+					<config_ver>1</config_ver>
+					<time_generated>2015/03/09 13:13:50</time_generated>
+					<src>10.127.60.69</src>
+					<dst>157.59.200.238</dst>
+					<rule>rule1</rule>
+					<srcloc>10.0.0.0-10.255.255.255</srcloc>
+					<dstloc>US</dstloc>
+					<app>dns</app>
+					<vsys>vsys1</vsys>
+					<from>trust</from>
+					<to>untrust</to>
+					<inbound_if>ethernet1/2</inbound_if>
+					<outbound_if>ethernet1/1</outbound_if>
+					<logset>Logs-to-Panorama</logset>
+					<time_received>2015/03/09 13:13:50</time_received>
+					<sessionid>10228</sessionid>
+					<repeatcnt>1</repeatcnt>
+					<sport>49559</sport>
+					<dport>53</dport>
+					<natsport>0</natsport>
+					<natdport>0</natdport>
+					<flags>0</flags>
+					<flag-pcap>no</flag-pcap>
+					<flag-flagged>no</flag-flagged>
+					<flag-proxy>no</flag-proxy>
+					<flag-url-denied>no</flag-url-denied>
+					<flag-nat>no</flag-nat>
+					<captive-portal>no</captive-portal>
+					<exported>no</exported>
+					<transaction>no</transaction>
+					<pbf-c2s>no</pbf-c2s>
+					<pbf-s2c>no</pbf-s2c>
+					<temporary-match>no</temporary-match>
+					<sym-return>no</sym-return>
+					<decrypt-mirror>no</decrypt-mirror>
+					<proto>udp</proto>
+					<action>allow</action>
+					<cpadding>0</cpadding>
+					<bytes>203</bytes>
+					<bytes_sent>80</bytes_sent>
+					<bytes_received>123</bytes_received>
+					<packets>2</packets>
+					<start>2015/03/09 13:13:21</start>
+					<elapsed>0</elapsed>
+					<category>any</category>
+					<padding>0</padding>
+					<pkts_sent>1</pkts_sent>
+					<pkts_received>1</pkts_received>
+					<session_end_reason>aged-out</session_end_reason>
+				</entry>
+				<entry logid="6124018632700766915">
+					<domain>1</domain>
+					<receive_time>2015/03/09 13:13:29</receive_time>
+					<serial>001606022871</serial>
+					<seqno>7599996</seqno>
+					<actionflags>0x0</actionflags>
+					<type>TRAFFIC</type>
+					<subtype>end</subtype>
+					<config_ver>1</config_ver>
+					<time_generated>2015/03/09 13:13:29</time_generated>
+					<src>10.170.5.73</src>
+					<dst>10.127.62.93</dst>
+					<rule>rule1</rule>
+					<srcloc>10.0.0.0-10.255.255.255</srcloc>
+					<dstloc>10.0.0.0-10.255.255.255</dstloc>
+					<app>ike</app>
+					<vsys>vsys1</vsys>
+					<from>untrust</from>
+					<to>trust</to>
+					<inbound_if>ethernet1/1</inbound_if>
+					<outbound_if>ethernet1/2</outbound_if>
+					<logset>Logs-to-Panorama</logset>
+					<time_received>2015/03/09 13:13:29</time_received>
+					<sessionid>8403</sessionid>
+					<repeatcnt>1</repeatcnt>
+					<sport>500</sport>
+					<dport>500</dport>
+					<natsport>0</natsport>
+					<natdport>0</natdport>
+					<flags>0</flags>
+					<flag-pcap>no</flag-pcap>
+					<flag-flagged>no</flag-flagged>
+					<flag-proxy>no</flag-proxy>
+					<flag-url-denied>no</flag-url-denied>
+					<flag-nat>no</flag-nat>
+					<captive-portal>no</captive-portal>
+					<exported>no</exported>
+					<transaction>no</transaction>
+					<pbf-c2s>no</pbf-c2s>
+					<pbf-s2c>no</pbf-s2c>
+					<temporary-match>no</temporary-match>
+					<sym-return>no</sym-return>
+					<decrypt-mirror>no</decrypt-mirror>
+					<proto>udp</proto>
+					<action>allow</action>
+					<cpadding>0</cpadding>
+					<bytes>966</bytes>
+					<bytes_sent>966</bytes_sent>
+					<bytes_received>0</bytes_received>
+					<packets>7</packets>
+					<start>2015/03/09 13:02:47</start>
+					<elapsed>43</elapsed>
+					<category>any</category>
+					<padding>0</padding>
+					<pkts_sent>7</pkts_sent>
+					<pkts_received>0</pkts_received>
+					<session_end_reason>aged-out</session_end_reason>
+				</entry>
+			</logs>
+		</log>
+	</result>
+</response>
+
+
+

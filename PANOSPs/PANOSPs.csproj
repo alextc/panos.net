@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{694FD7FD-2EDF-4B58-BFBE-A936BA0B1F95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PANOS</RootNamespace>
+    <AssemblyName>PANOS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddPanosObject.cs" />
+    <Compile Include="AddressGroup\GetAddressGroup.cs" />
+    <Compile Include="AddressGroup\NewAddressGroup.cs" />
+    <Compile Include="AddressRange\GetAddressRange.cs" />
+    <Compile Include="Address\GetAddress.cs" />
+    <Compile Include="AD\GetForestDCAddress.cs" />
+    <Compile Include="Bases\RequiresConfigRepository.cs" />
+    <Compile Include="Bases\RequiresConnectionProperties.cs" />
+    <Compile Include="Bases\RequiresLogRepository.cs" />
+    <Compile Include="Bases\SearchesObjects.cs" />
+    <Compile Include="Commit\Commit.cs" />
+    <Compile Include="ConnectionProperties\NewConnectionProperties.cs" />
+    <Compile Include="Integration\SyncDomainControllersIpToPanosAddressGroup.cs" />
+    <Compile Include="Logs\GetBlockedTrafficFromHostWithinTimeRange.cs" />
+    <Compile Include="Logs\GetTrafficLog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemovePanosObject.cs" />
+    <Compile Include="RenamePanosObject.cs" />
+    <Compile Include="Subnet\GetSubnet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PANOSLib\PANOSLib.csproj">
+      <Project>{9200b95e-ce93-428d-83c3-6af0d35eac7c}</Project>
+      <Name>PANOSLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Help\PANOS.Help.pshproj" />
+    <None Include="Scripts\CreateManagementEndPoint.ps1" />
+    <None Include="Scripts\ExportTrafficLog.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Help\PANOS.dll-Help.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(TargetDir)PANOS.pdb" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(ProjectDir)Help\PANOS.dll-Help.xml" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(ProjectDir)PANOS.dll.config" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS" "Y:\PAAutomation\PANOS"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,18 @@
+﻿<response status="success">
+  <result>
+    <job>
+      <tenq>2011/10/20 20:41:44</tenq>
+      <id>4</id>
+      <type>Commit</type>
+      <status>FIN</status>
+      <stoppable>no</stoppable>
+      <result>OK</result>
+      <tfin>20:42:22</tfin>
+      <progress>20:42:22</progress>
+      <details>
+        <line>ConfigurationCommitted successfully</line>
+      </details>
+      <warnings/>
+    </job>
+  </result>
+</response>

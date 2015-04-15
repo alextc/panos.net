@@ -1,0 +1,1089 @@
+﻿<response status="success">
+  <result>
+    <address>
+      <entry name="WINSE-1">
+        <ip-netmask>10.193.160.0/23</ip-netmask>
+      </entry>
+      <entry name="WINSE-2">
+        <ip-netmask>10.193.162.0/23</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-3">
+        <ip-netmask>10.193.218.0/23</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-4">
+        <ip-netmask>10.195.48.128/25</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-5">
+        <ip-netmask>10.195.116.0/23</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-6">
+        <ip-netmask>10.195.118.0/23</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-7">
+        <ip-netmask>10.199.152.0/23</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-8">
+        <ip-netmask>10.199.160.0/23</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-10_ipv6">
+        <ip-netmask>2001:4898:0:1c3::/64</ip-netmask>
+        <description>2001:4898:0:1c3::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-11_ipv6">
+        <ip-netmask>2001:4898:0:230::/64</ip-netmask>
+        <description>2001:4898:0:230::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-12_ipv6">
+        <ip-netmask>2001:4898:0:231::/64</ip-netmask>
+        <description>2001:4898:0:231::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-14_ipv6">
+        <ip-netmask>2001:4898:0:233::/64</ip-netmask>
+        <description>2001:4898:0:233::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-13_ipv6">
+        <ip-netmask>2001:4898:0:232::/64</ip-netmask>
+        <description>2001:4898:0:232::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-15_ipv6">
+        <ip-netmask>2001:4898:0:234::/64</ip-netmask>
+        <description>2001:4898:0:234::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-16_ipv6">
+        <ip-netmask>2001:4898:0:235::/64</ip-netmask>
+        <description>2001:4898:0:235::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-17_ipv6">
+        <ip-netmask>2001:4898:0:236::/64</ip-netmask>
+        <description>2001:4898:0:236::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-18_ipv6">
+        <ip-netmask>2001:4898:0:237::/64</ip-netmask>
+        <description>2001:4898:0:237::/64</description>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="WINSE-9">
+        <ip-netmask>10.199.162.0/23</ip-netmask>
+      </entry>
+      <entry name="eBPG-PTP">
+        <ip-range>30.0.8.1-30.0.8.46</ip-range>
+      </entry>
+      <entry name="eBPG-PTP-IPv6">
+        <ip-netmask>2001:4898:00f8::/64</ip-netmask>
+      </entry>
+      <entry name="ISRM">
+        <ip-netmask>25.0.129.192/27</ip-netmask>
+      </entry>
+      <entry name="PAIX-LIEBERMAN">
+        <ip-netmask>25.0.129.128/28</ip-netmask>
+      </entry>
+      <entry name="PAIX-FE">
+        <ip-netmask>25.0.129.144/28</ip-netmask>
+      </entry>
+      <entry name="PAIX-HVA-AD">
+        <ip-netmask>25.0.129.0/25</ip-netmask>
+      </entry>
+      <entry name="PAIX-HVA-WEF">
+        <ip-netmask>25.0.129.160/28</ip-netmask>
+      </entry>
+      <entry name="WOS-File-Transfer">
+        <ip-netmask>25.0.129.176/28</ip-netmask>
+      </entry>
+      <entry name="ILO">
+        <ip-netmask>25.0.163.128/25</ip-netmask>
+      </entry>
+      <entry name="ISRM-IPv6">
+        <ip-netmask>2001:4894:f8:1::/64</ip-netmask>
+      </entry>
+      <entry name="PAIX-FE-IPv6">
+        <ip-netmask>2001:4894:f8:3::/64</ip-netmask>
+      </entry>
+      <entry name="PAIX-LIEBERMAN-IPv6">
+        <ip-netmask>2001:4894:f8:2::/64</ip-netmask>
+      </entry>
+      <entry name="PAIX-HVA-AD-IPv6">
+        <ip-netmask>2001:4894:f8:4::/64</ip-netmask>
+      </entry>
+      <entry name="PAIX-HVA-WEF-IPv6">
+        <ip-netmask>2001:4894:f8:5::/64</ip-netmask>
+      </entry>
+      <entry name="WOS-File-Transfer-IPv6">
+        <ip-netmask>2001:4894:f8:6::/64</ip-netmask>
+      </entry>
+      <entry name="ILO-IPv6">
+        <ip-netmask>2001:4894:f8:7::/64</ip-netmask>
+      </entry>
+      <entry name="SPPKMS01">
+        <ip-netmask>10.194.23.42</ip-netmask>
+      </entry>
+      <entry name="LADKMS02">
+        <ip-netmask>172.29.161.192</ip-netmask>
+      </entry>
+      <entry name="LADKMS01">
+        <ip-netmask>10.194.23.74</ip-netmask>
+      </entry>
+      <entry name="OA-W8KMS-01">
+        <ip-netmask>10.198.50.248</ip-netmask>
+      </entry>
+      <entry name="RED-VL-01">
+        <ip-netmask>10.213.0.42</ip-netmask>
+      </entry>
+      <entry name="CO2XTVL01">
+        <ip-netmask>10.251.159.246</ip-netmask>
+      </entry>
+      <entry name="RED-VL-VM">
+        <ip-netmask>10.220.178.93</ip-netmask>
+      </entry>
+      <entry name="CO1RED-VL-VM02">
+        <ip-netmask>10.220.177.55</ip-netmask>
+      </entry>
+      <entry name="RED-VL-02">
+        <ip-netmask>10.213.0.41</ip-netmask>
+      </entry>
+      <entry name="SPPKMS02">
+        <ip-netmask>172.29.161.244</ip-netmask>
+      </entry>
+      <entry name="CORPCASIGN03">
+        <ip-netmask>157.54.25.51</ip-netmask>
+      </entry>
+      <entry name="WFSCALC-1">
+        <ip-netmask>10.192.202.39</ip-netmask>
+      </entry>
+      <entry name="WFSCALC-2">
+        <ip-netmask>10.192.148.42</ip-netmask>
+      </entry>
+      <entry name="CP1QA1CDSWEB05">
+        <ip-netmask>10.200.2.79</ip-netmask>
+      </entry>
+      <entry name="CP1QA1CDSWEB04">
+        <ip-netmask>10.200.2.78</ip-netmask>
+      </entry>
+      <entry name="G13701213201">
+        <ip-netmask>10.184.199.132</ip-netmask>
+      </entry>
+      <entry name="CSNEOUAT">
+        <ip-netmask>10.200.2.70</ip-netmask>
+      </entry>
+      <entry name="sjc-rlawson-x">
+        <ip-netmask>10.70.136.51</ip-netmask>
+      </entry>
+      <entry name="minint-gh1hfhc">
+        <ip-netmask>10.70.137.4</ip-netmask>
+      </entry>
+      <entry name="garland-nis">
+        <ip-netmask>10.70.137.98</ip-netmask>
+      </entry>
+      <entry name="drozeetest21">
+        <ip-netmask>10.83.64.239</ip-netmask>
+      </entry>
+      <entry name="swathi-msft">
+        <ip-netmask>10.121.148.62</ip-netmask>
+      </entry>
+      <entry name="saw-l2312443">
+        <ip-netmask>10.121.148.123</ip-netmask>
+      </entry>
+      <entry name="saw-l2623697">
+        <ip-netmask>10.121.149.87</ip-netmask>
+      </entry>
+      <entry name="CP1-SEDEV-DC-03">
+        <ip-netmask>25.0.128.9</ip-netmask>
+      </entry>
+      <entry name="w520wsrv2012r2">
+        <ip-netmask>157.59.1.64</ip-netmask>
+      </entry>
+      <entry name="richardf-dev2">
+        <ip-netmask>157.59.1.210</ip-netmask>
+      </entry>
+      <entry name="ango-dev">
+        <ip-netmask>157.59.1.162</ip-netmask>
+      </entry>
+      <entry name="WOSHELPSQL01T">
+        <ip-netmask>10.192.156.201</ip-netmask>
+      </entry>
+      <entry name="SESWEB01">
+        <ip-netmask>10.192.156.118</ip-netmask>
+      </entry>
+      <entry name="WOSKVM-02">
+        <ip-netmask>10.192.254.32</ip-netmask>
+      </entry>
+      <entry name="CP1-MGT-WSUS-01.IT.MSFT.NET">
+        <ip-netmask>25.0.129.25</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="SMTPHOST.REDMOND.CORP.MICROSOFT.COM">
+        <ip-range>157.54.69.54-157.54.69.55</ip-range>
+      </entry>
+      <entry name="CP1-MGT-RA-01.IT.MSFT.NET">
+        <ip-netmask>25.0.129.155</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CP1-MGT-RA-02.IT.MSFT.NET">
+        <ip-netmask>25.0.129.156</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="B28SEDWSUS01.SEDEV.MSFT.NET">
+        <ip-netmask>10.193.160.11</ip-netmask>
+      </entry>
+      <entry name="CO1-SAWWSUS-01">
+        <ip-netmask>157.59.247.157</ip-netmask>
+      </entry>
+      <entry name="CodesignMOPR1">
+        <ip-netmask>10.37.204.10</ip-netmask>
+      </entry>
+      <entry name="CodesignMOPR2">
+        <ip-netmask>10.37.204.34</ip-netmask>
+      </entry>
+      <entry name="CP1-IT-BLD-01.IT.NSFT.NET">
+        <ip-netmask>25.0.129.17</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="hbivstf.redmond.corp.microsoft.com">
+        <ip-netmask>10.219.0.84</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="test10.sedev.msft.net">
+        <ip-netmask>10.193.160.34</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="cxeredxsdprxy01.sedev.msft.net">
+        <ip-netmask>10.193.160.32</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="CO1-SAW-FS-02.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.132.209.19</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="CO1-SAW-FS-01.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.132.209.200</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="CP1-MGMT-DC-01.IT.MSFT.NET">
+        <ip-netmask>25.0.129.10</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="tk5-sawrdg-01.redmond.corp.microsoft.com">
+        <ip-netmask>157.54.71.106</ip-netmask>
+      </entry>
+      <entry name="CP1-MGT-DC-01.IT.MSFT.NET">
+        <ip-netmask>25.0.129.10</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CP1-MGT-DC-02.IT.MSFT.NET">
+        <ip-netmask>25.0.129.11</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CP1-MGT-DC-03.IT.MSFT.NET">
+        <ip-netmask>25.0.129.12</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="B28SEDDC02.SEDEV.MSFT.NET">
+        <ip-netmask>10.195.48.155</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="B28SEDDC01.SEDEV.MSFT.NET">
+        <ip-netmask>10.195.48.153</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="SEBLDSMTP.SEGROUP.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>10.200.18.31</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="CXEREDXSMTP01.SEDEV.MSFT.NET">
+        <ip-netmask>10.193.160.56</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="BAYISRMBDHD02.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.161.37.248</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="BAYISRMBDHD03.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.161.37.245</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="BAYISRMBDHD04.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.161.37.244</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="BAYISRMBDHD05.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.161.37.127</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="CP1-WEF-01.IT.MSFT.NET">
+        <ip-netmask>25.0.129.166</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CP1-WEF-02.IT.MSFT.NET">
+        <ip-netmask>25.0.129.167</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="B28SEDWEF01.SEDEV.MSFT.NET">
+        <ip-netmask>10.195.48.173</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="B28SEDWEF02.SEDEV.MSFT.NET">
+        <ip-netmask>10.195.48.175</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="QUALYSGUARD-ISRM.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.166</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="QUALYSAPI-ISRM.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.167</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="QGADMIN-ISRM.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.168</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="PORTAL-ISRM.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.169</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="PORTAL-BO-ISRM.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.170</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="DISTRIBUTION-SCAN.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.171</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="MONITORING-SCAN.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.172</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="SCANSERVICE1-SCAN.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.173</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="DOWNLOAD-ISRM.CORP.MICROSOFT.COM">
+        <ip-netmask>10.36.219.174</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="HVAWINSE-QUALYS.SEDEV.MSFT.NET">
+        <ip-netmask>10.195.48.188</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="QUALYSCPDC.IT.MSFT.NET">
+        <ip-netmask>25.0.129.170</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="WINSEQFE.SEGROUP.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>10.200.18.30</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="SD-Network">
+        <ip-netmask>10.219.0.0/16</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="OSGBNSWEB01">
+        <ip-netmask>10.196.98.100</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="TK5-CORP-DC-02">
+        <ip-netmask>10.219.1.91</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="VLAN1006">
+        <ip-netmask>25.0.128.0/24</ip-netmask>
+      </entry>
+      <entry name="VLAN_1008">
+        <ip-netmask>25.0.129.224/27</ip-netmask>
+      </entry>
+      <entry name="SEBLDFIJI01">
+        <ip-netmask>10.200.16.54</ip-netmask>
+      </entry>
+      <entry name="SEBLDFIJI02">
+        <ip-netmask>10.200.16.156</ip-netmask>
+      </entry>
+      <entry name="SEBLDFILE03">
+        <ip-netmask>10.200.18.177</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL100">
+        <ip-netmask>10.200.18.229</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL101">
+        <ip-netmask>10.200.18.153</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL102">
+        <ip-netmask>10.200.18.59</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL103">
+        <ip-netmask>10.200.18.60</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL104">
+        <ip-netmask>10.200.18.63</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL105">
+        <ip-netmask>10.200.18.62</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL106">
+        <ip-netmask>10.200.18.170</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL107">
+        <ip-netmask>10.200.18.166</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL108">
+        <ip-netmask>10.200.18.168</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL109">
+        <ip-netmask>10.200.18.167</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL110">
+        <ip-netmask>10.200.18.169</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL111">
+        <ip-netmask>10.200.18.184</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL112">
+        <ip-netmask>10.200.18.185</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL113">
+        <ip-netmask>10.200.18.182</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL114">
+        <ip-netmask>10.200.18.183</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL52">
+        <ip-netmask>10.200.18.171</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL53">
+        <ip-netmask>10.200.18.89</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL54">
+        <ip-netmask>10.200.18.172</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL70">
+        <ip-netmask>10.200.18.233</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL71">
+        <ip-netmask>10.200.18.187</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL72">
+        <ip-netmask>10.200.18.152</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL73">
+        <ip-netmask>10.200.18.154</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL74">
+        <ip-netmask>10.200.18.160</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL75">
+        <ip-netmask>10.200.18.186</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL76">
+        <ip-netmask>10.200.18.181</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL77">
+        <ip-netmask>10.200.18.178</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL78">
+        <ip-netmask>10.200.18.180</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL79">
+        <ip-netmask>10.200.18.151</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL80">
+        <ip-netmask>10.200.18.155</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL81">
+        <ip-netmask>10.200.18.156</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL82">
+        <ip-netmask>10.200.26.44</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL83">
+        <ip-netmask>10.200.26.49</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL84">
+        <ip-netmask>10.200.26.45</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL85">
+        <ip-netmask>10.200.26.48</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL86">
+        <ip-netmask>10.200.26.46</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL87">
+        <ip-netmask>10.200.26.201</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL88">
+        <ip-netmask>10.200.26.79</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL89">
+        <ip-netmask>10.200.26.80</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL90">
+        <ip-netmask>10.200.26.76</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL91">
+        <ip-netmask>10.200.26.75</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL92">
+        <ip-netmask>10.200.26.74</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL93">
+        <ip-netmask>10.200.26.99</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL94">
+        <ip-netmask>10.200.26.100</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL95">
+        <ip-netmask>10.200.26.101</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL96">
+        <ip-netmask>10.200.18.103</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL97">
+        <ip-netmask>10.200.18.102</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL98">
+        <ip-netmask>10.200.18.148</ip-netmask>
+      </entry>
+      <entry name="SEBLDREL99">
+        <ip-netmask>10.200.18.149</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN01">
+        <ip-netmask>10.200.18.218</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN02">
+        <ip-netmask>10.200.18.212</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN03">
+        <ip-netmask>10.200.18.220</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN04">
+        <ip-netmask>10.200.18.222</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN05">
+        <ip-netmask>10.200.18.201</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN06">
+        <ip-netmask>10.200.18.202</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN07">
+        <ip-netmask>10.200.18.203</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN08">
+        <ip-netmask>10.200.18.206</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN09">
+        <ip-netmask>10.200.18.226</ip-netmask>
+      </entry>
+      <entry name="SEBLDRELMAN10">
+        <ip-netmask>10.200.18.225</ip-netmask>
+      </entry>
+      <entry name="WINSEHOTFIX">
+        <ip-netmask>10.200.18.19</ip-netmask>
+      </entry>
+      <entry name="WINSEHOTFIX02">
+        <ip-netmask>10.200.18.214</ip-netmask>
+      </entry>
+      <entry name="WINSEQFE">
+        <ip-netmask>10.200.18.30</ip-netmask>
+      </entry>
+      <entry name="WINSEQFEDFS">
+        <ip-netmask>10.200.18.173</ip-netmask>
+      </entry>
+      <entry name="WINSEQFEDFS02">
+        <ip-netmask>10.200.18.228</ip-netmask>
+      </entry>
+      <entry name="WINSEQFESQL.SEGROUP.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>10.200.18.176</ip-netmask>
+      </entry>
+      <entry name="WMSEHOTFIX">
+        <ip-netmask>10.200.26.191</ip-netmask>
+      </entry>
+      <entry name="BUILD-PROXY37-06">
+        <ip-netmask>10.216.222.178</ip-netmask>
+      </entry>
+      <entry name="BUILD-PROXY37-08">
+        <ip-netmask>10.216.222.186</ip-netmask>
+      </entry>
+      <entry name="SDBRANCH01">
+        <ip-netmask>10.192.234.42</ip-netmask>
+      </entry>
+      <entry name="WPBBLDSPD03">
+        <ip-netmask>10.57.137.4</ip-netmask>
+      </entry>
+      <entry name="sts.it.msft.net">
+        <ip-netmask>25.0.129.158</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="msft.sts.microsoft.com">
+        <ip-netmask>10.222.127.22</ip-netmask>
+      </entry>
+      <entry name="CP1ITADFS01">
+        <ip-netmask>25.0.129.13</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CP1ITADFS02">
+        <ip-netmask>25.0.129.14</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CP1ITADFS03">
+        <ip-netmask>25.0.129.15</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CO1-F030-INTVIP">
+        <ip-netmask>157.59.237.11</ip-netmask>
+      </entry>
+      <entry name="DB3-F030-INTVIP">
+        <ip-netmask>10.166.27.65</ip-netmask>
+      </entry>
+      <entry name="SIN-F030-INTVIP">
+        <ip-netmask>157.60.236.30</ip-netmask>
+      </entry>
+      <entry name="CY1-F030-INTVIP">
+        <ip-netmask>10.221.254.11</ip-netmask>
+      </entry>
+      <entry name="CP1-P1-MGT-FIM-01.IT.MSFT.NET">
+        <ip-netmask>25.0.129.150</ip-netmask>
+        <tag>
+          <member>ITHVA</member>
+        </tag>
+      </entry>
+      <entry name="CP1SEDDC03.SEDEV.MSFT.NET">
+        <ip-netmask>25.0.129.232</ip-netmask>
+        <tag>
+          <member>WINSE</member>
+        </tag>
+      </entry>
+      <entry name="CP1-PROV-SQL-01.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>25.0.128.10</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="CP1-PROV-WEB-01.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>25.0.128.7</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="B37-NTDEV-DC-53.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.192.150.46</ip-netmask>
+      </entry>
+      <entry name="OSGBNSWEB01-1">
+        <ip-netmask>10.196.98.98</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="BR1-NTDEV-DC-83.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.124.0.218</ip-netmask>
+      </entry>
+      <entry name="RR-NTDEV-DC-44.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.185.81.42</ip-netmask>
+      </entry>
+      <entry name="RR-NTDEV-DC-43.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.185.81.43</ip-netmask>
+      </entry>
+      <entry name="AZ-NTDEV-DC-95.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.195.155.7</ip-netmask>
+      </entry>
+      <entry name="B25-NTDEV-DC-34.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.197.236.13</ip-netmask>
+      </entry>
+      <entry name="B25-NTDEV-DC-35.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.197.236.14</ip-netmask>
+      </entry>
+      <entry name="B25-NTDEV-DC-31.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.197.236.15</ip-netmask>
+      </entry>
+      <entry name="B25-NTDEV-DC-32.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.197.236.16</ip-netmask>
+      </entry>
+      <entry name="B25-NTDEV-DC-33.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.197.236.18</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-03.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.200.81.82</ip-netmask>
+      </entry>
+      <entry name="TK5-NTDEV-DC-61.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.219.0.74</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-07.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.200.81.4</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-10.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.141</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-01.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.142</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-12.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.138</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-02.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.144</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-06.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.146</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-09.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.147</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-05.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.155</ip-netmask>
+      </entry>
+      <entry name="BUILD-PRXY37-15.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.216.223.241</ip-netmask>
+        <tag>
+          <member>CORP</member>
+        </tag>
+      </entry>
+      <entry name="TK5SDSERVWIN85.SYS-WINGROUP.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.219.68.36</ip-netmask>
+      </entry>
+      <entry name="BBTDEPOT.SYS-NTGROUP.MICROSOFT.COM">
+        <ip-netmask>10.216.222.180</ip-netmask>
+      </entry>
+      <entry name="MULTIMEDIADEPOT.SYS-NTGROUP.NTDEV.MICROSOFT.COM">
+        <ip-netmask>10.216.222.184</ip-netmask>
+      </entry>
+      <entry name="NETDEPOT.SYS-NTGROUP.NTDEV.MICROSOFT.COM">
+        <ip-netmask>10.57.137.5</ip-netmask>
+      </entry>
+      <entry name="SQLDEPOT.SYS-NTGROUP.NTDEV.MICROSOFT.COM">
+        <ip-netmask>10.219.69.57</ip-netmask>
+      </entry>
+      <entry name="SAL-NTDEV-DC-01.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>147.243.33.38</ip-netmask>
+      </entry>
+      <entry name="CO2-NTDEV-DC-76.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>157.59.205.15</ip-netmask>
+      </entry>
+      <entry name="CO2-NTDEV-DC-78.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>157.59.205.76</ip-netmask>
+      </entry>
+      <entry name="CO1-CORP-DC-04.CORP.MICROSOFT.COM">
+        <ip-netmask>10.222.112.26</ip-netmask>
+      </entry>
+      <entry name="TK5-CORP-DC-03.CORP.MICROSOFT.COM">
+        <ip-netmask>10.219.1.92</ip-netmask>
+      </entry>
+      <entry name="DB3-CORP-DC-04.CORP.MICROSOFT.COM">
+        <ip-netmask>10.221.24.6</ip-netmask>
+      </entry>
+      <entry name="SIN-CORP-DC-05.CORP.MICROSOFT.COM">
+        <ip-netmask>157.60.220.46</ip-netmask>
+      </entry>
+      <entry name="SIN-CORP-DC-04.CORP.MICROSOFT.COM">
+        <ip-netmask>157.60.220.27</ip-netmask>
+      </entry>
+      <entry name="TK5-CORP-DC-02.CORP.MICROSOFT.COM">
+        <ip-netmask>10.219.1.91</ip-netmask>
+      </entry>
+      <entry name="CY1-CORP-DC-02.CORP.MICROSOFT.COM">
+        <ip-netmask>10.221.192.60</ip-netmask>
+      </entry>
+      <entry name="CO1-CORP-DC-03.CORP.MICROSOFT.COM">
+        <ip-netmask>10.222.110.19</ip-netmask>
+      </entry>
+      <entry name="DB3-CORP-DC-02.CORP.MICROSOFT.COM">
+        <ip-netmask>10.221.22.10</ip-netmask>
+      </entry>
+      <entry name="SAL-CORP-DC-01.CORP.MICROSOFT.COM">
+        <ip-netmask>147.243.33.13</ip-netmask>
+      </entry>
+      <entry name="DB3-CORP-DC-01.CORP.MICROSOFT.COM">
+        <ip-netmask>65.53.159.21</ip-netmask>
+      </entry>
+      <entry name="CY1-CORP-DC-01.CORP.MICROSOFT.COM">
+        <ip-netmask>10.221.192.41</ip-netmask>
+      </entry>
+      <entry name="CO1-CORP-DC-02.CORP.MICROSOFT.COM">
+        <ip-netmask>157.59.234.10</ip-netmask>
+      </entry>
+      <entry name="TK5-CORP-DC-01.CORP.MICROSOFT.COM">
+        <ip-netmask>10.219.1.85</ip-netmask>
+      </entry>
+      <entry name="TK5SDSERVWIN65.SYS-WINGROUP.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.219.68.74</ip-netmask>
+      </entry>
+      <entry name="BUILD-PRXY37-08.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.216.222.186</ip-netmask>
+      </entry>
+      <entry name="WBET-BNS-SERVIC.NTDEV.CORP.MICROSOFT.COM 2">
+        <ip-netmask>10.192.148.47</ip-netmask>
+        <description>BNS XML Drop File Server (address 1)</description>
+      </entry>
+      <entry name="WBET-BNS-SERVIC.NTDEV.CORP.MICROSOFT.COM 1">
+        <ip-netmask>10.192.150.12</ip-netmask>
+        <description>BNS XML Drop File Server</description>
+      </entry>
+      <entry name="wbet-bns-svc201.ntdev.corp.microsoft.com">
+        <ip-netmask>10.192.200.137</ip-netmask>
+        <description>BNS XML Drop File Server</description>
+      </entry>
+      <entry name="wbet-bns-svc202.ntdev.corp.microsoft.com">
+        <ip-netmask>10.192.202.48</ip-netmask>
+        <description>BNS XML File Drop Server</description>
+      </entry>
+      <entry name="CP1-XPA-INT-1A">
+        <ip-netmask>25.0.129.125</ip-netmask>
+      </entry>
+      <entry name="CP1-XPA-INT-1B">
+        <ip-netmask>25.0.129.126</ip-netmask>
+      </entry>
+      <entry name="ISRM-SYSLOG-SERVER">
+        <ip-netmask>10.219.0.121</ip-netmask>
+      </entry>
+      <entry name="CO1-SAWWSUS-01.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.132.212.36</ip-netmask>
+      </entry>
+      <entry name="WINBUILDS.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.192.31.235</ip-netmask>
+      </entry>
+      <entry name="CO1-WINSE-DC-03.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>10.222.114.11</ip-netmask>
+      </entry>
+      <entry name="CY1-WINSE-DC-01.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>10.221.192.59</ip-netmask>
+      </entry>
+      <entry name="SG2-WINSE-DC-01.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>10.222.220.32</ip-netmask>
+      </entry>
+      <entry name="SIN-WINSE-DC-04.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>157.60.218.56</ip-netmask>
+      </entry>
+      <entry name="TK5-WINSE-DC-03.WINSE.CORP.MICROSOFT.COM">
+        <ip-netmask>157.54.88.79</ip-netmask>
+      </entry>
+      <entry name="WINBUILDS3.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.192.145.129</ip-netmask>
+      </entry>
+      <entry name="CP1-TSADMIN-01.IT.MSFT.NET">
+        <ip-netmask>25.0.129.154</ip-netmask>
+      </entry>
+      <entry name="CP1-TSADMIN-02.IT.MSFT.NET">
+        <ip-netmask>25.0.129.153</ip-netmask>
+      </entry>
+      <entry name="CP1ITSVC.IT.MSFT.NET">
+        <ip-netmask>25.0.129.38</ip-netmask>
+      </entry>
+      <entry name="DDITSQL.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.177.236.5</ip-netmask>
+      </entry>
+      <entry name="BLDREL-1102.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.195.7.173</ip-netmask>
+      </entry>
+      <entry name="BLDREL-1131.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.190.146</ip-netmask>
+      </entry>
+      <entry name="BLDREL-1132.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.190.147</ip-netmask>
+      </entry>
+      <entry name="DDWEB">
+        <ip-netmask>10.240.177.17</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-08.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.158</ip-netmask>
+      </entry>
+      <entry name="CP1SEDVC.sedev.msft.net">
+        <ip-netmask>25.0.129.235</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-14.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.188</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-17.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.200.81.125</ip-netmask>
+      </entry>
+      <entry name="CO2-NTDEV-DC-73.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>157.59.205.31</ip-netmask>
+      </entry>
+      <entry name="BR1-NTDEV-DC-81.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.124.0.217</ip-netmask>
+      </entry>
+      <entry name="crl.microsoft.com">
+        <ip-netmask>207.109.73.186</ip-netmask>
+      </entry>
+      <entry name="CO1-SAWADMIN-01.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.132.212.4</ip-netmask>
+      </entry>
+      <entry name="CO1-SAWADMIN-02.REDMOND.CORP.MICROSOFT.COM">
+        <ip-netmask>10.132.212.6</ip-netmask>
+      </entry>
+      <entry name="CO2-NTDEV-DC-74.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>157.59.206.48</ip-netmask>
+      </entry>
+      <entry name="SG2-CORP-DC-01.CORP.MICROSOFT.COM">
+        <ip-netmask>10.222.216.16</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-11.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.156</ip-netmask>
+      </entry>
+      <entry name="B40-NTDEV-DC-04.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>172.31.79.143</ip-netmask>
+      </entry>
+      <entry name="CO2-NTDEV-DC-72.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>157.59.205.248</ip-netmask>
+      </entry>
+      <entry name="WBET-BNS-SVC2.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.192.202.40</ip-netmask>
+      </entry>
+      <entry name="WBET-BNS-LIVE.NTDEV.CORP.MICROSOFT.COM 1">
+        <ip-netmask>10.192.148.48</ip-netmask>
+        <description>Node 1 of WBET-BNS-LIVE.NTDEV.CORP.MICROSOFT.COM</description>
+      </entry>
+      <entry name="WBET-BNS-LIVE.NTDEV.CORP.MICROSOFT.COM 2">
+        <ip-netmask>10.192.150.15</ip-netmask>
+        <description>Node 2 of WBET-BNS-LIVE.NTDEV.CORP.MICROSOFT.COM</description>
+      </entry>
+      <entry name="API-TEST1">
+        <ip-netmask>10.10.10.1</ip-netmask>
+      </entry>
+      <entry name="API-TEST2">
+        <ip-netmask>10.0.0.2</ip-netmask>
+      </entry>
+      <entry name="BNSDBLISTENER.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.192.148.50</ip-netmask>
+      </entry>
+      <entry name="CO1SDSERVWIN88.SYS-WINGROUP.NTDEV.CORP.MICROSOFT.COM">
+        <ip-netmask>10.222.84.8</ip-netmask>
+      </entry>
+      <entry name="API-TEST-2433">
+        <ip-netmask>10.200.26.49</ip-netmask>
+      </entry>
+      <entry name="API-TEST-1217">
+        <ip-netmask>10.200.26.49</ip-netmask>
+      </entry>
+    </address>
+  </result>
+</response>
