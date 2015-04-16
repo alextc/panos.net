@@ -55,8 +55,7 @@
     <Compile Include="Bases\SearchesObjects.cs" />
     <Compile Include="Commit\Commit.cs" />
     <Compile Include="ConnectionProperties\NewConnectionProperties.cs" />
-    <Compile Include="Integration\SyncDomainControllersIpToPanosAddressGroup.cs" />
-    <Compile Include="Logs\GetBlockedTrafficFromHostWithinTimeRange.cs" />
+    <Compile Include="Integration\RootForestDomainControllersToPANOSAddressGroup.cs" />
     <Compile Include="Logs\GetTrafficLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemovePanosObject.cs" />

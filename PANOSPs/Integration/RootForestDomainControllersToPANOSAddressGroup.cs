@@ -4,7 +4,7 @@
     using PANOS.Integration;
     using PANOS.Logging;
 
-    [Cmdlet(VerbsData.Import, "DomainControllerIPToPANOSAddressGroup")]
+    [Cmdlet(VerbsData.Import, "RootForestDomainControllersToPANOSAddressGroup")]
     public class SyncDomainControllersIpToPanosAddressGroup : RequiresConfigRepository
     {
         private ICommand<ApiEnqueuedResponse> commitCommand; 

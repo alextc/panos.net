@@ -1,10 +1,19 @@
 ﻿$getBlockedTraffic = {
-    param ( [string]$SourceIp, [DateTime]$RangeStart = (Get-Date).AddHours(-4), [DateTime]$RangeEnd = (Get-Date) )
+    param 
+        (
+            [Parameter(Mandatory=$true, Position=0)]
+             [string]$SourceIp, 
+            [Parameter(Position=1)]
+             [DateTime]$RangeStart = (Get-Date).AddHours(-4),
+            [Parameter(Position=2)]
+              [DateTime]$RangeEnd = (Get-Date) 
+        )
+
     $accessToken = convertto-securestring "" -asplaintext -force
     $query =  [string]::Format("( action eq deny) and ( addr.src in {0} ) and ( receive_time leq '{1:yyyy/MM/dd HH:mm:ss}' ) and (receive_time geq '{2:yyyy/MM/dd HH:mm:ss}')", $SourceIp, $RangeEnd, $RangeStart)
     $connectionPropertyFW1 = New-PANOSConnectionProperties -HostName 'firewall1.it.msft.net' -Vsys 'vsys3' -AccessToken $accessToken
     $connectionPropertyFW2 = New-PANOSConnectionProperties -HostName 'firewall2.it.msft.net' -Vsys 'vsys3' -AccessToken $accessToken
-    Get-PANOSTrafficLog -Query $query  -ConnectionProperties $connectionPropertyFW1,$connectionPropertyFW2 | Format-Table
+    Get-PANOSTrafficLog -Query $query -ConnectionProperties $connectionPropertyFW1,$connectionPropertyFW2 | Format-Table
 }
 
 New-PSSessionConfigurationFile -Path c:\PSScripts\panos.pssc `
@@ -28,4 +37,7 @@ Register-PSSessionConfiguration -Path 'c:\PSScripts\panos.pssc' `
                                 -RunAsCredential $sessionCreds `
                                 -AccessMode Remote `
                                 -Force
+                                
+
+
                                 
