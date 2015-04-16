@@ -3,7 +3,7 @@
     using System.Management.Automation;
     using PANOS.Integration;
 
-    [Cmdlet(VerbsCommon.Get, "ForestDc")]
+    [Cmdlet(VerbsCommon.Get, "RootForestDomainControllersAsAddressGroup")]
     [OutputType(typeof(AddressGroupObject))]
     public class GetForestDc : PSCmdlet
     {
