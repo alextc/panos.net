@@ -3,9 +3,9 @@
     using System.Management.Automation;
     using System.Security;
 
-    [Cmdlet(VerbsCommon.New, "PANOSConnectionProperties")]
-    [OutputType(typeof(ConnectionProperties))]
-    public class NewConnectionProperties : PSCmdlet
+    [Cmdlet(VerbsCommon.New, "PANOSConnection")]
+    [OutputType(typeof(Connection))]
+    public class NewConnection : PSCmdlet
     {
         [Parameter(Mandatory = true)]
         public string HostName { get; set; }
@@ -18,7 +18,7 @@
 
         protected override void ProcessRecord() 
         {
-            WriteObject(new ConnectionProperties(HostName, AccessToken, Vsys));
+            WriteObject(new Connection(HostName, AccessToken, Vsys));
         }
     }
 }

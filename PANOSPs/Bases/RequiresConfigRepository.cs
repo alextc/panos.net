@@ -1,6 +1,6 @@
 ﻿namespace PANOS
 {
-    public abstract class RequiresConfigRepository : RequiresConnectionProperties
+    public abstract class RequiresConfigRepository : RequiresConnection
     {
         protected IConfigRepository ConfigRepository { get; private set; }
 
@@ -8,10 +8,10 @@
         {
             ConfigRepository = new ConfigRepository(
                 new ConfigCommandFactory(new ApiUriFactory(
-                    ConnectionProperties.Host),
+                    this.Connection.Host),
                 new ConfigApiPostKeyValuePairFactory(
-                        ConnectionProperties.AccessToken,
-                        ConnectionProperties.Vsys)));
+                        this.Connection.AccessToken,
+                        this.Connection.Vsys)));
         }
     }
 }

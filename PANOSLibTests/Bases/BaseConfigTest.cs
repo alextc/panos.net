@@ -21,14 +21,14 @@
             this.ConfigCommandFactory = 
                 new ConfigCommandFactory(
                     new ApiUriFactory(
-                        ConnectionProperties.Host), 
+                        Connection.Host), 
                     new ConfigApiPostKeyValuePairFactory(
-                        ConnectionProperties.AccessToken,
-                        ConnectionProperties.Vsys));
+                        Connection.AccessToken,
+                        Connection.Vsys));
 
             this.CommitCommandFactory = new CommitApiCommandFactory(
-                new ApiUriFactory(ConnectionProperties.Host),
-                new CommitApiPostKeyValuePairFactory(ConnectionProperties.AccessToken));
+                new ApiUriFactory(Connection.Host),
+                new CommitApiPostKeyValuePairFactory(Connection.AccessToken));
 
             this.ConfigRepository = new ConfigRepository(this.ConfigCommandFactory);
 

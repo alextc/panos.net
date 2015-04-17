@@ -5,12 +5,12 @@ namespace PANOS
 
     [Cmdlet(VerbsData.Save, "PANOSChanges")]
     [OutputType(typeof(ApiEnqueuedResponse))]
-    public class Commit : RequiresConnectionProperties
+    public class Commit : RequiresConnection
     {
         protected override void ProcessRecord()
         {
             ICommitCommandFactory commitCommandFactory = 
-                new CommitApiCommandFactory(new ApiUriFactory(ConnectionProperties.Host), new CommitApiPostKeyValuePairFactory(ConnectionProperties.AccessToken) );
+                new CommitApiCommandFactory(new ApiUriFactory(this.Connection.Host), new CommitApiPostKeyValuePairFactory(this.Connection.AccessToken) );
             var command = commitCommandFactory.CreateCommit(true);
 
             try

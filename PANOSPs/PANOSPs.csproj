@@ -50,11 +50,11 @@
     <Compile Include="Address\GetAddress.cs" />
     <Compile Include="Integration\GetRootForestDomainControllersAsAddressGroup.cs" />
     <Compile Include="Bases\RequiresConfigRepository.cs" />
-    <Compile Include="Bases\RequiresConnectionProperties.cs" />
+    <Compile Include="Bases\RequiresConnection.cs" />
     <Compile Include="Bases\RequiresLogRepository.cs" />
     <Compile Include="Bases\SearchesObjects.cs" />
     <Compile Include="Commit\Commit.cs" />
-    <Compile Include="ConnectionProperties\NewConnectionProperties.cs" />
+    <Compile Include="ConnectionProperties\NewConnection.cs" />
     <Compile Include="Integration\RootForestDomainControllersToPANOSAddressGroup.cs" />
     <Compile Include="Logs\GetTrafficLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +69,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Help\PANOS PS Module Help.docx" />
     <None Include="Help\PANOS.Help.pshproj" />
     <None Include="Scripts\CreateManagementEndPoint.ps1" />
     <None Include="Scripts\ExportTrafficLog.ps1" />
@@ -83,7 +84,6 @@
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
 copy /Y "$(TargetDir)PANOS.pdb" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
 copy /Y "$(ProjectDir)Help\PANOS.dll-Help.xml" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "$(ProjectDir)PANOS.dll.config" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
 copy /Y "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS" "Y:\PAAutomation\PANOS"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

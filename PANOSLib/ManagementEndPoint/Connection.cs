@@ -6,12 +6,12 @@
     using System.Text;
     using System.Text.RegularExpressions;
 
-    public class ConnectionProperties 
+    public class Connection 
     {
         private readonly Regex accessTokenRegex = new Regex("^[A-Za-z0-9+/=]+$");
         private readonly Regex vsysRegex = new Regex("^[A-Za-z0-9-_]+$");
 
-        public ConnectionProperties(string hostName, SecureString accessToken, string vsys)
+        public Connection(string hostName, SecureString accessToken, string vsys)
         {
             // Add try catch?
             Host = Dns.GetHostEntry(hostName); ;

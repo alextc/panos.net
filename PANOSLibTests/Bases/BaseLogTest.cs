@@ -15,13 +15,13 @@
             LogCommandFactory = 
                 new LogCommandFactory(
                     new ApiUriFactory(
-                        ConnectionProperties.Host), 
+                        Connection.Host), 
                     new LogApiPostKeyValuePairFactory(
-                        ConnectionProperties.AccessToken));
+                        Connection.AccessToken));
 
             JobCommandFactory = new JobApiCommandFactory(
-                new ApiUriFactory(ConnectionProperties.Host),
-                new JobApiPostKeyValuePairFactory(ConnectionProperties.AccessToken));
+                new ApiUriFactory(Connection.Host),
+                new JobApiPostKeyValuePairFactory(Connection.AccessToken));
             
             LogRepository = new LogRepository(LogCommandFactory);
         }

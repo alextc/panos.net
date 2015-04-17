@@ -89,7 +89,7 @@
 
         #region DllConfiguration
 
-        public static void LogFirewallConnectionsReadEvent(List<ConnectionProperties> connectionPropertieses)
+        public static void LogFirewallConnectionsReadEvent(List<Connection> connectionPropertieses)
         {
             var sb = new StringBuilder();
             foreach (var connectionProperty in connectionPropertieses)

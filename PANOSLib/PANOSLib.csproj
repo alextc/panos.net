@@ -101,7 +101,7 @@
     <Compile Include="Model\Address\AddressRangeObject.cs" />
     <Compile Include="Model\Address\AddressType.cs" />
     <Compile Include="Model\Commit\CommitStatus.cs" />
-    <Compile Include="ManagementEndPoint\ConnectionProperties.cs" />
+    <Compile Include="ManagementEndPoint\Connection.cs" />
     <Compile Include="Model\FirewallObject.cs" />
     <Compile Include="Model\Address\SubnetObject.cs" />
     <Compile Include="ResponseProcessing\ResponseCode.cs" />

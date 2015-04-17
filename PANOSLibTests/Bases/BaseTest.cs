@@ -6,11 +6,11 @@
 
     public class BaseTest
     {
-        protected static ConnectionProperties ConnectionProperties
+        protected static Connection Connection
         {
             get
             {
-                return new ConnectionProperties(
+                return new Connection(
                     ConfigurationManager.AppSettings["FirewallHostName"],
                     SecureStringUtils.ConvertToSecureString((ConfigurationManager.AppSettings["FirewallAccessToken"])),
                     ConfigurationManager.AppSettings["Vsys"]);

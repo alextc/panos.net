@@ -7,8 +7,8 @@
   <OverridePostCount>false</OverridePostCount>
   <FetchPostCount xsi:nil="true" />
   <Cmdlets>
-    <CmdletObject verb="Get" noun="ForestDCAddress">
-      <Name>Get-ForestDCAddress</Name>
+    <CmdletObject verb="Add" noun="PANOSObject">
+      <Name>Add-PANOSObject</Name>
       <GeneralHelp>
         <Synopsis />
         <Description />
@@ -21,14 +21,14 @@
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="ForestName Credential Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="FirewallObjects Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-ForestDCAddress [-ForestName] &lt;String&gt; [-Credential] &lt;PSCredential&gt;</string>
+        <string>Add-PANOSObject -FirewallObjects &lt;FirewallObject[]&gt; -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
-        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="false">
-          <Name>ForestName</Name>
+        <ParameterDescription type="FirewallObject[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>FirewallObjects</Name>
           <Attributes>
             <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
@@ -36,10 +36,11 @@
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="PSCredential" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
-          <Name>Credential</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -65,26 +66,16 @@
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PANOSAddress [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSAddress [-Name &lt;String[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSAddress [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
+        <string>Get-PANOSAddress [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSAddress [-Name &lt;String[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSAddress [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
-        <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>Name</Name>
-          <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description />
-          <DefaultValue />
-        </ParameterDescription>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>FromCandidateConfig</Name>
           <Attributes>
@@ -96,11 +87,21 @@
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Name</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -109,149 +110,6 @@
         <ParameterDescription type="FirewallObject[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>FirewallObject</Name>
           <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description />
-          <DefaultValue />
-        </ParameterDescription>
-      </Parameters>
-      <Examples />
-      <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
-      <Publish>false</Publish>
-    </CmdletObject>
-    <CmdletObject verb="New" noun="PANOSConnectionProperties">
-      <Name>New-PANOSConnectionProperties</Name>
-      <GeneralHelp>
-        <Synopsis>Creates a new PANOSConnectionPropertis object which contains the necessary information for establishing a connection to PAN-OS firewall.  </Synopsis>
-        <Description />
-        <Notes />
-        <InputType />
-        <InputUrl />
-        <InputTypeDescription />
-        <ReturnType>PANOS.ConnectionProperties</ReturnType>
-        <ReturnUrl />
-        <ReturnTypeDescription />
-      </GeneralHelp>
-      <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="HostName AccessToken Vsys Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-      </ParamSets>
-      <Syntax>
-        <string>New-PANOSConnectionProperties -HostName &lt;String&gt; -AccessToken &lt;SecureString&gt; -Vsys &lt;String&gt;</string>
-      </Syntax>
-      <Parameters>
-        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>HostName</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>Hostname as it appears in the subject field of the SSL certificate installed on the firewall</Description>
-          <DefaultValue />
-        </ParameterDescription>
-        <ParameterDescription type="SecureString" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>AccessToken</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>XML API Access Token, see PAN-OS 6.1 XML API Reference fore details. Specifically, Section 2.1 - Key Generation.</Description>
-          <DefaultValue />
-        </ParameterDescription>
-        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>Vsys</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description />
-          <DefaultValue />
-        </ParameterDescription>
-      </Parameters>
-      <Examples>
-        <Example>
-          <Name>Example 1</Name>
-          <Cmd>$connectionProperties = New-PANOSConnectionProperties -HostName 'pafw.mycompany.com' -AccessToken (ConvertTo-SecureString "LUFRPT01blZDWTBkSDZ6bHBuU04zRjZLU1FwTnJlT0U9ZTRpREEyNlVoSmcyWEVRZ2l6K1BqZ0J1WXJxTGU2b3ptV2tuSllBcFdKYz0=" -AsPlainText -Force)
-Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionProperties $connectionProperties
-</Cmd>
-          <Description />
-          <Output />
-        </Example>
-      </Examples>
-      <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
-      <Publish>false</Publish>
-    </CmdletObject>
-    <CmdletObject verb="Save" noun="PANOSChanges">
-      <Name>Save-PANOSChanges</Name>
-      <GeneralHelp>
-        <Synopsis />
-        <Description />
-        <Notes />
-        <InputType />
-        <InputUrl />
-        <InputTypeDescription />
-        <ReturnType />
-        <ReturnUrl />
-        <ReturnTypeDescription />
-      </GeneralHelp>
-      <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-      </ParamSets>
-      <Syntax>
-        <string>Save-PANOSChanges -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-      </Syntax>
-      <Parameters>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
-          <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description />
-          <DefaultValue />
-        </ParameterDescription>
-      </Parameters>
-      <Examples />
-      <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
-      <Publish>false</Publish>
-    </CmdletObject>
-    <CmdletObject verb="Add" noun="PANOSObject">
-      <Name>Add-PANOSObject</Name>
-      <GeneralHelp>
-        <Synopsis />
-        <Description />
-        <Notes />
-        <InputType />
-        <InputUrl />
-        <InputTypeDescription />
-        <ReturnType />
-        <ReturnUrl />
-        <ReturnTypeDescription />
-      </GeneralHelp>
-      <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="FirewallObjects ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-      </ParamSets>
-      <Syntax>
-        <string>Add-PANOSObject -FirewallObjects &lt;FirewallObject[]&gt; -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-      </Syntax>
-      <Parameters>
-        <ParameterDescription type="FirewallObject[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>FirewallObjects</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description />
-          <DefaultValue />
-        </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
-          <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
           <Aliases />
@@ -278,14 +136,14 @@ Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionPropertie
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PANOSAddressGroup [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSAddressGroup [-Name &lt;String[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSAddressGroup [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
+        <string>Get-PANOSAddressGroup [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSAddressGroup [-Name &lt;String[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSAddressGroup [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -299,11 +157,11 @@ Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionPropertie
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -312,8 +170,8 @@ Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionPropertie
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Name</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -348,14 +206,14 @@ Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionPropertie
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PANOSAddressRange [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSAddressRange [-Name &lt;String[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSAddressRange [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
+        <string>Get-PANOSAddressRange [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSAddressRange [-Name &lt;String[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSAddressRange [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -369,11 +227,11 @@ Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionPropertie
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -382,8 +240,8 @@ Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionPropertie
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Name</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -404,122 +262,6 @@ Get-PANOSAddress -Name 'API-TEST-1176' -FromCandidateConfig -ConnectionPropertie
       <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
       <Publish>false</Publish>
     </CmdletObject>
-    <CmdletObject verb="Get" noun="PANOSBlockedTraffic">
-      <Name>Get-PANOSBlockedTraffic</Name>
-      <GeneralHelp>
-        <Synopsis>Gets log entries for blocked traffic.</Synopsis>
-        <Description />
-        <Notes />
-        <InputType />
-        <InputUrl />
-        <InputTypeDescription />
-        <ReturnType />
-        <ReturnUrl />
-        <ReturnTypeDescription />
-      </GeneralHelp>
-      <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="SourceIp RangeStart RangeEnd ConnectionProperties NLogs Skip Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-      </ParamSets>
-      <Syntax>
-        <string>Get-PANOSBlockedTraffic [-SourceIp &lt;String&gt;] [-RangeStart &lt;DateTime&gt;] [-RangeEnd &lt;DateTime&gt;] [-ConnectionProperties &lt;ConnectionProperties[]&gt;] [-NLogs &lt;UInt16&gt;] [-Skip &lt;UInt16&gt;]</string>
-      </Syntax>
-      <Parameters>
-        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>SourceIp</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>Source IP of blocked traffic</Description>
-          <DefaultValue>Source IP of the machine from which the cmdlet is executed</DefaultValue>
-        </ParameterDescription>
-        <ParameterDescription type="DateTime" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>RangeStart</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>Events that happened after the supplied DateTime value will be retrieved. </Description>
-          <DefaultValue>Current time minus 4 hours</DefaultValue>
-        </ParameterDescription>
-        <ParameterDescription type="DateTime" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>RangeEnd</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>Events that happened before the supplied DateTime value will be retrieved.</Description>
-          <DefaultValue>Current time</DefaultValue>
-        </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>See help for New-PANOSConnectionProperties for details.</Description>
-          <DefaultValue>PANOS.dll.config will be used to construct connections properties.</DefaultValue>
-        </ParameterDescription>
-        <ParameterDescription type="UInt16" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>NLogs</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-            <string>System.Management.Automation.ValidateRangeAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>Number of log entries to retrieve. Note, that PANOS will not send more than 5000 entries.
-If you require to retrieve more than 5000 events, execute this CmdLet multiple times with different RangeStart and RangeEnd values.</Description>
-          <DefaultValue>100</DefaultValue>
-        </ParameterDescription>
-        <ParameterDescription type="UInt16" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>Skip</Name>
-          <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
-            <string>System.Management.Automation.ValidateRangeAttribute</string>
-          </Attributes>
-          <Aliases />
-          <Description>Allows you to skip N number of entries from the top of the query.</Description>
-          <DefaultValue>0</DefaultValue>
-        </ParameterDescription>
-      </Parameters>
-      <Examples>
-        <Example>
-          <Name>Example 1</Name>
-          <Cmd>Get-PANOSBlockedTraffic | Format-Table</Cmd>
-          <Description>This command will use the following defaults:
- SourceIp - IPAddress of the computer from where the CmdLet was executed
- nLogs - 100
- StartRange - Now - 4h
- EndRange - Now</Description>
-          <Output>
-ReceiveTime                        Source                             Destination                       Rule                              App                                                 DestinationPort Action                           
------------                        ------                             -----------                       ----                              ---                                                 --------------- ------                           
-3/17/2015 12:23:25 PM              10.193.160.111                     204.79.197.200                    Logging Rule                      ssl                                                             443 deny                             
-3/17/2015 12:23:25 PM              10.193.160.111                     204.79.197.200                    Logging Rule                      ssl                                                             443 deny                             
-3/17/2015 12:23:25 PM              10.193.160.111                     204.79.197.200                    Logging Rule                      ssl                                                             443 deny    </Output>
-        </Example>
-        <Example>
-          <Name>Example 2</Name>
-          <Cmd> Get-PANOSBlockedTraffic -NLogs 200 -SourceIp 10.193.160.111 -RangeStart '2015/03/16 00:45:00' | ft</Cmd>
-          <Description>This commands will retrieve the maximum of 200 log entries for traffic originated from 10.193.160.111. Only events that took place between 2015/03/16 00:45:00 and the time of execution will be returned.</Description>
-          <Output>ReceiveTime                        Source                             Destination                       Rule                              App                                                 DestinationPort Action                           
------------                        ------                             -----------                       ----                              ---                                                 --------------- ------                           
-3/17/2015 12:23:25 PM              10.193.160.111                     204.79.197.200                    Logging Rule                      ssl                                                             443 deny                             
-3/17/2015 12:23:25 PM              10.193.160.111                     204.79.197.200                    Logging Rule                      ssl                                                             443 deny                             
-3/17/2015 12:23:25 PM              10.193.160.111                     204.79.197.200                    Logging Rule                      ssl                                                             443 deny                             
-3/17/2015 12:23:24 PM              10.193.160.111                     204.79.197.200                    Logging Rule                      ssl                                                             443 deny       </Output>
-        </Example>
-        <Example>
-          <Name>Example 3</Name>
-          <Cmd>Get-PANOSBlockedTraffic -NLogs 200 -SourceIp 10.193.160.111 -RangeStart '2015/03/16 10:45:00' -RangeEnd '2015/03/17 12:45:00' | ft</Cmd>
-          <Description>This commands will retrieve the maximum of 200 log entries for traffic originated from 10.193.160.111. Only events that took place between 2015/03/16 10:45:00 and 2015/03/17 12:45:00  will be returned.</Description>
-          <Output />
-        </Example>
-      </Examples>
-      <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
-      <Publish>false</Publish>
-    </CmdletObject>
     <CmdletObject verb="Get" noun="PANOSSubnet">
       <Name>Get-PANOSSubnet</Name>
       <GeneralHelp>
@@ -534,14 +276,14 @@ ReceiveTime                        Source                             Destinatio
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="GetAll" Params="FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Name" Params="Name FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject FromCandidateConfig Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PANOSSubnet [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSSubnet [-Name &lt;String[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Get-PANOSSubnet [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
+        <string>Get-PANOSSubnet [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSSubnet [-Name &lt;String[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
+        <string>Get-PANOSSubnet [-FirewallObject &lt;FirewallObject[]&gt;] [-FromCandidateConfig] -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -555,11 +297,11 @@ ReceiveTime                        Source                             Destinatio
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -568,8 +310,8 @@ ReceiveTime                        Source                             Destinatio
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Name</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -604,10 +346,10 @@ ReceiveTime                        Source                             Destinatio
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Query ConnectionProperties NLogs Skip Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Query Page Connection ResolveHostName Delay Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PANOSTrafficLog [-Query &lt;String&gt;] [-ConnectionProperties &lt;ConnectionProperties[]&gt;] [-NLogs &lt;UInt16&gt;] [-Skip &lt;UInt16&gt;]</string>
+        <string>Get-PANOSTrafficLog [-Query &lt;String&gt;] [-Page] -Connection &lt;Connection[]&gt; [-ResolveHostName] [-Delay &lt;Int32&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -619,8 +361,8 @@ ReceiveTime                        Source                             Destinatio
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Page</Name>
           <Attributes>
             <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
@@ -628,21 +370,28 @@ ReceiveTime                        Source                             Destinatio
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="UInt16" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>NLogs</Name>
+        <ParameterDescription type="Connection[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
             <string>System.Management.Automation.ParameterAttribute</string>
-            <string>System.Management.Automation.ValidateRangeAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="UInt16" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>Skip</Name>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>ResolveHostName</Name>
           <Attributes>
             <string>System.Management.Automation.ParameterAttribute</string>
-            <string>System.Management.Automation.ValidateRangeAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Int32" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delay</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -654,8 +403,8 @@ ReceiveTime                        Source                             Destinatio
       <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
       <Publish>false</Publish>
     </CmdletObject>
-    <CmdletObject verb="Import" noun="DomainControllerIPToPANOSAddressGroup">
-      <Name>Import-DomainControllerIPToPANOSAddressGroup</Name>
+    <CmdletObject verb="Get" noun="RootForestDomainControllersAsAddressGroup">
+      <Name>Get-RootForestDomainControllersAsAddressGroup</Name>
       <GeneralHelp>
         <Synopsis />
         <Description />
@@ -668,17 +417,61 @@ ReceiveTime                        Source                             Destinatio
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="AddressGroupName ForestName Credential ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="ForestName Credential Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Import-DomainControllerIPToPANOSAddressGroup -AddressGroupName &lt;String&gt; -ForestName &lt;String&gt; [-Credential &lt;PSCredential&gt;] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
+        <string>Get-RootForestDomainControllersAsAddressGroup -ForestName &lt;String&gt; [-Credential &lt;PSCredential&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>ForestName</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="PSCredential" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Credential</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Import" noun="RootForestDomainControllersToPANOSAddressGroup">
+      <Name>Import-RootForestDomainControllersToPANOSAddressGroup</Name>
+      <GeneralHelp>
+        <Synopsis />
+        <Description />
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="AddressGroupName ForestName Credential Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Import-RootForestDomainControllersToPANOSAddressGroup -AddressGroupName &lt;String&gt; -ForestName &lt;String&gt; [-Credential &lt;PSCredential&gt;] -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>AddressGroupName</Name>
           <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
             <string>System.Management.Automation.ValidatePatternAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -702,11 +495,11 @@ ReceiveTime                        Source                             Destinatio
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -741,8 +534,8 @@ ReceiveTime                        Source                             Destinatio
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Name</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -764,6 +557,84 @@ ReceiveTime                        Source                             Destinatio
       <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
       <Publish>false</Publish>
     </CmdletObject>
+    <CmdletObject verb="New" noun="PANOSConnection">
+      <Name>New-PANOSConnection</Name>
+      <GeneralHelp>
+        <Synopsis>Creates an object which contains the necessary information for establishing a connection to PAN-OS firewall.  Most Cmdlets in this module require this object to do their work.</Synopsis>
+        <Description>The New-PANOSConnection Cmdlet creates an object that represents a connection to a PANOS firewall, and includes properties like: hostname, vsys and access token. Practically all Cmdlets in this module have a mandatory parameter called Connection, which takes the object produced by New-PANOSConnection Cmdlet. Since Connection objects stores API Access Token, care must be taken when storing these objects, see the second example which demonstrates the use of Export-Clixml to securely store the Connection object to a file.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="HostName AccessToken Vsys Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>New-PANOSConnection -HostName &lt;String&gt; -AccessToken &lt;SecureString&gt; -Vsys &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>HostName</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Firewall’s network name as it appears in the subject field of the SSL certificate installed on the firewall.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SecureString" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>AccessToken</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>XML API Access Token. See PAN-OS 6.1 XML API Reference (section 2.1 – Key Generation) for details on how to generate such token.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Vsys</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Name of the Vsys to which the connection is bound. If you need to execute commands against multiple Vsys then you will need to create a separate Connection object – one per Vsys.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>$accessToken = ConvertTo-SecureString "LUFRPT01b…W6K1BqZ0J1WXJxTGU2b3ptV2tuSllBcFdKYz0=" -AsPlainText -Force
+$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken $accessToken
+Get-PANOSAddress -Name 'dc01' -FromCandidateConfig -Connection $connection 
+</Cmd>
+          <Description>This example shows how to build a connection object and pass it to Get-PANOSAddress Cmdlet.
+Note that the API token has to be converted to SecureString, which is then passed to the New-PANOSConnection Cmdlet. 
+ 
+</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Example 2</Name>
+          <Cmd>ConvertTo-SecureString "LUFRPT01b…W6K1BqZ0J1WXJxTGU2b3ptV2tuSllBcFdKYz0=" -AsPlainText -Force | Export-Clixml C:\PSScripts\panosAccessToken
+$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Name 'dc01' -FromCandidateConfig -Connection $connection 
+</Cmd>
+          <Description>This example shows how to securely store the API token.
+The first Cmdlet converts the API token to SecureString and passes the output to Export-Clixml Cmdlet which de-serializes SecureString to disk and encrypts the file using DPAPI. Note, only the users that executed this command will be able to decrypt this file. The advantage of this approach is that once the Connection object is stored in the encrypted form on disk you no longer need to supply the Access Token in clear text.
+
+</Description>
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
     <CmdletObject verb="Remove" noun="PANOSObject">
       <Name>Remove-PANOSObject</Name>
       <GeneralHelp>
@@ -778,12 +649,12 @@ ReceiveTime                        Source                             Destinatio
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="Name" Params="Name SchemaName ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Name" Params="Name SchemaName Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Remove-PANOSObject -Name &lt;String[]&gt; -SchemaName &lt;String&gt; {address | address-group}  -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Remove-PANOSObject -FirewallObject &lt;FirewallObject[]&gt; -ConnectionProperties &lt;ConnectionProperties&gt;</string>
+        <string>Remove-PANOSObject -Name &lt;String[]&gt; -SchemaName &lt;String&gt; {address | address-group}  -Connection &lt;Connection&gt;</string>
+        <string>Remove-PANOSObject -FirewallObject &lt;FirewallObject[]&gt; -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -799,18 +670,18 @@ ReceiveTime                        Source                             Destinatio
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>SchemaName</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateSetAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateSetAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -845,12 +716,12 @@ ReceiveTime                        Source                             Destinatio
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="Name" Params="Name SchemaName NewName ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject NewName ConnectionProperties Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Name" Params="Name SchemaName NewName Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Object" Params="FirewallObject NewName Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Rename-PANOSObject -Name &lt;String&gt; -SchemaName &lt;String&gt; {address | address-group}  [-NewName &lt;String&gt;] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
-        <string>Rename-PANOSObject -FirewallObject &lt;FirewallObject&gt; [-NewName &lt;String&gt;] -ConnectionProperties &lt;ConnectionProperties&gt;</string>
+        <string>Rename-PANOSObject -Name &lt;String&gt; -SchemaName &lt;String&gt; {address | address-group}  [-NewName &lt;String&gt;] -Connection &lt;Connection&gt;</string>
+        <string>Rename-PANOSObject -FirewallObject &lt;FirewallObject&gt; [-NewName &lt;String&gt;] -Connection &lt;Connection&gt;</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -866,8 +737,8 @@ ReceiveTime                        Source                             Destinatio
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>SchemaName</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateSetAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateSetAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -885,11 +756,11 @@ ReceiveTime                        Source                             Destinatio
           <Description />
           <DefaultValue />
         </ParameterDescription>
-        <ParameterDescription type="ConnectionProperties" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
-          <Name>ConnectionProperties</Name>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -899,6 +770,42 @@ ReceiveTime                        Source                             Destinatio
           <Name>FirewallObject</Name>
           <Attributes>
             <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Save" noun="PANOSChanges">
+      <Name>Save-PANOSChanges</Name>
+      <GeneralHelp>
+        <Synopsis />
+        <Description />
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Save-PANOSChanges -Connection &lt;Connection&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
           <Description />

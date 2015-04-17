@@ -27,8 +27,8 @@
             
            var commitCommandFactory = 
                new CommitApiCommandFactory(
-                   new ApiUriFactory(ConnectionProperties.Host),
-                   new CommitApiPostKeyValuePairFactory(ConnectionProperties.AccessToken));
+                   new ApiUriFactory(this.Connection.Host),
+                   new CommitApiPostKeyValuePairFactory(this.Connection.AccessToken));
             commitCommand = commitCommandFactory.CreateCommit(true);
 
             activeDirectoryRepository = new ActiveDirectoryRepository(ForestName, Credential);

@@ -11,7 +11,7 @@
         private int delay = 3;
         
         [Parameter(Mandatory = true)]
-        public ConnectionProperties[] ConnectionProperties { get; set; }
+        public Connection[] Connection { get; set; }
 
         [Parameter]
         public SwitchParameter ResolveHostName { get; set; }
@@ -34,7 +34,7 @@
         protected override void BeginProcessing()
         {
             LogRepositories = new List<ILogRepository>();
-            foreach (var connectionProperty in ConnectionProperties)
+            foreach (var connectionProperty in this.Connection)
             {
                 LogRepositories.Add(
                     new LogRepository(

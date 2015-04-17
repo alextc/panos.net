@@ -2,10 +2,10 @@
 {
     using System.Management.Automation;
 
-    public abstract class RequiresConnectionProperties : PSCmdlet
+    public abstract class RequiresConnection : PSCmdlet
     {
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
-        public ConnectionProperties ConnectionProperties { get; set; }
+        public Connection Connection { get; set; }
     }
 }
