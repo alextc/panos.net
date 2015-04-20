@@ -787,7 +787,7 @@
 	<command:details>
 		<command:name>Get-PANOSTrafficLog</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Gets PANOS traffic log entries.</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -797,7 +797,7 @@
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para />
+		<maml:para>The objective of this Cmdlet is to provide parity with the functionality available in the PANOS Web Management Interface in viewing, querying and exporting traffic log entries.</maml:para>
 	</maml:description>
 	<command:syntax>
 		<command:syntaxItem>
@@ -805,35 +805,48 @@
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>Query</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>This parameter expects a value that is equivalent to a filter supplied in PANOS Web Interface. For example, the filter below will limit the output of the Cmdlet to only log entries recorded after a specific date/time value and where destination matches the supplied IP address.
+( receive_time geq &#39;2015/04/18 10:16:44&#39; ) and ( addr.dst in 23.59.190.121 ).
+It is recommended to test the value of this parameter in the Web Interface to ensure its correctness. 
+</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>Page</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>Since the number of entries in PANOS traffic log may easily span millions, PANOS (in order to conserve CPU and memory resources) will only return the first 5000 log entries that satisfy the query condition.  In most scenarios, this is a very reasonable behavior, since we should always try to supply the most restrictive Query to limit the output only to the relevant entries.
+In some scenario (ex. exporting traffic log to a CSV file) you may need to ensure that all log entries that satisfy our Query parameter are returned. To accommodate this scenario supply the Page switch. When the Page switch is supplied this Cmdlet will detect a condition where only the first 5000 records were returned, and will repeatedly re-formulate the Query so that the remaining items are returned until all records that satisfy the original query are returned.
+Note: use this switch with caution especially when the supplied Query parameter is broad, since this may lead to a very long execution time of the CmdLet, and consequently high consumption of the management CPU on PANOS.
+</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="named">
 				<maml:name>Connection</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="true">Connection[]</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>ResolveHostName</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>When this switch is supplied, the Cmdlet will attempt to perform a DNS lookup for the IP addresses found in the Source and Destination fields of log entries. 
+The outcome of the DNS queries is placed into SourceHostName and DestinationHostName fields of the returned log entries. If DNS query fails, the IP address of the query will be placed into the above mentioned fields.
+This switch, when used with queries that return a large number of entries, will significantly increase the execution time of the Cmdlet.
+</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>Delay</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>PANOS uses the asynchronous model when processing traffic log queries. In other words, once a query is received, PANOS immediately returns a job Id to the caller and commences the work involved in collecting the requested data. The caller then makes another request to retrieve the log entries gathered by the job (identified by the ID). The Cmdlet handles this for you behind the scene.
+However, PANOS requires some time to collect the log entries that match the Query parameter, hence the Cmdlet must allow for a delay between the request and the consumption of the log data. 
+The value of the Delay is something that you will need to experiment with in your environment, since this value varies depending on the model of the firewall (higher end models have faster CPUs and seem to respond to queries faster). The values that we observe varied from 1 to 4 seconds.
+Note that the Cmdlet, before consuming the data, will check the status of the job, and if the job status indicates that it is still in progress an exception will be thrown, thus giving you an indication to increase the value for this parameter.
+</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
@@ -843,7 +856,10 @@
 		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 			<maml:name>Query</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>This parameter expects a value that is equivalent to a filter supplied in PANOS Web Interface. For example, the filter below will limit the output of the Cmdlet to only log entries recorded after a specific date/time value and where destination matches the supplied IP address.
+( receive_time geq &#39;2015/04/18 10:16:44&#39; ) and ( addr.dst in 23.59.190.121 ).
+It is recommended to test the value of this parameter in the Web Interface to ensure its correctness. 
+</maml:para>
 			</maml:description>
 			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			<dev:type>
@@ -855,7 +871,10 @@
 		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 			<maml:name>Page</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>Since the number of entries in PANOS traffic log may easily span millions, PANOS (in order to conserve CPU and memory resources) will only return the first 5000 log entries that satisfy the query condition.  In most scenarios, this is a very reasonable behavior, since we should always try to supply the most restrictive Query to limit the output only to the relevant entries.
+In some scenario (ex. exporting traffic log to a CSV file) you may need to ensure that all log entries that satisfy our Query parameter are returned. To accommodate this scenario supply the Page switch. When the Page switch is supplied this Cmdlet will detect a condition where only the first 5000 records were returned, and will repeatedly re-formulate the Query so that the remaining items are returned until all records that satisfy the original query are returned.
+Note: use this switch with caution especially when the supplied Query parameter is broad, since this may lead to a very long execution time of the CmdLet, and consequently high consumption of the management CPU on PANOS.
+</maml:para>
 			</maml:description>
 			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			<dev:type>
@@ -867,7 +886,7 @@
 		<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="named">
 			<maml:name>Connection</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</maml:para>
 			</maml:description>
 			<command:parameterValue required="true" variableLength="true">Connection[]</command:parameterValue>
 			<dev:type>
@@ -879,7 +898,10 @@
 		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 			<maml:name>ResolveHostName</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>When this switch is supplied, the Cmdlet will attempt to perform a DNS lookup for the IP addresses found in the Source and Destination fields of log entries. 
+The outcome of the DNS queries is placed into SourceHostName and DestinationHostName fields of the returned log entries. If DNS query fails, the IP address of the query will be placed into the above mentioned fields.
+This switch, when used with queries that return a large number of entries, will significantly increase the execution time of the Cmdlet.
+</maml:para>
 			</maml:description>
 			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			<dev:type>
@@ -891,7 +913,11 @@
 		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 			<maml:name>Delay</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>PANOS uses the asynchronous model when processing traffic log queries. In other words, once a query is received, PANOS immediately returns a job Id to the caller and commences the work involved in collecting the requested data. The caller then makes another request to retrieve the log entries gathered by the job (identified by the ID). The Cmdlet handles this for you behind the scene.
+However, PANOS requires some time to collect the log entries that match the Query parameter, hence the Cmdlet must allow for a delay between the request and the consumption of the log data. 
+The value of the Delay is something that you will need to experiment with in your environment, since this value varies depending on the model of the firewall (higher end models have faster CPUs and seem to respond to queries faster). The values that we observe varied from 1 to 4 seconds.
+Note that the Cmdlet, before consuming the data, will check the status of the job, and if the job status indicates that it is still in progress an exception will be thrown, thus giving you an indication to increase the value for this parameter.
+</maml:para>
 			</maml:description>
 			<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			<dev:type>
@@ -934,6 +960,95 @@
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
+		<command:example>
+			<maml:title>--------------------------  Example 1  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>$connection = New-PANOSConnectionProperties -HostName &apos;firewall1.corp.net&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+$query = &quot;( receive_time leq &apos;2015/04/20 10:16:44&apos; ) and ( receive_time geq &apos;2015/04/20 09:16:44&apos; ) and ( addr.dst in 23.59.190.121 ) and ( action eq deny )&quot;
+Get-PANOSTrafficLog  -Query $query -Connection $connection -Delay 4 | ft -AutoSize
+</dev:code>
+			<dev:remarks>
+				<maml:para>These commands retrieve traffic log entries that match the filter supplied by the $query variable.
+The Get-PANOSTraffic Cmldet will insert a four-second delay between the request and the consumption of the traffic log data.
+Since the Page switch is not supplied this will return at most 5000 records.
+</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para>ReceiveTime           Source         Destination   Rule         Action App      
+-----------           ------         -----------   ----         ------ ---      
+4/20/2015 10:16:44 AM 10.193.160.87  23.59.190.121 Logging Rule deny   http
+4/20/2015 10:16:39 AM 10.193.160.78  23.59.190.121 Logging Rule deny   http
+4/20/2015 10:16:38 AM 10.193.160.78  23.59.190.121 Logging Rule deny   http</maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 2  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>$connection = New-PANOSConnectionProperties -HostName &apos;firewall1.corp.net&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+$query = &quot;(Rule eq &apos;web-farm&apos; )&quot;
+Get-PANOSTrafficLog  -Query $query -Page -Connection $connection -Delay 4 |
+    convertto-csv -NoTypeInformation -Delimiter &quot;,&quot; | % {$_ -replace &apos;&quot;&apos;,&apos;&apos;} | 
+    Out-File -FilePath C:\Data\webfarmRule.csv -Force -Encoding ascii 
+</dev:code>
+			<dev:remarks>
+				<maml:para>These commands illustrate how to use the Get-PANOSTrafficLog Cmdlet for the purposes of extracting large quantities of log entries to an external data store (ex. CSV) file.
+Note the use of the Page switch, ensures that all records matching the query will be returned.
+</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 3  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>$connectionFw1 = New-PANOSConnectionProperties -HostName &apos;firewall1.it.msft.net&apos; -Vsys &apos;vsys3&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+$connectionFw2 = New-PANOSConnectionProperties -HostName &apos;firewall2.it.msft.net&apos; -Vsys &apos;vsys3&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+$query = &quot;( addr.dst in 23.59.190.121 ) and ( action eq deny )&quot;
+Get-PANOSTrafficLog  -Query $query -Connection $connectionFw1, $connectionFw2 -Delay 4 | Select-Object -Property ReceiveTime, Source, Destination, Rule, Action, App, FwSerialNumber | ft -AutoSize
+</dev:code>
+			<dev:remarks>
+				<maml:para>These commands show how to merge traffic log data from multiple firewalls by supplying an array of Connection object to the Connection parameter. This is particularly useful in a load-balanced scenario. 
+Note, that the output of the Ge-PANOSTrafficLog Cmdlet – the log entry object - contains the serial number of the Firewall (FwSerialNumber ) on which the entry was recorded, this will allow you to trace the log entry to the firewall that produced it.
+</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para>ReceiveTime           Source         Rule         Action App       FwSerialNumber
+-----------           ------         ----         ------ ---       --------------
+4/20/2015 12:54:23 PM 10.193.160.12  Logging Rule deny   http          7901000712
+4/20/2015 12:54:18 PM 10.193.160.40  Logging Rule deny   http          7901000712
+4/20/2015 12:53:59 PM 10.193.160.40  Logging Rule deny   http          7901000712
+4/20/2015 12:53:53 PM 10.193.160.108 Logging Rule deny   http          7901000769
+4/20/2015 12:53:04 PM 10.193.160.12  Logging Rule deny   http          7901000769</maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
 	</maml:relatedLinks>

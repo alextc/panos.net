@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using PANOS.Logging;
 
+    // TODO: Add input validation:
+    // 1. check for nulls
+    // 2. do regex to check for valid PANOS names
     public class ConfigRepository : IConfigRepository
     {
         private readonly IConfigCommandFactory commandFactory;
@@ -60,6 +62,8 @@
             throw new Exception(string.Format("GetAll Method failed. PANOS error code {0}", deserializedResult.Status));
         }
 
+        // TODO: Violates CQS, refactor to return void
+        // Add a method that would allow a caller to check for the status of the last command
         public string Rename(string schemaName, string oldName, string newName)
         {
             var renameCommand = commandFactory.CreateRename(schemaName, oldName, newName);
@@ -73,6 +77,7 @@
             throw new Exception(string.Format("Rename Method failed. PANOS error code {0}", response.Status));
         }
 
+        // TODO: Fix CQS violation
         public string Delete(string schemaName, string name)
         {
             var response = commandFactory.CreateDelete(schemaName, name).Execute();
@@ -90,6 +95,7 @@
             throw new Exception(string.Format("Delete Method failed. PANOS error code {0}", response.Status));
         }
 
+        // TODO: Fix CQS
         public ApiResponseWithMessage Set(FirewallObject firewallObject)
         {
             var response = commandFactory.CreateSet(firewallObject).Execute();
@@ -103,6 +109,7 @@
             throw new Exception(string.Format("Add Method failed. PANOS error code {0}", response.Status));
         }
 
+        // TODO: Fix CQS
         public ApiResponseWithMessage SetGroupMembership(GroupFirewallObject groupFirewallObject)
         {
             var response = commandFactory.CreateSetMembership(groupFirewallObject).Execute();
