@@ -103,7 +103,7 @@
 	<command:details>
 		<command:name>Get-PANOSAddress</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Gets Address objects.</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -121,14 +121,14 @@
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>FromCandidateConfig</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>When this switch is provided the search will be conducted against the Candidate Config, otherwise (default) the Running Config will be searched.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>Connection</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Connection</command:parameterValue>
 			</command:parameter>
@@ -138,21 +138,21 @@
 			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByValue)" position="named">
 				<maml:name>Name</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>Name of the address object to get.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>FromCandidateConfig</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>When this switch is provided the search will be conducted against the Candidate Config, otherwise (default) the Running Config will be searched.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>Connection</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Connection</command:parameterValue>
 			</command:parameter>
@@ -162,21 +162,21 @@
 			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByValue)" position="named">
 				<maml:name>FirewallObject</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>An object of type PANOS.AddressObject. When supplied, the search will be performed for an Address object, which matches both the name and the IP address of the provided object. See example 3 for more details.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="true">FirewallObject[]</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>FromCandidateConfig</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>When this switch is provided the search will be conducted against the Candidate Config, otherwise (default) the Running Config will be searched.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named">
 				<maml:name>Connection</maml:name>
 				<maml:description>
-					<maml:para />
+					<maml:para>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Connection</command:parameterValue>
 			</command:parameter>
@@ -186,7 +186,7 @@
 		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
 			<maml:name>FromCandidateConfig</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>When this switch is provided the search will be conducted against the Candidate Config, otherwise (default) the Running Config will be searched.</maml:para>
 			</maml:description>
 			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			<dev:type>
@@ -198,7 +198,7 @@
 		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named">
 			<maml:name>Connection</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</maml:para>
 			</maml:description>
 			<command:parameterValue required="true" variableLength="false">Connection</command:parameterValue>
 			<dev:type>
@@ -210,7 +210,7 @@
 		<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByValue)" position="named">
 			<maml:name>Name</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>Name of the address object to get.</maml:para>
 			</maml:description>
 			<command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
 			<dev:type>
@@ -222,7 +222,7 @@
 		<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByValue)" position="named">
 			<maml:name>FirewallObject</maml:name>
 			<maml:description>
-				<maml:para />
+				<maml:para>An object of type PANOS.AddressObject. When supplied, the search will be performed for an Address object, which matches both the name and the IP address of the provided object. See example 3 for more details.</maml:para>
 			</maml:description>
 			<command:parameterValue required="true" variableLength="true">FirewallObject[]</command:parameterValue>
 			<dev:type>
@@ -265,6 +265,99 @@
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
+		<command:example>
+			<maml:title>--------------------------  Example 1  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>$connection = New-PANOSConnection -HostName &apos;pa.corp.com&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection -FromCandidateConfig 
+
+</dev:code>
+			<dev:remarks>
+				<maml:para>These commands will retrieve all Address objects from the Candidate Config.</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 2  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>$connection = New-PANOSConnection -HostName &apos;pa.corp.com&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection -Name web01
+
+</dev:code>
+			<dev:remarks>
+				<maml:para>These commands will retrieve a single Address objects (from the Running Config), identified by the name supplied in the Name parameter. Null will be return if no Address object with such name exists on the firewall.</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 3  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>$connection = New-PANOSConnection -HostName &apos;pa.corp.com&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+$addressToSearch = New-Object -TypeName PANOS.AddressObject -ArgumentList &quot;web01&quot;, ([System.Net.IPAddress]::Parse(&quot;25.1.1.4&quot;)) 
+Get-PANOSAddress -Connection $connection -FirewallObject $addressToSearch 
+</dev:code>
+			<dev:remarks>
+				<maml:para>These commands will retrieve a single Address objects (from the Running Config), identical to the object supplied in the FirewallObject parameter. For the match to be considered successful, both the name and the IP address must match.
+Null will be return if no Address object exists on the firewall.
+</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 4  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>$connection = New-PANOSConnection -HostName &apos;pa.corp.com&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection | Where { $_.Address -eq &apos;25.1.1.4&apos; }
+</dev:code>
+			<dev:remarks>
+				<maml:para>These commands will retrieve all Address objects with a specified IP address. </maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
 	</maml:relatedLinks>
@@ -924,7 +1017,7 @@ Note that the Cmdlet, before consuming the data, will check the status of the jo
 				<maml:name>Int32</maml:name>
 				<maml:uri/>
 			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
+			<dev:defaultValue>3</dev:defaultValue>
 		</command:parameter>
 	</command:parameters>
 	<command:inputTypes>

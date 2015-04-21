@@ -55,7 +55,7 @@
     <CmdletObject verb="Get" noun="PANOSAddress">
       <Name>Get-PANOSAddress</Name>
       <GeneralHelp>
-        <Synopsis />
+        <Synopsis>Gets Address objects.</Synopsis>
         <Description />
         <Notes />
         <InputType />
@@ -84,7 +84,7 @@
             <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
           <Aliases />
-          <Description />
+          <Description>When this switch is provided the search will be conducted against the Candidate Config, otherwise (default) the Running Config will be searched.</Description>
           <DefaultValue />
         </ParameterDescription>
         <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -94,7 +94,7 @@
             <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
           </Attributes>
           <Aliases />
-          <Description />
+          <Description>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</Description>
           <DefaultValue />
         </ParameterDescription>
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -104,7 +104,7 @@
             <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
-          <Description />
+          <Description>Name of the address object to get.</Description>
           <DefaultValue />
         </ParameterDescription>
         <ParameterDescription type="FirewallObject[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -113,11 +113,49 @@
             <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
           <Aliases />
-          <Description />
+          <Description>An object of type PANOS.AddressObject. When supplied, the search will be performed for an Address object, which matches both the name and the IP address of the provided object. See example 3 for more details.</Description>
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
-      <Examples />
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection -FromCandidateConfig 
+
+</Cmd>
+          <Description>These commands will retrieve all Address objects from the Candidate Config.</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Example 2</Name>
+          <Cmd>$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection -Name web01
+
+</Cmd>
+          <Description>These commands will retrieve a single Address objects (from the Running Config), identified by the name supplied in the Name parameter. Null will be return if no Address object with such name exists on the firewall.</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Example 3</Name>
+          <Cmd>$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+$addressToSearch = New-Object -TypeName PANOS.AddressObject -ArgumentList "web01", ([System.Net.IPAddress]::Parse("25.1.1.4")) 
+Get-PANOSAddress -Connection $connection -FirewallObject $addressToSearch 
+</Cmd>
+          <Description>These commands will retrieve a single Address objects (from the Running Config), identical to the object supplied in the FirewallObject parameter. For the match to be considered successful, both the name and the IP address must match.
+Null will be return if no Address object exists on the firewall.
+</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Example 4</Name>
+          <Cmd>$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection | Where { $_.Address -eq '25.1.1.4' }
+</Cmd>
+          <Description>These commands will retrieve all Address objects with a specified IP address. </Description>
+          <Output />
+        </Example>
+      </Examples>
       <RelatedLinks />
       <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
       <Publish>false</Publish>
@@ -408,7 +446,7 @@ However, PANOS requires some time to collect the log entries that match the Quer
 The value of the Delay is something that you will need to experiment with in your environment, since this value varies depending on the model of the firewall (higher end models have faster CPUs and seem to respond to queries faster). The values that we observe varied from 1 to 4 seconds.
 Note that the Cmdlet, before consuming the data, will check the status of the job, and if the job status indicates that it is still in progress an exception will be thrown, thus giving you an indication to increase the value for this parameter.
 </Description>
-          <DefaultValue />
+          <DefaultValue>3</DefaultValue>
         </ParameterDescription>
       </Parameters>
       <Examples>
