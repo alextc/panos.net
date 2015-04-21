@@ -81,6 +81,15 @@
             Assert.IsTrue(this.psGetTests.GetMultipleByName<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
             Assert.IsTrue(this.psGetTests.GetMultipleByName<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
         }
+
+        [TestMethod]
+        public void GetMultipleAddressesByNameFromPipeline()
+        {
+            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
+            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
+            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
+            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+        }
         
        [TestMethod]
        public void GetMultipleAddressesByNameWhereSomeDoNotExist()
@@ -92,7 +101,7 @@
        }
 
        [TestMethod]
-       public void GetMultipleAddressesByObject()
+       public void GetMultipleByObjectWhereSomeFailEqualsTests()
        {
            Assert.IsTrue(this.psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
            Assert.IsTrue(this.psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));

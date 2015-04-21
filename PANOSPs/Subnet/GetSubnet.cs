@@ -5,7 +5,6 @@
 
     [Cmdlet(VerbsCommon.Get, "PANOSSubnet", DefaultParameterSetName = "GetAll")]
     [OutputType(typeof(AddressObject))]
-    [OutputType(typeof(ObjectNotFoundError))]
     public class GetSubnet : SearchesObjects
     {
         private Dictionary<string, SubnetObject> result;

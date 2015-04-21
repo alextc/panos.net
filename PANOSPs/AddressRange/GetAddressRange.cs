@@ -5,7 +5,6 @@
 
     [Cmdlet(VerbsCommon.Get, "PANOSAddressRange", DefaultParameterSetName = "GetAll")]
     [OutputType(typeof(AddressObject))]
-    [OutputType(typeof(ObjectNotFoundError))]
     public class GetAddressRange : SearchesObjects
     {
         private Dictionary<string, AddressRangeObject> result;

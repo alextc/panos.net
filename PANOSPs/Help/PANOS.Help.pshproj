@@ -531,8 +531,8 @@ Note, that the output of the Ge-PANOSTrafficLog Cmdlet – the log entry object 
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>AddressGroupName</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -810,8 +810,8 @@ The first Cmdlet converts the API token to SecureString and passes the output to
           <Attributes>
             <string>System.Management.Automation.ParameterAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />

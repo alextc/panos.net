@@ -52,10 +52,6 @@
                             {
                                 WriteObject(returnedObjects[name]);
                             }
-                            else
-                            {
-                                WriteObject(new ObjectNotFoundError(name));
-                            }
                         }
                     }
                     break;
@@ -67,10 +63,6 @@
                         if (returnedObjects.ContainsValue(firewallObject))
                         {
                             WriteObject(returnedObjects[firewallObject.Name]);
-                        }
-                        else
-                        {
-                            WriteObject(new ObjectNotFoundError(firewallObject));
                         }
                     }
                     break;

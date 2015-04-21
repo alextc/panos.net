@@ -27,7 +27,7 @@
         {
 
             var connectionPropertiesCommand = 
-                string.Format("$connectionProperties = New-PANOSConnection -HostName '{0}' -Vsys '{1}' -AccessToken (ConvertTo-SecureString '{2}' -AsPlainText -Force)", 
+                string.Format("$connection = New-PANOSConnection -HostName '{0}' -Vsys '{1}' -AccessToken (ConvertTo-SecureString '{2}' -AsPlainText -Force)", 
                     ConfigurationManager.AppSettings["FirewallHostName"],
                     ConfigurationManager.AppSettings["Vsys"],
                     ConfigurationManager.AppSettings["FirewallAccessToken"] );

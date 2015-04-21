@@ -1,9 +1,7 @@
 ﻿namespace PANOSPsTest
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using PANOS;
-
     using PANOSLibTest;
 
     public class PsGetTests : BaseConfigTest
@@ -25,8 +23,8 @@
             // Test
             var script = string.Format(
                 configType == ConfigTypes.Candidate ? 
-                    "Get-{0} -ConnectionProperties $ConnectionProperties -FromCandidateConfig" :
-                    "Get-{0} -ConnectionProperties $ConnectionProperties", getVerb);
+                    "Get-{0} -Connection $Connection -FromCandidateConfig" :
+                    "Get-{0} -Connection $Connection", getVerb);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -56,8 +54,8 @@
             // Test
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "Get-{0} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -Name {1}" :
-                    "Get-{0} -ConnectionProperties $ConnectionProperties -Name {1}", getVerb, objectUnderTest.Name );
+                    "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1}" :
+                    "Get-{0} -Connection $Connection -Name {1}", getVerb, objectUnderTest.Name );
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -85,8 +83,8 @@
             // Test
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "$fwObject = {0}; Get-{1} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -FirewallObject $fwObject" :
-                    "$fwObject = {0}; Get-{1} -ConnectionProperties $ConnectionProperties -FirewallObject $fwObject", objectUnderTest.ToPsScript(), getVerb);
+                    "$fwObject = {0}; Get-{1} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject" :
+                    "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), getVerb);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -115,14 +113,13 @@
             objectUnderTest.Mutate();
             var script = string.Format(
                  configType == ConfigTypes.Candidate ?
-                     "$fwObject = {0}; Get-{1} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -FirewallObject $fwObject" :
-                     "$fwObject = {0}; Get-{1} -ConnectionProperties $ConnectionProperties -FirewallObject $fwObject", objectUnderTest.ToPsScript(), getVerb);
+                     "$fwObject = {0}; Get-{1} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject" :
+                     "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), getVerb);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
-            Assert.IsTrue(results.Count == 1);
-            Assert.IsTrue(results[0].BaseObject is ObjectNotFoundError);
+            Assert.IsTrue(results.Count == 0);
             
             // Clean-up 
             this.ConfigRepository.Delete(objectUnderTest.SchemaName, objectUnderTest.Name);
@@ -148,8 +145,8 @@
             // Test
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "Get-{0} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -Name {1},{2}" :
-                    "Get-{0} -ConnectionProperties $ConnectionProperties -Name {1},{2}", getVerb, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
+                    "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1},{2}" :
+                    "Get-{0} -Connection $Connection -Name {1},{2}", getVerb, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -167,33 +164,31 @@
 
         public bool GetMultipleByNameWhereSomeDontExist<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
         {
-            // Setup 
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
             foreach (var obj in objectsUnderTest)
             {
-                this.ConfigRepository.Set(obj);
+                ConfigRepository.Set(obj);
             }
 
             if (configType == ConfigTypes.Running)
             {
-                this.CommitCandidateConfig();
+                CommitCandidateConfig();
             }
 
             // Test
             var nameBefore = objectsUnderTest[0].Name;
-            objectsUnderTest[0].Name += "1";
+            objectsUnderTest[0].Name += "1";  // this should not exist
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "Get-{0} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -Name {1},{2}" :
-                    "Get-{0} -ConnectionProperties $ConnectionProperties -Name {1},{2}", getVerb, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
+                    "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1},{2}" :
+                    "Get-{0} -Connection $Connection -Name {1},{2}", getVerb, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
-            Assert.IsTrue(results.Count == 2);
-            Assert.IsTrue(results[0].BaseObject is ObjectNotFoundError);
-            Assert.IsTrue(results[1].BaseObject is T);
+            Assert.IsTrue(results.Count == 1);
+            Assert.IsTrue(results[0].BaseObject is T);
             Assert.IsTrue(PsRunner.PipelineContainsFirewallObject<T>(results, objectsUnderTest[1]));
 
             // Clean-up 
@@ -221,11 +216,11 @@
 
             // Test
             
-            objectsUnderTest[0].Mutate();
+            objectsUnderTest[0].Mutate(); // This should not match antything
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -FirewallObject $fwObject1, $fwObject2" :
-                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -ConnectionProperties $ConnectionProperties -FirewallObject $fwObject1, $fwObject2",
+                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject1, $fwObject2" :
+                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FirewallObject $fwObject1, $fwObject2",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
                         getVerb);
@@ -233,9 +228,8 @@
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
-            Assert.IsTrue(results.Count == 2);
-            Assert.IsTrue(results[0].BaseObject is ObjectNotFoundError);
-            Assert.IsTrue(results[1].BaseObject is T);
+            Assert.IsTrue(results.Count == 1);
+            Assert.IsTrue(results[0].BaseObject is T);
             Assert.IsTrue(PsRunner.PipelineContainsFirewallObject<T>(results, (T)objectsUnderTest[1]));
 
             // Clean-up 
@@ -263,8 +257,8 @@
             // Test
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -FirewallObject $fwObject1, $fwObject2" :
-                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -ConnectionProperties $ConnectionProperties -FirewallObject $fwObject1, $fwObject2",
+                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject1, $fwObject2" :
+                    "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FirewallObject $fwObject1, $fwObject2",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
                         getVerb);
@@ -302,8 +296,8 @@
             // Test
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | Get-{2} -ConnectionProperties $ConnectionProperties -FromCandidateConfig" :
-                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | Get-{2} -ConnectionProperties $ConnectionProperties",
+                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | Get-{2} -Connection $Connection -FromCandidateConfig" :
+                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | Get-{2} -Connection $Connection",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
                         getVerb);
@@ -325,6 +319,7 @@
             return true;
         }
 
+        
         public bool GetMultipleByNameFromPipeline<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
@@ -342,8 +337,8 @@
             // Test
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
-                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1.Name,$fwObject2.Name | Get-{2} -ConnectionProperties $ConnectionProperties -FromCandidateConfig" :
-                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1.Name,$fwObject2.Name | Get-{2} -ConnectionProperties $ConnectionProperties",
+                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1.Name,$fwObject2.Name | Get-{2} -Connection $Connection -FromCandidateConfig" :
+                    "$fwObject1 = {0};$fwObject2 = {1};$fwObject1.Name,$fwObject2.Name | Get-{2} -Connection $Connection",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
                         getVerb);
@@ -365,11 +360,11 @@
             return true;
         }
 
-        // Must throw Exception
+        
         public void RejectInvalidName(string getVerb)
         {
             // Test
-            var script = string.Format("Get-{0} -ConnectionProperties $ConnectionProperties -FromCandidateConfig -Name '{1}'", getVerb, "<script");
+            var script = string.Format("Get-{0} -Connection $Connection -FromCandidateConfig -Name '{1}'", getVerb, "<script");
             PsRunner.ExecutePanosPowerShellScript(script);
         }
     }

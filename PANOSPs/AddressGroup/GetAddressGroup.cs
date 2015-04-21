@@ -5,7 +5,6 @@
 
     [Cmdlet(VerbsCommon.Get, "PANOSAddressGroup", DefaultParameterSetName = "GetAll")]
     [OutputType(typeof(AddressObject))]
-    [OutputType(typeof(ObjectNotFoundError))]
     public class GetAddressGroup : SearchesObjects
     {
         private Dictionary<string, AddressGroupObject> result;
