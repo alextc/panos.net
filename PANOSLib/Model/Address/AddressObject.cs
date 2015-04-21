@@ -11,7 +11,10 @@
             this.Address = ipAddress;
         }
 
-        protected IPAddress Address { get; set; }
+        
+        // ReSharper disable once MemberCanBeProtected.Global
+        // This needs to be public, otherwise not visible in a PS session
+        public IPAddress Address { get; set; }
 
         public override string ToXml()
         {

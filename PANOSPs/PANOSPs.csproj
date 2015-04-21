@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Help\PANOS.dll-Help.xml" />
+    <None Include="Scripts\GetAddressExamples.ps1" />
     <None Include="Scripts\Get-BlockedTrafficLog.ps1" />
   </ItemGroup>
   <ItemGroup />

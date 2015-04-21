@@ -17,7 +17,7 @@
             
             try
             {
-                result = this.ConfigRepository.GetAll<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigType);
+                result = ConfigRepository.GetAll<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigType);
             }
             catch (ResponseFailure ex)
             {

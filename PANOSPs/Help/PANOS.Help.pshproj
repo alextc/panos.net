@@ -414,7 +414,7 @@ Note that the Cmdlet, before consuming the data, will check the status of the jo
       <Examples>
         <Example>
           <Name>Example 1</Name>
-          <Cmd>$connection = New-PANOSConnectionProperties -HostName 'firewall1.corp.net' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+          <Cmd>$connection = New-PANOSConnection -HostName 'firewall1.corp.net' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
 $query = "( receive_time leq '2015/04/20 10:16:44' ) and ( receive_time geq '2015/04/20 09:16:44' ) and ( addr.dst in 23.59.190.121 ) and ( action eq deny )"
 Get-PANOSTrafficLog  -Query $query -Connection $connection -Delay 4 | ft -AutoSize
 </Cmd>
@@ -430,7 +430,7 @@ Since the Page switch is not supplied this will return at most 5000 records.
         </Example>
         <Example>
           <Name>Example 2</Name>
-          <Cmd>$connection = New-PANOSConnectionProperties -HostName 'firewall1.corp.net' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+          <Cmd>$connection = New-PANOSConnection -HostName 'firewall1.corp.net' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
 $query = "(Rule eq 'web-farm' )"
 Get-PANOSTrafficLog  -Query $query -Page -Connection $connection -Delay 4 |
     convertto-csv -NoTypeInformation -Delimiter "," | % {$_ -replace '"',''} | 

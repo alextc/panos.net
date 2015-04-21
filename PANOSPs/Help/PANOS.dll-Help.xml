@@ -965,7 +965,7 @@ Note that the Cmdlet, before consuming the data, will check the status of the jo
 			<maml:introduction>
 				<maml:paragraph>PS C:\&gt;</maml:paragraph>
 			</maml:introduction>
-			<dev:code>$connection = New-PANOSConnectionProperties -HostName &apos;firewall1.corp.net&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+			<dev:code>$connection = New-PANOSConnection -HostName &apos;firewall1.corp.net&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
 $query = &quot;( receive_time leq &apos;2015/04/20 10:16:44&apos; ) and ( receive_time geq &apos;2015/04/20 09:16:44&apos; ) and ( addr.dst in 23.59.190.121 ) and ( action eq deny )&quot;
 Get-PANOSTrafficLog  -Query $query -Connection $connection -Delay 4 | ft -AutoSize
 </dev:code>
@@ -995,7 +995,7 @@ Since the Page switch is not supplied this will return at most 5000 records.
 			<maml:introduction>
 				<maml:paragraph>PS C:\&gt;</maml:paragraph>
 			</maml:introduction>
-			<dev:code>$connection = New-PANOSConnectionProperties -HostName &apos;firewall1.corp.net&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
+			<dev:code>$connection = New-PANOSConnection -HostName &apos;firewall1.corp.net&apos; -Vsys &apos;vsys1&apos; -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken.txt)
 $query = &quot;(Rule eq &apos;web-farm&apos; )&quot;
 Get-PANOSTrafficLog  -Query $query -Page -Connection $connection -Delay 4 |
     convertto-csv -NoTypeInformation -Delimiter &quot;,&quot; | % {$_ -replace &apos;&quot;&apos;,&apos;&apos;} | 

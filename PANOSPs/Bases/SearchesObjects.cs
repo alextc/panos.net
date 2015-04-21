@@ -1,7 +1,5 @@
-﻿
-namespace PANOS
+﻿namespace PANOS
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Management.Automation;
@@ -26,8 +24,6 @@ namespace PANOS
 
         protected ConfigTypes ConfigType { get; set; }
 
-        protected string SchemaName { get; set; }
-        
         protected void FilterResponse<T>(Dictionary<string, T> returnedObjects) where T : FirewallObject
         {
             // nothing was returned so writing null and exiting.
