@@ -10,7 +10,7 @@
             ParameterSetName = "Object",
             Mandatory = true,
             ValueFromPipeline = true)]
-        public AddressObject[] AddressObject { get; set; }
+        public AddressObject[] PanosAddress { get; set; }
 
         [Parameter(
             ParameterSetName = "Properties")]
@@ -41,7 +41,7 @@
                     if (PassThru) WriteObject(newAddress);
                     break;
                 case "Object":
-                    foreach (var addressObject in AddressObject)
+                    foreach (var addressObject in PanosAddress)
                     {
                         ConfigRepository.Set(addressObject);
                         if (PassThru) WriteObject(addressObject);

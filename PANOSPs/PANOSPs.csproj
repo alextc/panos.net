@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPanosObject.cs" />
     <Compile Include="AddressGroup\GetAddressGroup.cs" />
     <Compile Include="AddressGroup\NewAddressGroup.cs" />
     <Compile Include="AddressRange\GetAddressRange.cs" />
