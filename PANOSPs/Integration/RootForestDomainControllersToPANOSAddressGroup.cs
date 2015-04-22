@@ -85,8 +85,8 @@
                 WriteVerbose("Address configuration drifted:");
                 foreach (var address in addressObjectsDetla)
                 {
-                    var addressUpdateResult = ConfigRepository.Set(address);
-                    WriteVerbose(string.Format("Updating {0} - {1}", address.Name, addressUpdateResult.Message));
+                    ConfigRepository.Set(address);
+                    WriteVerbose(string.Format("Updating {0}", address.Name));
                 }
             }
         }
@@ -110,8 +110,8 @@
             else
             {
                 // Creating group brand new using Set API
-                var groupSetResult = ConfigRepository.Set(adView);
-                WriteVerbose(string.Format("Setting {0} - {1}", AddressGroupName, groupSetResult.Message));
+                ConfigRepository.Set(adView);
+                WriteVerbose(string.Format("Setting {0}", AddressGroupName));
             }
         }
 

@@ -18,7 +18,7 @@
             // Setup
             // This will create a new group with 3 members: address, range and subnet
             var addressGroupUnderTest = RandomObjectFactory.GenerateRandomObject<AddressGroupObject>();
-            Assert.IsNotNull(ConfigRepository.Set(addressGroupUnderTest));
+            ConfigRepository.Set(addressGroupUnderTest);
             
             // Remove existing member
             var memberToRemove = addressGroupUnderTest.Members.Last();
@@ -26,7 +26,7 @@
 
             // Add new AddressObject
             var newAddress = RandomObjectFactory.GenerateRandomObject<AddressObject>();
-            Assert.IsNotNull(ConfigRepository.Set(newAddress));
+            ConfigRepository.Set(newAddress);
             addressGroupUnderTest.Members.Add(newAddress.Name);
             
             // Test
@@ -59,7 +59,7 @@
             // Setup
             // This will create a new group with 3 members: address, range and subnet
             var addressGroupUnderTest = RandomObjectFactory.GenerateRandomObject<AddressGroupObject>();
-            Assert.IsNotNull(ConfigRepository.Set(addressGroupUnderTest));
+            ConfigRepository.Set(addressGroupUnderTest);
             
             // Test
             ConfigRepository.InflateMembers<GetAllAddressesApiResponse, AddressObject>(

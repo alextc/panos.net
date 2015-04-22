@@ -11,7 +11,7 @@
         {
             // Setup
             var obj = RandomObjectFactory.GenerateRandomObject<TObject>();
-            Assert.IsNotNull(this.ConfigRepository.Set(obj));
+            ConfigRepository.Set(obj);
 
             // Test
             var newName = RandomObjectFactory.GenerateRandomName();

@@ -15,8 +15,8 @@
                     RandomObjectFactory.GenerateRandomObject<TObject>(),
                     RandomObjectFactory.GenerateRandomObject<TObject>()
                 };
-            Assert.IsNotNull(this.ConfigRepository.Set(objectsUnderTest[0]));
-            Assert.IsNotNull(this.ConfigRepository.Set(objectsUnderTest[1]));
+            ConfigRepository.Set(objectsUnderTest[0]);
+            ConfigRepository.Set(objectsUnderTest[1]);
 
             if (configType == ConfigTypes.Running)
             {
@@ -58,7 +58,7 @@
         {
             // Setup
             var objectUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();
-            Assert.IsNotNull(this.ConfigRepository.Set(objectUnderTest));
+            ConfigRepository.Set(objectUnderTest);
 
             if (configType == ConfigTypes.Running)
             {

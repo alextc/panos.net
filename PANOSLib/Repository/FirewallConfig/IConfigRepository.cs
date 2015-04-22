@@ -21,7 +21,7 @@ namespace PANOS
 
         string Delete(string schemaName, string name);
 
-        ApiResponseWithMessage Set(FirewallObject firewallObject);
+        void Set(FirewallObject firewallObject);
 
         ApiResponseWithMessage SetGroupMembership(GroupFirewallObject groupName);
 

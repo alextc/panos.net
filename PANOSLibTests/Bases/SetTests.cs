@@ -11,7 +11,7 @@
             var newObj = RandomObjectFactory.GenerateRandomObject<TObject>();
 
             // Test
-            Assert.IsNotNull(this.ConfigRepository.Set(newObj));
+            ConfigRepository.Set(newObj);
 
             // Postcondition
             var result = this.ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, newObj.Name, ConfigTypes.Candidate);

@@ -13,7 +13,7 @@
         {
             foreach (var firewallObject in FirewallObjects)
             {
-                WriteObject(this.ConfigRepository.Set(firewallObject));
+                ConfigRepository.Set(firewallObject);
             }
         }
     }

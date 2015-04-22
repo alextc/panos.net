@@ -12,7 +12,7 @@
         {
             // Precondition
             var objUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();
-            Assert.IsNotNull(this.ConfigRepository.Set(objUnderTest));
+            ConfigRepository.Set(objUnderTest);
 
             // Test
             Assert.IsNotNull(this.ConfigRepository.Delete(objUnderTest.SchemaName, objUnderTest.Name));
