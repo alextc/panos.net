@@ -71,14 +71,14 @@
   <ItemGroup>
     <None Include="Help\PANOS PS Module Help.docx" />
     <None Include="Help\PANOS.Help.pshproj" />
-    <None Include="Scripts\AddAddressExamples.ps1" />
-    <None Include="Scripts\CreateManagementEndPoint.ps1" />
-    <None Include="Scripts\ExportTrafficLog.ps1" />
+    <None Include="Scripts\Address\AddAddressExamples.ps1" />
+    <None Include="Scripts\Infra\CreateManagementEndPoint.ps1" />
+    <None Include="Scripts\Log\ExportTrafficLog.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Help\PANOS.dll-Help.xml" />
-    <None Include="Scripts\GetAddressExamples.ps1" />
-    <None Include="Scripts\Get-BlockedTrafficLog.ps1" />
+    <None Include="Scripts\Address\GetAddressExamples.ps1" />
+    <None Include="Scripts\Log\Get-BlockedTrafficLog.ps1" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
