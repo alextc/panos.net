@@ -1,6 +1,8 @@
 ﻿namespace PANOSLibTest
 {
     using System.Collections.Generic;
+    using System.Linq;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
 
@@ -66,10 +68,11 @@
             }
             
             // Test
-            Assert.IsNotNull(this.ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, objectUnderTest.Name, configType));
+            var retrievedObject = ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, objectUnderTest.Name, configType).Single();
+            Assert.AreEqual(objectUnderTest, retrievedObject);
 
             // Clean-up
-            Assert.IsNotNull(this.ConfigRepository.Delete(schemaName, objectUnderTest.Name));
+            Assert.IsNotNull(ConfigRepository.Delete(schemaName, objectUnderTest.Name));
 
             return true;
         }
@@ -79,7 +82,7 @@
             where TObject : FirewallObject
         {
             var objectUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();
-            Assert.IsNull(this.ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, objectUnderTest.Name, configType));
+            Assert.AreEqual(ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, objectUnderTest.Name, configType).Count(), 0);
             return true;
         }
     }

@@ -35,10 +35,10 @@
 
             // Validate
             Assert.IsTrue(groupUpdateResult.Status.Equals("success"));
-            var updatedGroup = (AddressGroupObject)ConfigRepository.GetSingle<GetSingleAddressGroupApiResponse, AddressGroupObject>(
+            var updatedGroup = ConfigRepository.GetSingle<GetSingleAddressGroupApiResponse, AddressGroupObject>(
                 Schema.AddressGroupSchemaName,
                 addressGroupUnderTest.Name,
-                ConfigTypes.Candidate);
+                ConfigTypes.Candidate).Single();
 
             Assert.AreEqual(addressGroupUnderTest.Members.Count, updatedGroup.Members.Count);
             Assert.IsFalse(updatedGroup.Members.Contains(memberToRemove));

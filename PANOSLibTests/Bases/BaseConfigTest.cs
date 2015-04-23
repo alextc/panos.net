@@ -1,6 +1,7 @@
 ﻿namespace PANOSLibTest
 {
     using System;
+    using System.Configuration;
     using System.Diagnostics;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

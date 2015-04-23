@@ -1,5 +1,7 @@
 ﻿namespace PANOSLibTest
 {
+    using System.Linq;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
 
@@ -14,8 +16,7 @@
             ConfigRepository.Set(newObj);
 
             // Postcondition
-            var result = this.ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, newObj.Name, ConfigTypes.Candidate);
-            Assert.IsNotNull(result);
+            var result = this.ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, newObj.Name, ConfigTypes.Candidate).Single();
             Assert.AreEqual(result, newObj);
 
             // Clean-up

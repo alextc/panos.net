@@ -4,7 +4,7 @@ namespace PANOS
 
     public interface IConfigRepository
     {
-        FirewallObject GetSingle<TDeserializer, TObject>(
+        Maybe<TObject> GetSingle<TDeserializer, TObject>(
             string schemaName,
             string objectName,
             ConfigTypes configType)

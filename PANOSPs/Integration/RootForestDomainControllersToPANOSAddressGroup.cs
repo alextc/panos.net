@@ -1,5 +1,6 @@
 ﻿namespace PANOS
 {
+    using System.Linq;
     using System.Management.Automation;
     using PANOS.Integration;
     using PANOS.Logging;
@@ -39,10 +40,12 @@
             var adView = activeDirectoryRepository.AddressGroupFromDomainControllersInRootDomain(AddressGroupName);
             // TODO: Sanity check, ex 0 members returned
 
-            var fwView = (AddressGroupObject)ConfigRepository.GetSingle<GetSingleAddressGroupApiResponse, AddressGroupObject>(
-                    Schema.AddressGroupSchemaName,
-                    AddressGroupName,
-                    ConfigTypes.Running);
+            // This will throw an exception if the group does not exist - Is this Ok?
+            var fwView = ConfigRepository.GetSingle<GetSingleAddressGroupApiResponse, AddressGroupObject>(
+                Schema.AddressGroupSchemaName,
+                this.AddressGroupName,
+                ConfigTypes.Running).
+                Single();
             InflateAddressGroupMembers(fwView);
 
             if (adView.DeepCompare(fwView))

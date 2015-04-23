@@ -72,6 +72,7 @@
     <Compile Include="API\Config\IConfigCommandFactory.cs" />
     <Compile Include="API\ApiUriFactory.cs" />
     <Compile Include="API\Log\LogQueryFactory.cs" />
+    <Compile Include="API\Maybe.cs" />
     <Compile Include="Integration\ActiveDirectoryRepository.cs" />
     <Compile Include="Integration\DnsRepository.cs" />
     <Compile Include="Logging\AdToPanosSyncLogger.cs" />

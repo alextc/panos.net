@@ -1,87 +1,56 @@
 ﻿namespace PANOSLibTest.API.Address
 {
+    using System;
+    using System.Configuration;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
 
     [TestClass]
-    public class GetAddressTests 
+    public class GetAddressTests : BaseConfigTest
     {
         private readonly GetTests baseGetTests = new GetTests();
 
-        [TestMethod]
-        public void GetAllAddressesFromRunningConfigTest()
-        {
-            Assert.IsTrue(
-                baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-               baseGetTests.GetAllObjects<GetAllAddressesApiResponse, SubnetObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-               baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressRangeObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-                baseGetTests.GetAllObjects<GetAllAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, ConfigTypes.Running));
-        }
+        // Running tests against the Running config requires calling Commit, which makes tests much slower
+        // Don't forget to switch this on once in a while
+        private readonly bool testAgainstRunningConfig = Boolean.Parse(ConfigurationManager.AppSettings["TestAgainstRunningConfig"]);
         
         [TestMethod]
-        public void GetAllAddressesFromCandidateConfigTest()
+        public void GetAllAddressesTest()
         {
-            Assert.IsTrue(
-                 baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                 baseGetTests.GetAllObjects<GetAllAddressesApiResponse, SubnetObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                 baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressRangeObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                baseGetTests.GetAllObjects<GetAllAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, ConfigTypes.Candidate)); 
-        }
-        
-        [TestMethod]
-        public void GetSingleAddressFromRunningConfigTest()
-        {
-            Assert.IsTrue(
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, ConfigTypes.Running));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if(config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetAllObjects<GetAllAddressesApiResponse, SubnetObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressRangeObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetAllObjects<GetAllAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, config));
+            }
         }
 
         [TestMethod]
-        public void GetSingleAddressFromCandidateConfigTest()
+        public void GetSingleAddressTest()
         {
-            Assert.IsTrue(
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                baseGetTests.GetSingleObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, ConfigTypes.Candidate));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetSingleObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, config));
+            }
         }
 
         [TestMethod]
-        public void GetNonExistingAddressFromCandidateConfigTest()
+        public void GetNonExistingAddressTest()
         {
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, ConfigTypes.Candidate));
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, ConfigTypes.Candidate));
-        }
-
-        [TestMethod]
-        public void GetNonExistingAddressFromRunningConfigTest()
-        {
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, ConfigTypes.Running));
-            Assert.IsTrue(
-                baseGetTests.GetNonExistingObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, ConfigTypes.Running));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, config));
+                Assert.IsTrue(baseGetTests.GetNonExistingObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, config));
+            }
         }
     }
 }

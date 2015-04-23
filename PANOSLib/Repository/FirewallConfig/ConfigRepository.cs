@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.Serialization;
+
     using PANOS.Logging;
 
     // TODO: Add input validation:
@@ -17,7 +19,7 @@
             this.commandFactory = commandFactory;
         }
 
-        public FirewallObject GetSingle<TDeserializer, TObject>(
+        public Maybe<TObject> GetSingle<TDeserializer, TObject>(
             string schemaName,
             string objectName,
             ConfigTypes configType)
@@ -33,13 +35,24 @@
             {
                 if (configType == ConfigTypes.Running && ex.Data[ResponseFailure.MessageFiled].ToString().Contains("No such node"))
                 {
-                    return null;
+                    return new Maybe<TObject>();
                 }
 
                 throw;
             }
 
-            return (TObject)deserializedResult.GetPayload();
+            if (deserializedResult.GetPayload() == null)
+            {
+                    return new Maybe<TObject>();
+            }
+
+            var deserializedFirewallObject =  deserializedResult.GetPayload() as TObject;
+            if (deserializedFirewallObject == null)
+            {
+                throw new SerializationException("Unable to Deserealize Payload to the requested type");
+            }
+            
+            return new Maybe<TObject>(deserializedFirewallObject);
         }
 
         public Dictionary<string, TObject> GetAll<TDeserializer, TObject>(
