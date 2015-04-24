@@ -1,12 +1,12 @@
 ﻿namespace PANOSLibTest
 {
+    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
 
     public class DeleteTests : BaseConfigTest
     {
-
-        public bool DeleteObject<TDeserializer, TObject>()
+        public void DeleteObject<TDeserializer, TObject>()
             where TObject : FirewallObject
             where TDeserializer : ApiResponse, IPayload
         {
@@ -15,12 +15,10 @@
             ConfigRepository.Set(objUnderTest);
 
             // Test
-            Assert.IsNotNull(this.ConfigRepository.Delete(objUnderTest.SchemaName, objUnderTest.Name));
+            ConfigRepository.Delete(objUnderTest.SchemaName, objUnderTest.Name);
 
             // Postcondition
-            Assert.IsNull(this.ConfigRepository.GetSingle<TDeserializer, TObject>(objUnderTest.SchemaName, objUnderTest.Name, ConfigTypes.Candidate));
-
-            return true;
+            Assert.IsFalse(ConfigRepository.GetSingle<TDeserializer, TObject>(objUnderTest.SchemaName, objUnderTest.Name, ConfigTypes.Candidate).Any());
         }
 
 
@@ -30,7 +28,7 @@
             var obj = RandomObjectFactory.GenerateRandomObject<TObject>();
 
             // Test
-            this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+            ConfigRepository.Delete(obj.SchemaName, obj.Name);
         }
     }
 }

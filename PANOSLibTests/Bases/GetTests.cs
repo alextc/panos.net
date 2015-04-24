@@ -38,7 +38,7 @@
             // Clean-up
             foreach (var obj in objectsUnderTest)
             {
-                Assert.IsNotNull(this.ConfigRepository.Delete(schemaName, obj.Name));
+                ConfigRepository.Delete(schemaName, obj.Name);
 
                 // If this is a group object, delete its members
                 // TODO: Deal with nested Groups
@@ -46,7 +46,7 @@
                 {
                     foreach (var member in (obj as AddressGroupObject).Members)
                     {
-                        Assert.IsNotNull(this.ConfigRepository.Delete(Schema.AddressSchemaName, member));
+                        ConfigRepository.Delete(Schema.AddressSchemaName, member);
                     }
                 }
             }
@@ -72,7 +72,7 @@
             Assert.AreEqual(objectUnderTest, retrievedObject);
 
             // Clean-up
-            Assert.IsNotNull(ConfigRepository.Delete(schemaName, objectUnderTest.Name));
+            ConfigRepository.Delete(schemaName, objectUnderTest.Name);
 
             return true;
         }

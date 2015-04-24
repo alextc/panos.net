@@ -20,7 +20,7 @@
             Assert.AreEqual(result, newObj);
 
             // Clean-up
-            Assert.IsNotNull(this.ConfigRepository.Delete(schemaName, result.Name));
+            ConfigRepository.Delete(schemaName, result.Name);
             // Commit Changes --- effectively backing-out
             // CommitCandidateConfig();
 

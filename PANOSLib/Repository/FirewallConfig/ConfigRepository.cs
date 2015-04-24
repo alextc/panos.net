@@ -91,13 +91,13 @@
         }
 
         // TODO: Fix CQS violation
-        public string Delete(string schemaName, string name)
+        public void Delete(string schemaName, string name)
         {
             var response = commandFactory.CreateDelete(schemaName, name).Execute();
             // What is the status of an attempt to delete an non-existing object
             if (response.Status.Equals("success") && !response.Message.Equals("Object doesn't exist"))
             {
-                return response.NameActedUpon;
+                return;
             }
 
             if (response.Message.Equals("Object doesn't exist"))

@@ -22,7 +22,7 @@
             Assert.IsNull(this.ConfigRepository.GetSingle<TDeserializer, TObject>(obj.SchemaName, obj.Name, ConfigTypes.Candidate));
 
             // Clean-up
-            Assert.IsNotNull(this.ConfigRepository.Delete(obj.SchemaName, newName));
+            ConfigRepository.Delete(obj.SchemaName, newName);
             // Commit Changes --- effectively backing-out
             // CommitCandidateConfig();
 
@@ -37,7 +37,7 @@
             var obj = RandomObjectFactory.GenerateRandomObject<TObject>();
 
             // Test
-            this.ConfigRepository.Rename(obj.SchemaName, obj.Name, "foo");
+            ConfigRepository.Rename(obj.SchemaName, obj.Name, "foo");
         }
     }
 }

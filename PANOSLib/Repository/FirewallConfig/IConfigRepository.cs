@@ -19,7 +19,7 @@ namespace PANOS
 
         string Rename(string schemaName, string oldName, string newName);
 
-        string Delete(string schemaName, string name);
+        void Delete(string schemaName, string name);
 
         void Set(FirewallObject firewallObject);
 
