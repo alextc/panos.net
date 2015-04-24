@@ -598,8 +598,8 @@ Note, that the output of the Ge-PANOSTrafficLog Cmdlet – the log entry object 
         <ParameterDescription type="String[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Members</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -724,8 +724,8 @@ The first Cmdlet converts the API token to SecureString and passes the output to
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>SchemaName</Name>
           <Attributes>
-            <string>System.Management.Automation.ParameterAttribute</string>
             <string>System.Management.Automation.ValidateSetAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
           <Aliases />
           <Description />
@@ -934,8 +934,8 @@ The first Cmdlet converts the API token to SecureString and passes the output to
         <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Description</Name>
           <Attributes>
-            <string>System.Management.Automation.ValidatePatternAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
           </Attributes>
           <Aliases />
           <Description>Description of the address object.</Description>
@@ -974,6 +974,97 @@ New-Object -TypeName PANOS.AddressObject -ArgumentList "web02", ([System.Net.IPA
 Add-PANOSAddress -Connection $connection -Name "web03" -IpAddress '10.10.10.14' -Description "Web Server 03" -PassThru | Get-PANOSAddress -Connection $connection -FromCandidateConfig
 </Cmd>
           <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Remove" noun="PANOSAddress">
+      <Name>Remove-PANOSAddress</Name>
+      <GeneralHelp>
+        <Synopsis>Removes Address objects.</Synopsis>
+        <Description />
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="Object" Params="PanosAddress PassThru Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Properties" Params="Name PassThru Connection Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Remove-PANOSAddress -PanosAddress &lt;AddressObject[]&gt; [-PassThru] -Connection &lt;Connection&gt;</string>
+        <string>Remove-PANOSAddress [-Name &lt;String[]&gt;] [-PassThru] -Connection &lt;Connection&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="AddressObject[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>PanosAddress</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>An object of type PANOS.AddressObject. Typically, this parameter is used when accepting an Address object from the Pipeline, where the previous command returns PANOS.AddressObject  (ex. Get-PANOSAddress).</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>PassThru</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Connection" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Connection</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Object that represents a connection to PANOS firewall, see New-PANOSConnection help for details</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Name</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidatePatternAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Name of the Address object to remove.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Remove-PANOSAddress -Connection $connection -Name web12
+</Cmd>
+          <Description>These commands remove an Address object identified by name.</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Example 2</Name>
+          <Cmd>$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection -Name web12 | Remove-PANOSAddress -Connection $connection
+</Cmd>
+          <Description>These commands remove an Address object which was initially retrieved via the Get-PANOSAddress Cmdlet and then passed via the pipeline to the PanosAddress parameter of the Remove-PANOSAddress.</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Example 3</Name>
+          <Cmd>$connection = New-PANOSConnection -HostName 'pa.corp.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
+Get-PANOSAddress -Connection $connection -FromCandidateConfig | where { $_.Address -eq '10.160.49.218' } | Remove-PANOSAddress -Connection $connection
+</Cmd>
+          <Description>These commands remove all Address objects which contain a specific IP address. The first command in the pipeline retrieves all addresses, then the Where-Object Cmdlet filters-out all addresses that do not contain the supplied IP address. Finally, the matched addresses are passed to the Remove-PANOSAddress for removal.</Description>
           <Output />
         </Example>
       </Examples>

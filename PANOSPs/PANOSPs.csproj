@@ -73,6 +73,7 @@
     <None Include="Help\PANOS PS Module Help.docx" />
     <None Include="Help\PANOS.Help.pshproj" />
     <None Include="Scripts\Address\AddAddressExamples.ps1" />
+    <None Include="Scripts\Address\RemoveAddressExamples.ps1" />
     <None Include="Scripts\Infra\CreateManagementEndPoint.ps1" />
     <None Include="Scripts\Log\ExportTrafficLog.ps1" />
   </ItemGroup>
