@@ -9,9 +9,9 @@
         [XmlElement("result")]
         public GetSingleAddressApiResponseResult Result { get; set; }
 
-        public FirewallObject GetPayload()
+        public Maybe<FirewallObject> GetPayload()
         {
-            return Result.AddressXml != null ? Result.AddressXml.GetPayload() : null;
+            return Result.AddressXml != null ? new Maybe<FirewallObject>(Result.AddressXml.GetPayload()) : new Maybe<FirewallObject>();
         }
     }  
 }

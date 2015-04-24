@@ -41,13 +41,12 @@
                 throw;
             }
 
-            // TODO: GetPayload should return Maybe
-            if (deserializedResult.GetPayload() == null)
+            if (!deserializedResult.GetPayload().Any())
             {
                  return new Maybe<TObject>();
             }
 
-            var deserializedFirewallObject =  deserializedResult.GetPayload() as TObject;
+            var deserializedFirewallObject =  deserializedResult.GetPayload().Single() as TObject;
             if (deserializedFirewallObject == null)
             {
                 throw new SerializationException("Unable to Deserealize Payload to the requested type");

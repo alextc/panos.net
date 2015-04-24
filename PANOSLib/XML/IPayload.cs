@@ -2,6 +2,6 @@
 {
     public interface IPayload
     {
-        FirewallObject GetPayload();
+        Maybe<FirewallObject> GetPayload();
     }
 }
