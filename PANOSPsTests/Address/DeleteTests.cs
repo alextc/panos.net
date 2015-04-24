@@ -1,9 +1,7 @@
 ﻿namespace PANOSPsTest
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using PANOS;
-
     using PANOSLibTest;
 
     [TestClass]
@@ -14,55 +12,67 @@
         [TestMethod]
         public void DeleteSingleAddresByObjectPassedAsParameter()
         {
-            Assert.IsTrue(this.deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>());
-            Assert.IsTrue(this.deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, SubnetObject>());
-            Assert.IsTrue(this.deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressRangeObject>());
-            Assert.IsTrue(this.deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+            deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
+            // deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSSubnet");
+            // deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSRange");
+            // deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddressGroup");
         }
 
         [TestMethod]
         public void DeleteSingleAddressByNamePassedAsParameter()
         {
-            Assert.IsTrue(this.deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressObject>());
-            Assert.IsTrue(this.deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressApiResponse, SubnetObject>());
-            Assert.IsTrue(this.deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressRangeObject>());
-            Assert.IsTrue(this.deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+            deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
+            //deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressApiResponse, SubnetObject>());
+            //deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressRangeObject>());
+            //deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
         [TestMethod]
         public void DeleteMultipleAddressesFromObjectsPassedAsParameter()
         {
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressApiResponse, SubnetObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressRangeObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+            deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
+            //deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressApiResponse, SubnetObject>());
+            //deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressRangeObject>());
+            //deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
         [TestMethod]
         public void DeleteMultipleAddressesByNamesPassedAsParameter()
         {
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressApiResponse, SubnetObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressRangeObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+            deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
+            //deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressApiResponse, SubnetObject>());
+            //deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressRangeObject>());
+            //deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
         [TestMethod]
         public void DeleteMultipleAddressesByNamesPassedViaPipeline()
         {
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressApiResponse, AddressObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressApiResponse, SubnetObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressApiResponse, AddressRangeObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+            deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
+            //deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressApiResponse, SubnetObject>());
+            //deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressApiResponse, AddressRangeObject>());
+            //deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
         [TestMethod]
         public void DeleteMultipleAddressesByObjectPassedViaPipeline()
         {
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressApiResponse, AddressObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressApiResponse, SubnetObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressApiResponse, AddressRangeObject>());
-            Assert.IsTrue(this.deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+            deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
+            //deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressApiResponse, SubnetObject>());
+            //deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressApiResponse, AddressRangeObject>());
+            //deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+        }
+
+        [TestMethod]
+        public void DeleteAndPassThruObject()
+        {
+            deleteTests.DeleteAndPassThruObjectTest<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
+        }
+
+        [TestMethod]
+        public void DeleteAndPassThruName()
+        {
+            deleteTests.DeleteAndPassThruName<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
         }
     }    
 }

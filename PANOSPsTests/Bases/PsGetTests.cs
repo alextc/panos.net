@@ -6,7 +6,7 @@
 
     public class PsGetTests : BaseConfigTest
     {
-        public bool GetAll<T>(string getVerb, ConfigTypes configType) where T: FirewallObject
+        public bool GetAll<T>(string noun, ConfigTypes configType) where T: FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
@@ -24,7 +24,7 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ? 
                     "Get-{0} -Connection $Connection -FromCandidateConfig" :
-                    "Get-{0} -Connection $Connection", getVerb);
+                    "Get-{0} -Connection $Connection", noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -40,7 +40,7 @@
             return true;
         }
 
-        public bool GetSingleByName<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetSingleByName<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup 
             var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<T>();
@@ -55,7 +55,7 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1}" :
-                    "Get-{0} -Connection $Connection -Name {1}", getVerb, objectUnderTest.Name );
+                    "Get-{0} -Connection $Connection -Name {1}", noun, objectUnderTest.Name );
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -69,7 +69,7 @@
             return true;
         }
 
-        public bool GetSingleByObject<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetSingleByObject<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup 
             var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<T>();
@@ -84,7 +84,7 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "$fwObject = {0}; Get-{1} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject" :
-                    "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), getVerb);
+                    "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -98,7 +98,7 @@
             return true;
         }
 
-        public bool GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup 
             var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<T>();
@@ -114,7 +114,7 @@
             var script = string.Format(
                  configType == ConfigTypes.Candidate ?
                      "$fwObject = {0}; Get-{1} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject" :
-                     "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), getVerb);
+                     "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -127,7 +127,7 @@
             return true;
         }
 
-        public bool GetMultipleByName<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetMultipleByName<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup 
             // Setup - Ensure that at least 2 addresses are present
@@ -146,7 +146,7 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1},{2}" :
-                    "Get-{0} -Connection $Connection -Name {1},{2}", getVerb, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
+                    "Get-{0} -Connection $Connection -Name {1},{2}", noun, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -162,7 +162,7 @@
             return true;
         }
 
-        public bool GetMultipleByNameWhereSomeDontExist<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetMultipleByNameWhereSomeDontExist<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
@@ -182,7 +182,7 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1},{2}" :
-                    "Get-{0} -Connection $Connection -Name {1},{2}", getVerb, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
+                    "Get-{0} -Connection $Connection -Name {1},{2}", noun, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -200,7 +200,7 @@
             return true;
         }
 
-        public bool GetMultipleByObjectWhereSomeFailEqualsTests<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetMultipleByObjectWhereSomeFailEqualsTests<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
@@ -223,7 +223,7 @@
                     "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FirewallObject $fwObject1, $fwObject2",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
-                        getVerb);
+                        noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -240,7 +240,7 @@
             return true;
         }
 
-        public bool GetMultipleByObject<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetMultipleByObject<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
@@ -261,7 +261,7 @@
                     "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FirewallObject $fwObject1, $fwObject2",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
-                        getVerb);
+                        noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -279,7 +279,7 @@
             return true;
         }
         
-        public bool GetMultipleByObjectFromPipeline<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetMultipleByObjectFromPipeline<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
@@ -300,7 +300,7 @@
                     "$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | Get-{2} -Connection $Connection",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
-                        getVerb);
+                        noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -318,9 +318,8 @@
 
             return true;
         }
-
         
-        public bool GetMultipleByNameFromPipeline<T>(string getVerb, ConfigTypes configType) where T : FirewallObject
+        public bool GetMultipleByNameFromPipeline<T>(string noun, ConfigTypes configType) where T : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
@@ -341,7 +340,7 @@
                     "$fwObject1 = {0};$fwObject2 = {1};$fwObject1.Name,$fwObject2.Name | Get-{2} -Connection $Connection",
                         objectsUnderTest[0].ToPsScript(),
                         objectsUnderTest[1].ToPsScript(),
-                        getVerb);
+                        noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -360,11 +359,10 @@
             return true;
         }
 
-        
-        public void RejectInvalidName(string getVerb)
+        public void RejectInvalidName(string noun)
         {
             // Test
-            var script = string.Format("Get-{0} -Connection $Connection -FromCandidateConfig -Name '{1}'", getVerb, "<script");
+            var script = string.Format("Get-{0} -Connection $Connection -FromCandidateConfig -Name '{1}'", noun, "<script");
             PsRunner.ExecutePanosPowerShellScript(script);
         }
     }
