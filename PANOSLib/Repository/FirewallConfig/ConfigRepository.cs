@@ -41,9 +41,10 @@
                 throw;
             }
 
+            // TODO: GetPayload should return Maybe
             if (deserializedResult.GetPayload() == null)
             {
-                    return new Maybe<TObject>();
+                 return new Maybe<TObject>();
             }
 
             var deserializedFirewallObject =  deserializedResult.GetPayload() as TObject;

@@ -1,5 +1,7 @@
 ﻿namespace PANOSPsTest
 {
+    using System;
+    using System.Configuration;
     using System.Management.Automation;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
@@ -10,140 +12,161 @@
     {
         private readonly PsGetTests psGetTests = new PsGetTests();
 
+        // Running tests against the Running config requires calling Commit, which makes tests much slower
+        // Don't forget to switch this on once in a while
+        private readonly bool testAgainstRunningConfig = Boolean.Parse(ConfigurationManager.AppSettings["TestAgainstRunningConfig"]);
+
         [TestMethod]
-        public void GetAllAddressesFromCandidateConfig()
+        public void GetAllAddresses()
         {
-            Assert.IsTrue(this.psGetTests.GetAll<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetAll<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetAll<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetAll<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
-        }
-
-        // [TestMethod]
-        public void GetAllAddressesFromRunningConfig()
-        {
-            Assert.IsTrue(this.psGetTests.GetAll<AddressObject>("PANOSAddress", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetAll<SubnetObject>("PANOSSubnet", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetAll<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetAll<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Running));
-        }
-
-        // [TestMethod]
-        public void GetSingleAddressByNameFromRunning()
-        {
-            Assert.IsTrue(this.psGetTests.GetSingleByName<AddressObject>("PANOSAddress", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetSingleByName<SubnetObject>("PANOSSubnet", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetSingleByName<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetSingleByName<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Running));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(psGetTests.GetAll<AddressObject>("PANOSAddress", config));
+                //Assert.IsTrue(psGetTests.GetAll<SubnetObject>("PANOSSubnet", config));
+                //Assert.IsTrue(psGetTests.GetAll<AddressRangeObject>("PANOSAddressRange", config));
+                //Assert.IsTrue(psGetTests.GetAll<AddressGroupObject>("PANOSAddressGroup", config));
+            }
         }
 
         [TestMethod]
-        public void GetSingleAddressByNameFromCandiate()
+        public void GetSingleAddressByName()
         {
-            Assert.IsTrue(this.psGetTests.GetSingleByName<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByName<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByName<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByName<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(psGetTests.GetSingleByName<AddressObject>("PANOSAddress", config));
+                //Assert.IsTrue(psGetTests.GetSingleByName<SubnetObject>("PANOSSubnet", config));
+                //Assert.IsTrue(psGetTests.GetSingleByName<AddressRangeObject>("PANOSAddressRange", config));
+                //Assert.IsTrue(psGetTests.GetSingleByName<AddressGroupObject>("PANOSAddressGroup", config));
+            }
         }
         
         [TestMethod]
-        public void GetSingleAddressByObjectFromCandidate()
+        public void GetSingleAddressByObject()
         {
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(psGetTests.GetSingleByObject<AddressObject>("PANOSAddress", config));
+                //Assert.IsTrue(psGetTests.GetSingleByObject<SubnetObject>("PANOSSubnet", config));
+                //Assert.IsTrue(psGetTests.GetSingleByObject<AddressRangeObject>("PANOSAddressRange", config));
+                //Assert.IsTrue(psGetTests.GetSingleByObject<AddressGroupObject>("PANOSAddressGroup", config));
+            }
         }
 
-        // [TestMethod]
-        public void GetSingleAddressByObjectFromRunning()
-        {
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<AddressObject>("PANOSAddress", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<SubnetObject>("PANOSSubnet", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Running));
-            Assert.IsTrue(this.psGetTests.GetSingleByObject<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Running));
-        }
-        
         [TestMethod]
         public void GetSingleAddressByObjectWhereObjectsAreNotEqualButMatchOnName()
         {
-            Assert.IsTrue(this.psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<AddressObject>("PANOSAddress", config));
+                //Assert.IsTrue(psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<SubnetObject>("PANOSSubnet", config));
+                //Assert.IsTrue(psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<AddressRangeObject>("PANOSAddressRange", config));
+                //Assert.IsTrue(psGetTests.GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<AddressGroupObject>("PANOSAddressGroup", config));
+            }
         }
         
         [TestMethod]
         public void GetMultipleAddressesByName()
         {
-            Assert.IsTrue(this.psGetTests.GetMultipleByName<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetMultipleByName<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetMultipleByName<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetMultipleByName<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(psGetTests.GetMultipleByName<AddressObject>("PANOSAddress", config));
+                //Assert.IsTrue(psGetTests.GetMultipleByName<SubnetObject>("PANOSSubnet", config));
+                //Assert.IsTrue(psGetTests.GetMultipleByName<AddressRangeObject>("PANOSAddressRange", config));
+                //Assert.IsTrue(psGetTests.GetMultipleByName<AddressGroupObject>("PANOSAddressGroup", config));
+            }
         }
 
         [TestMethod]
         public void GetMultipleAddressesByNameFromPipeline()
         {
-            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-            Assert.IsTrue(this.psGetTests.GetMultipleByNameFromPipeline<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+            foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+            {
+                if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+                Assert.IsTrue(psGetTests.GetMultipleByNameFromPipeline<AddressObject>("PANOSAddress", config));
+                //Assert.IsTrue(psGetTests.GetMultipleByNameFromPipeline<SubnetObject>("PANOSSubnet", config));
+                //Assert.IsTrue(psGetTests.GetMultipleByNameFromPipeline<AddressRangeObject>("PANOSAddressRange", config));
+                //Assert.IsTrue(psGetTests.GetMultipleByNameFromPipeline<AddressGroupObject>("PANOSAddressGroup", config));
+            }
         }
         
        [TestMethod]
        public void GetMultipleAddressesByNameWhereSomeDoNotExist()
        {
-           Assert.IsTrue(this.psGetTests.GetMultipleByNameWhereSomeDontExist<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByNameWhereSomeDontExist<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByNameWhereSomeDontExist<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByNameWhereSomeDontExist<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+           foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+           {
+               if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+               Assert.IsTrue(psGetTests.GetMultipleByNameWhereSomeDontExist<AddressObject>("PANOSAddress", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByNameWhereSomeDontExist<SubnetObject>("PANOSSubnet", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByNameWhereSomeDontExist<AddressRangeObject>("PANOSAddressRange", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByNameWhereSomeDontExist<AddressGroupObject>("PANOSAddressGroup", config));
+           }
        }
 
        [TestMethod]
-       public void GetMultipleByObjectWhereSomeFailEqualsTests()
+       public void GetMultipleByObjectWhereSomeFailEqual()
        {
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+           foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+           {
+               if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+               Assert.IsTrue(psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<AddressObject>("PANOSAddress", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<SubnetObject>("PANOSSubnet", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<AddressRangeObject>("PANOSAddressRange", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectWhereSomeFailEqualsTests<AddressGroupObject>("PANOSAddressGroup", config));
+           }
        }
 
        [TestMethod]
-       public void GetMultipleAddressesByObjectWhereOneFailsEqualTest()
+       public void GetMultipleAddressesByObjectWhereOneFailsEqual()
        {
-           Assert.IsTrue(this.psGetTests.GetMultipleByObject<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObject<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObject<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObject<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+           foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+           {
+               if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+               Assert.IsTrue(this.psGetTests.GetMultipleByObject<AddressObject>("PANOSAddress", config));
+               //Assert.IsTrue(this.psGetTests.GetMultipleByObject<SubnetObject>("PANOSSubnet", config));
+               //Assert.IsTrue(this.psGetTests.GetMultipleByObject<AddressRangeObject>("PANOSAddressRange", config));
+               //Assert.IsTrue(this.psGetTests.GetMultipleByObject<AddressGroupObject>("PANOSAddressGroup", config));
+           }
        }
 
        [TestMethod]
        public void GetMultipleAddressesByObjectViaPipeLine()
        {
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+           foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+           {
+               if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+               Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<AddressObject>("PANOSAddress", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<SubnetObject>("PANOSSubnet", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<AddressRangeObject>("PANOSAddressRange", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<AddressGroupObject>("PANOSAddressGroup", config));
+           }
        }
 
        [TestMethod]
        public void GetMultipleAddressesByNameViaPipeLine()
        {
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<AddressObject>("PANOSAddress", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<SubnetObject>("PANOSSubnet", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<AddressRangeObject>("PANOSAddressRange", ConfigTypes.Candidate));
-           Assert.IsTrue(this.psGetTests.GetMultipleByObjectFromPipeline<AddressGroupObject>("PANOSAddressGroup", ConfigTypes.Candidate));
+           foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
+           {
+               if (config == ConfigTypes.Running && !testAgainstRunningConfig) continue;
+               Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<AddressObject>("PANOSAddress", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<SubnetObject>("PANOSSubnet", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<AddressRangeObject>("PANOSAddressRange", config));
+               //Assert.IsTrue(psGetTests.GetMultipleByObjectFromPipeline<AddressGroupObject>("PANOSAddressGroup", config));
+           }
        }
 
         [TestMethod]
         [ExpectedException(typeof(ParameterBindingException), AllowDerivedTypes = true)]
-        public void RejectInvalidNameParameterTest()
+        public void RejectInvalidNameParameter()
         {
-            this.psGetTests.RejectInvalidName("PANOSAddress");
-            this.psGetTests.RejectInvalidName("PANOSSubnet");
-            this.psGetTests.RejectInvalidName("PANOSAddressRange");
-            this.psGetTests.RejectInvalidName("PANOSAddressGroup");
+            psGetTests.RejectInvalidName("PANOSAddress");
+            //psGetTests.RejectInvalidName("PANOSSubnet");
+            //psGetTests.RejectInvalidName("PANOSAddressRange");
+            //psGetTests.RejectInvalidName("PANOSAddressGroup");
         }
     }
 }
