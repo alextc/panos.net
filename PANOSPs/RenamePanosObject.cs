@@ -26,17 +26,7 @@
 
         protected override void ProcessRecord()
         {
-            switch (ParameterSetName)
-            {
-                case "Name":
-                    WriteObject(this.ConfigRepository.Rename(SchemaName, Name, NewName));
-                    break;
-                case "Object":
-                    WriteObject(this.ConfigRepository.Rename(FirewallObject.SchemaName, FirewallObject.Name, NewName));
-                    break;
-                default:
-                    throw new ArgumentException(string.Format("Unexpected ParameterSetName {0}", ParameterSetName));
-            }
+            
         }
     }
 }

@@ -11,11 +11,5 @@
 
         [XmlAttributeAttribute("code")]
         public int Code { get; set; }
-
-        [XmlIgnore]
-        public FirewallObject ObjectActedUpon { get; set; }
-
-        [XmlIgnore]
-        public string NameActedUpon { get; set; }
     }
 }

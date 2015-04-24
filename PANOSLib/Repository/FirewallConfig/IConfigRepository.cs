@@ -17,7 +17,7 @@ namespace PANOS
             where TDeserializer : ApiResponse, IDictionaryPayload 
             where TObject : FirewallObject;
 
-        string Rename(string schemaName, string oldName, string newName);
+        void Rename(string schemaName, string oldName, string newName);
 
         void Delete(string schemaName, string name);
 

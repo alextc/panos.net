@@ -75,22 +75,20 @@
             throw new Exception(string.Format("GetAll Method failed. PANOS error code {0}", deserializedResult.Status));
         }
 
-        // TODO: Violates CQS, refactor to return void
         // Add a method that would allow a caller to check for the status of the last command
-        public string Rename(string schemaName, string oldName, string newName)
+        public void Rename(string schemaName, string oldName, string newName)
         {
             var renameCommand = commandFactory.CreateRename(schemaName, oldName, newName);
             var response = renameCommand.Execute();
             // What is the status of an attempt to rename an non-existing object
             if (response.Status.Equals("success"))
             {
-                return response.NameActedUpon;
+                return;
             }
             
             throw new Exception(string.Format("Rename Method failed. PANOS error code {0}", response.Status));
         }
 
-        // TODO: Fix CQS violation
         public void Delete(string schemaName, string name)
         {
             var response = commandFactory.CreateDelete(schemaName, name).Execute();
@@ -108,7 +106,7 @@
             throw new Exception(string.Format("Delete Method failed. PANOS error code {0}", response.Status));
         }
 
-        // TODO: Fix CQS
+        
         public void Set(FirewallObject firewallObject)
         {
             var response = commandFactory.CreateSet(firewallObject).Execute();

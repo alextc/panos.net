@@ -15,7 +15,7 @@
 
             // Test
             var newName = RandomObjectFactory.GenerateRandomName();
-            Assert.IsNotNull(this.ConfigRepository.Rename(obj.SchemaName, obj.Name, newName));
+           ConfigRepository.Rename(obj.SchemaName, obj.Name, newName);
 
             // Postcondition
             Assert.IsNotNull(this.ConfigRepository.GetSingle<TDeserializer, TObject>(obj.SchemaName, newName, ConfigTypes.Candidate));

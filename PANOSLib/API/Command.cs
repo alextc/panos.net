@@ -13,27 +13,11 @@
     {
         private readonly Uri apiUri;
         private readonly FormUrlEncodedContent apiPostData;
-        private readonly FirewallObject objectActedUpon;
-        private readonly string nameActedUpon;
-
+        
         public Command(Uri uri, FormUrlEncodedContent postData)
         {
             apiUri = uri;
             apiPostData = postData;
-        }
-
-        public Command(Uri uri, FormUrlEncodedContent postData, string nameActedUpon)
-        {
-            apiUri = uri;
-            apiPostData = postData;
-            this.nameActedUpon = nameActedUpon;
-        }
-
-        public Command(Uri uri, FormUrlEncodedContent postData, FirewallObject objectActedUpon)
-        {
-            apiUri = uri;
-            apiPostData = postData;
-            this.objectActedUpon = objectActedUpon;
         }
 
         public TApiResponse Execute()
@@ -72,18 +56,7 @@
             if (responseStatus == ResponseStatus.Success)
             {
                 // TODO: Validate Schema
-                var deserializedResonse = Deserialize(xml);
-                if (objectActedUpon != null)
-                {
-                    deserializedResonse.ObjectActedUpon = objectActedUpon;
-                }
-                
-                if(!string.IsNullOrEmpty(nameActedUpon))
-                {
-                    deserializedResonse.NameActedUpon = nameActedUpon;
-                }
-                
-                return deserializedResonse;
+                return Deserialize(xml);
             }
 
             throw ErrorHandler.GenerateException(xml);

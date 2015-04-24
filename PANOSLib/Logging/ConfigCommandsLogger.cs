@@ -48,14 +48,12 @@
             PanosLogger.WriteEntry(
                 string.Format(@"PANOS Processed Add/Edit Command.
                                Status: {0}
-                               Message: {1}
-                               Object Acted Upon: {2} ",
+                               Message: {1}",
                     apiResponseWithMessage.Status,
-                    apiResponseWithMessage.Message,
-                    apiResponseWithMessage.ObjectActedUpon),
-                 EventLogEntryType.Information,
-                 LogPanosAddEditResponseEventId,
-                 CategoryPanosConfigCommands);
+               apiResponseWithMessage.Message),
+               EventLogEntryType.Information,
+               LogPanosAddEditResponseEventId,
+               CategoryPanosConfigCommands);
         }
 
         public static void LogPanosFailedAddEditResponse(ApiResponseWithMessage apiResponseWithMessage, FirewallObject firewallObject)
