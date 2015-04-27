@@ -8,7 +8,7 @@
     {
         public void DeleteObject<TDeserializer, TObject>()
             where TObject : FirewallObject
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
         {
             // Precondition
             var objUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();

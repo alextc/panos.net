@@ -1,4 +1,4 @@
-﻿namespace PANOSLibTest.API.Address
+﻿namespace PANOSLibTest
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,20 +12,20 @@
         [TestMethod]
         public void DeleteTest()
         {
-            baseDeleteTests.DeleteObject<GetSingleAddressApiResponse, AddressObject>();
-            baseDeleteTests.DeleteObject<GetSingleAddressApiResponse, SubnetObject>();
-            baseDeleteTests.DeleteObject<GetSingleAddressApiResponse, AddressRangeObject>();
-            baseDeleteTests.DeleteObject<GetSingleAddressGroupApiResponse, AddressGroupObject>();
+            this.baseDeleteTests.DeleteObject<GetSingleAddressApiResponse, AddressObject>();
+            this.baseDeleteTests.DeleteObject<GetSingleAddressApiResponse, SubnetObject>();
+            this.baseDeleteTests.DeleteObject<GetSingleAddressApiResponse, AddressRangeObject>();
+            this.baseDeleteTests.DeleteObject<GetSingleAddressGroupApiResponse, AddressGroupObject>();
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectNotFound))]
         public void DeleteNonExistingAddressTest()
         {
-            baseDeleteTests.DeleteNonExistingObject<AddressObject>();
-            baseDeleteTests.DeleteNonExistingObject<SubnetObject>();
-            baseDeleteTests.DeleteNonExistingObject<AddressRangeObject>();
-            baseDeleteTests.DeleteNonExistingObject<AddressGroupObject>();
+            this.baseDeleteTests.DeleteNonExistingObject<AddressObject>();
+            this.baseDeleteTests.DeleteNonExistingObject<SubnetObject>();
+            this.baseDeleteTests.DeleteNonExistingObject<AddressRangeObject>();
+            this.baseDeleteTests.DeleteNonExistingObject<AddressGroupObject>();
         }
     }
 }

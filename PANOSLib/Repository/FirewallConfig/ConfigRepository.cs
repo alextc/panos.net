@@ -23,7 +23,7 @@
             string schemaName,
             string objectName,
             ConfigTypes configType)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             TDeserializer deserializedResult;
@@ -58,7 +58,7 @@
         public Dictionary<string, TObject> GetAll<TDeserializer, TObject>(
             string schemaName,
             ConfigTypes configType) 
-            where TDeserializer : ApiResponse, IDictionaryPayload 
+            where TDeserializer : ApiResponseForGetAll 
             where TObject : FirewallObject
         {
             Logger.LogFunctionEntered("GetAll");
@@ -134,7 +134,7 @@
         }
 
         public void InflateMembers<TDeserializer, TObject>(GroupFirewallObject groupFirewallObject, string memberSchemaName, ConfigTypes configType) 
-            where TDeserializer : ApiResponse, IDictionaryPayload
+            where TDeserializer : ApiResponseForGetAll
             where TObject : FirewallObject
         {
             var allTObjects = GetAll<TDeserializer, TObject>(memberSchemaName, configType);

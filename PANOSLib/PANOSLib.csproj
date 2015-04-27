@@ -122,12 +122,12 @@
     <Compile Include="XML\Address\AddressXml.cs" />
     <Compile Include="XML\Address\GetSingle\GetSingleAddressApiResponse.cs" />
     <Compile Include="XML\Address\GetSingle\GetSingleAddressApiResponseResult.cs" />
+    <Compile Include="XML\ApiResponseForGetAll.cs" />
+    <Compile Include="XML\ApiResponseForGetSingle.cs" />
     <Compile Include="XML\ApiResponseWithMessage.cs" />
     <Compile Include="XML\Job\Commit\ApiEnqueuedJobRequestStatusResponse.cs" />
     <Compile Include="XML\Job\Commit\ApiEnqueuedResponse.cs" />
     <Compile Include="XML\ApiResponse.cs" />
-    <Compile Include="XML\IDictionaryPayload.cs" />
-    <Compile Include="XML\IPayload.cs" />
     <Compile Include="XML\Job\Commit\ApiEnqueuedResponseResult.cs" />
     <Compile Include="XML\Job\Commit\Message.cs" />
     <Compile Include="XML\TagXml.cs" />

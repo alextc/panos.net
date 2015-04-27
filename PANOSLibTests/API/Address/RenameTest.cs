@@ -1,6 +1,7 @@
-﻿namespace PANOSLibTest.API.Address
+﻿namespace PANOSLibTest
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using PANOS;
 
     [TestClass]
@@ -10,38 +11,38 @@
         [TestMethod]
         public void RenameAddressTest()
         {
-            Assert.IsTrue(baseRenameTests.RenameObject<GetSingleAddressApiResponse, AddressObject>());
-            Assert.IsTrue(baseRenameTests.RenameObject<GetSingleAddressApiResponse, SubnetObject>());
-            Assert.IsTrue(baseRenameTests.RenameObject<GetSingleAddressApiResponse, AddressRangeObject>());
-            Assert.IsTrue(baseRenameTests.RenameObject<GetSingleAddressGroupApiResponse, AddressGroupObject>());
+            Assert.IsTrue(this.baseRenameTests.RenameObject<GetSingleAddressApiResponse, AddressObject>());
+            Assert.IsTrue(this.baseRenameTests.RenameObject<GetSingleAddressApiResponse, SubnetObject>());
+            Assert.IsTrue(this.baseRenameTests.RenameObject<GetSingleAddressApiResponse, AddressRangeObject>());
+            Assert.IsTrue(this.baseRenameTests.RenameObject<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
         [TestMethod]
         [ExpectedException(typeof(AttemptToRenameNonExistingObject))]
         public void RenameNonExistingAddressTest()
         {
-            baseRenameTests.RenameNonExistingTest<AddressObject>();
+            this.baseRenameTests.RenameNonExistingTest<AddressObject>();
         }
 
         [TestMethod]
         [ExpectedException(typeof(AttemptToRenameNonExistingObject))]
         public void RenameNonExistingSubnetTest()
         {
-            baseRenameTests.RenameNonExistingTest<SubnetObject>();
+            this.baseRenameTests.RenameNonExistingTest<SubnetObject>();
         }
 
         [TestMethod]
         [ExpectedException(typeof(AttemptToRenameNonExistingObject))]
         public void RenameNonExistingAddressRangeTest()
         {
-            baseRenameTests.RenameNonExistingTest<AddressRangeObject>();
+            this.baseRenameTests.RenameNonExistingTest<AddressRangeObject>();
         }
 
         [TestMethod]
         [ExpectedException(typeof(AttemptToRenameNonExistingObject))]
         public void RenameNonExistingAddressGroupTest()
         {
-            baseRenameTests.RenameNonExistingTest<AddressGroupObject>();
+            this.baseRenameTests.RenameNonExistingTest<AddressGroupObject>();
         }
     }
 }

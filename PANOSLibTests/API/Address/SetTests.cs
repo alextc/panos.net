@@ -1,6 +1,7 @@
-﻿namespace PANOSLibTest.API.Address
+﻿namespace PANOSLibTest
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using PANOS;
 
     [TestClass]
@@ -10,10 +11,10 @@
         [TestMethod]
         public void AddNewAddressTest()
         {
-            Assert.IsTrue(baseSetTests.AddObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName));
-            Assert.IsTrue(baseSetTests.AddObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName));
-            Assert.IsTrue(baseSetTests.AddObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName));
-            Assert.IsTrue(baseSetTests.AddObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName));
+            Assert.IsTrue(this.baseSetTests.AddObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName));
+            Assert.IsTrue(this.baseSetTests.AddObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName));
+            Assert.IsTrue(this.baseSetTests.AddObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName));
+            Assert.IsTrue(this.baseSetTests.AddObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName));
         }
     }
 }

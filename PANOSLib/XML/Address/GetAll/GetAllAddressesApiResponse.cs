@@ -7,7 +7,7 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRootAttribute(Namespace = "", ElementName = "response", IsNullable = false)]
-    public class GetAllAddressesApiResponse : ApiResponse, IDictionaryPayload
+    public class GetAllAddressesApiResponse : ApiResponseForGetAll
     {
         [XmlElement("result")]
         public GetAllAddressesApiResponseResult Result { get; set; }
@@ -19,7 +19,7 @@
             return sb.ToString();
         }
 
-        public Dictionary<string, FirewallObject> GetPayload()
+        public override Dictionary<string, FirewallObject> GetPayload()
         {
             return Result.GetPayload();
         }

@@ -7,7 +7,7 @@
 
     public class SetTests : BaseConfigTest
     {
-        public bool AddObject<TDeserializer, TObject>(string schemaName) where TObject : FirewallObject where TDeserializer : ApiResponse, IPayload
+        public bool AddObject<TDeserializer, TObject>(string schemaName) where TObject : FirewallObject where TDeserializer : ApiResponseForGetSingle
         {
             // Precondition
             var newObj = RandomObjectFactory.GenerateRandomObject<TObject>();

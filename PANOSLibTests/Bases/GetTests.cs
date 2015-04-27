@@ -2,14 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
 
     public class GetTests : BaseConfigTest
     {
         public bool GetAllObjects<TDeserializer, TObject>(string schemaName, ConfigTypes configType) 
-            where TDeserializer : ApiResponse, IDictionaryPayload where TObject : FirewallObject
+            where TDeserializer : ApiResponseForGetAll where TObject : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = new List<TObject>
@@ -55,7 +54,7 @@
         }
 
         public bool GetSingleObject<TDeserializer, TObject>(string schemaName, ConfigTypes configType)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
@@ -78,7 +77,7 @@
         }
 
         public bool GetNonExistingObject<TDeserializer, TObject>(string schemaName, ConfigTypes configType)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             var objectUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();

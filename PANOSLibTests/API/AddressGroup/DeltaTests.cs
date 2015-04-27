@@ -1,4 +1,4 @@
-﻿namespace PANOSLibTest.API.AddressGroup
+﻿namespace PANOSLibTest
 {
     using System.Collections.Generic;
     using System.Linq;

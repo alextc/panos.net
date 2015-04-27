@@ -1,15 +1,13 @@
 ﻿namespace PANOSPsTest
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using PANOS;
-
     using PANOSLibTest;
 
     public class PsRenameTests : BaseConfigTest
     {
         public bool RenameSingleFromObjectPassedAsParameter<TDeserializer, TObject>()
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
@@ -41,7 +39,7 @@
         }
 
         public bool RenameSingleFromNamePassedAsParameter<TDeserializer, TObject>()
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
@@ -75,7 +73,7 @@
 
         // This unit tests is based on a scenario where the object is passed via Pipeline and the new name is generated based on the existing name (adding 00 in this case).
         public bool RenameMultipleFromObjectsPassedViaPipeline<TDeserializer, TObject>()
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup

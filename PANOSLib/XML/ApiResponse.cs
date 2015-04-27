@@ -4,7 +4,7 @@
 
     [XmlTypeAttribute(AnonymousType = true)]
     [XmlRootAttribute(Namespace = "", ElementName = "response", IsNullable = false)]
-    public class ApiResponse
+    public abstract class ApiResponse
     {
         [XmlAttributeAttribute("status")]
         public string Status { get; set; }

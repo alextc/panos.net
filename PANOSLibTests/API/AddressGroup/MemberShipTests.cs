@@ -1,9 +1,7 @@
-﻿namespace PANOSLibTest.API.AddressGroup
+﻿namespace PANOSLibTest
 {
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using PANOS;
 
     [TestClass]
@@ -17,25 +15,25 @@
         {
             // Setup
             // This will create a new group with 3 members: address, range and subnet
-            var addressGroupUnderTest = RandomObjectFactory.GenerateRandomObject<AddressGroupObject>();
-            ConfigRepository.Set(addressGroupUnderTest);
+            var addressGroupUnderTest = this.RandomObjectFactory.GenerateRandomObject<AddressGroupObject>();
+            this.ConfigRepository.Set(addressGroupUnderTest);
             
             // Remove existing member
             var memberToRemove = addressGroupUnderTest.Members.Last();
             addressGroupUnderTest.Members.Remove(memberToRemove);
 
             // Add new AddressObject
-            var newAddress = RandomObjectFactory.GenerateRandomObject<AddressObject>();
-            ConfigRepository.Set(newAddress);
+            var newAddress = this.RandomObjectFactory.GenerateRandomObject<AddressObject>();
+            this.ConfigRepository.Set(newAddress);
             addressGroupUnderTest.Members.Add(newAddress.Name);
             
             // Test
             var groupUpdateResult =
-                ConfigRepository.SetGroupMembership(addressGroupUnderTest);
+                this.ConfigRepository.SetGroupMembership(addressGroupUnderTest);
 
             // Validate
             Assert.IsTrue(groupUpdateResult.Status.Equals("success"));
-            var updatedGroup = ConfigRepository.GetSingle<GetSingleAddressGroupApiResponse, AddressGroupObject>(
+            var updatedGroup = this.ConfigRepository.GetSingle<GetSingleAddressGroupApiResponse, AddressGroupObject>(
                 Schema.AddressGroupSchemaName,
                 addressGroupUnderTest.Name,
                 ConfigTypes.Candidate).Single();
@@ -45,11 +43,11 @@
             Assert.IsTrue(updatedGroup.Members.Contains(newAddress.Name));
 
             // Clean-up
-            ConfigRepository.Delete(Schema.AddressGroupSchemaName, addressGroupUnderTest.Name);
-            ConfigRepository.Delete(Schema.AddressSchemaName, memberToRemove);
+            this.ConfigRepository.Delete(Schema.AddressGroupSchemaName, addressGroupUnderTest.Name);
+            this.ConfigRepository.Delete(Schema.AddressSchemaName, memberToRemove);
             foreach (var member in updatedGroup.Members)
             {
-                ConfigRepository.Delete(Schema.AddressSchemaName, member);
+                this.ConfigRepository.Delete(Schema.AddressSchemaName, member);
             }
         }
 
@@ -58,19 +56,19 @@
         {
             // Setup
             // This will create a new group with 3 members: address, range and subnet
-            var addressGroupUnderTest = RandomObjectFactory.GenerateRandomObject<AddressGroupObject>();
-            ConfigRepository.Set(addressGroupUnderTest);
+            var addressGroupUnderTest = this.RandomObjectFactory.GenerateRandomObject<AddressGroupObject>();
+            this.ConfigRepository.Set(addressGroupUnderTest);
             
             // Test
-            ConfigRepository.InflateMembers<GetAllAddressesApiResponse, AddressObject>(
+            this.ConfigRepository.InflateMembers<GetAllAddressesApiResponse, AddressObject>(
                 addressGroupUnderTest,
                 Schema.AddressSchemaName,
                 ConfigTypes.Candidate);
-            ConfigRepository.InflateMembers<GetAllAddressesApiResponse, SubnetObject>(
+            this.ConfigRepository.InflateMembers<GetAllAddressesApiResponse, SubnetObject>(
                 addressGroupUnderTest,
                 Schema.AddressSchemaName,
                 ConfigTypes.Candidate);
-            ConfigRepository.InflateMembers<GetAllAddressesApiResponse, AddressRangeObject>(
+            this.ConfigRepository.InflateMembers<GetAllAddressesApiResponse, AddressRangeObject>(
                 addressGroupUnderTest,
                 Schema.AddressSchemaName,
                 ConfigTypes.Candidate);
@@ -83,10 +81,10 @@
             }
             
             // Clean-up
-            ConfigRepository.Delete(Schema.AddressGroupSchemaName, addressGroupUnderTest.Name);
+            this.ConfigRepository.Delete(Schema.AddressGroupSchemaName, addressGroupUnderTest.Name);
             foreach (var member in addressGroupUnderTest.Members)
             {
-                ConfigRepository.Delete(Schema.AddressSchemaName, member);
+                this.ConfigRepository.Delete(Schema.AddressSchemaName, member);
             }
         }
     }

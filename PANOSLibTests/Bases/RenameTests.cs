@@ -7,7 +7,7 @@
     {
         public bool RenameObject<TDeserializer, TObject>()
             where TObject : FirewallObject
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
         {
             // Setup
             var obj = RandomObjectFactory.GenerateRandomObject<TObject>();

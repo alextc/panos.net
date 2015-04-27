@@ -8,13 +8,13 @@ namespace PANOS
             string schemaName,
             string objectName,
             ConfigTypes configType)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject;
 
         Dictionary<string, TObject> GetAll<TDeserializer, TObject>(
             string schemaName,
             ConfigTypes configType) 
-            where TDeserializer : ApiResponse, IDictionaryPayload 
+            where TDeserializer : ApiResponseForGetAll 
             where TObject : FirewallObject;
 
         void Rename(string schemaName, string oldName, string newName);
@@ -33,7 +33,7 @@ namespace PANOS
             GroupFirewallObject groupFirewallObject,
             string memberSchemaName,
             ConfigTypes configType) 
-            where TDeserializer : ApiResponse, IDictionaryPayload 
+            where TDeserializer : ApiResponseForGetAll 
             where TObject : FirewallObject;
     }
 }

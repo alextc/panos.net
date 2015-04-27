@@ -9,7 +9,8 @@
         // TODO: Test to simulate a failure from PANOS during addition.
         // Not sure how to inject a fault at the moment, perhaps illegal character in the name?
 
-        public void SetSingleFromObjectPassedAsParameter<TDeserializer, TObject>(string verb) where TDeserializer : ApiResponse, IPayload  where TObject : FirewallObject
+        public void SetSingleFromObjectPassedAsParameter<TDeserializer, TObject>(string verb) 
+            where TDeserializer : ApiResponseForGetSingle  where TObject : FirewallObject
         {
             // Setup
             var newObj = RandomObjectFactory.GenerateRandomObject<TObject>();
@@ -29,7 +30,7 @@
         }
 
         public void PassThruTest<TDeserializer, TObject>(string verb)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
@@ -54,7 +55,7 @@
         }
 
         public void SetMultipleFromObjectPassedAsParameter<TDeserializer, TObject>(string verb)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
@@ -88,7 +89,7 @@
         }
 
         public void SetMultipleFromObjectPassedFromPipeline<TDeserializer, TObject>(string verb)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup

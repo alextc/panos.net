@@ -9,7 +9,7 @@
     public class PsDeleteTests : BaseConfigTest
     {
         public void DeleteSingleByObjectPassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
@@ -33,11 +33,11 @@
         }
 
         public void DeleteMultipleByObjectPassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>(2);
+            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>();
             foreach (var objectUnderTest in objectsUnderTest)
             {
                 this.ConfigRepository.Set(objectUnderTest);
@@ -63,7 +63,7 @@
         }
 
         public void DeleteSingleByNamePassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
@@ -85,11 +85,11 @@
         }
 
         public void DeleteMultipleByNamePassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>(2);
+            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>();
             foreach (var objectUnderTest in objectsUnderTest)
             {
                 this.ConfigRepository.Set(objectUnderTest);
@@ -114,11 +114,11 @@
         }
 
         public void DeleteMultipleByNamePassedViaPipeline<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
-            var objectsUnderTest = RandomObjectFactory.GenerateRandomObjects<TObject>(2);
+            var objectsUnderTest = RandomObjectFactory.GenerateRandomObjects<TObject>();
             foreach (var objectUnderTest in objectsUnderTest)
             {
                 ConfigRepository.Set(objectUnderTest);
@@ -143,10 +143,10 @@
         }
 
         public void DeleteMultipleByObjectPassedViaPipeline<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload where TObject : FirewallObject
+            where TDeserializer : ApiResponseForGetSingle where TObject : FirewallObject
         {
             // Setup
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>(2);
+            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>();
             foreach (var objectUnderTest in objectsUnderTest)
             {
                 this.ConfigRepository.Set(objectUnderTest);
@@ -172,7 +172,7 @@
         }
 
         public void DeleteAndPassThruObjectTest<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
 
@@ -201,7 +201,7 @@
         }
 
         public void DeleteAndPassThruName<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponse, IPayload
+            where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup

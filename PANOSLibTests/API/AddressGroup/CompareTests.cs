@@ -1,9 +1,11 @@
-﻿namespace PANOSLibTest.API.AddressGroup
+﻿namespace PANOSLibTest
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using PANOS;
 
     [TestClass]
