@@ -114,6 +114,7 @@
     <Compile Include="UnitTestHelpers\IRandomObjectGenerator.cs" />
     <Compile Include="UnitTestHelpers\RandomAddressObjectFactory.cs" />
     <Compile Include="UnitTestHelpers\RandomObjectFactory.cs" />
+    <Compile Include="UnitTestHelpers\RandomSubnetObjectFactory.cs" />
     <Compile Include="XML\AddressGroup\AddressGroupXml.cs" />
     <Compile Include="XML\AddressGroup\GetAll\GetAllAddressGroupApiResponse.cs" />
     <Compile Include="XML\AddressGroup\GetAll\GetAllAddressGroupApiResponseResult.cs" />

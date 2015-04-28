@@ -6,7 +6,7 @@
     using PANOS;
 
     [TestClass]
-    public class GetAddressTests : BaseConfigTest
+    public class GetSubnetTests : BaseConfigTest
     {
         private readonly GetTests baseGetTests = new GetTests();
 
@@ -15,35 +15,40 @@
         private readonly bool testAgainstRunningConfig = Boolean.Parse(ConfigurationManager.AppSettings["TestAgainstRunningConfig"]);
         
         [TestMethod]
-        public void GetAllAddressesTest()
+        public void GetAllSubnetsTest()
         {
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if(config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressObject>(
+                baseGetTests.GetAllObjects<GetAllAddressesApiResponse, SubnetObject>(
                     Schema.AddressSchemaName,
                     config,
-                    new RandomAddressObjectFactory());
+                    new RandomSubnetObjectFactory());
             }
         }
 
         [TestMethod]
-        public void GetSingleAddressTest()
+        public void GetSingleSubnetTest()
         {
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config, new RandomAddressObjectFactory());   
+                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, SubnetObject>(
+                    Schema.AddressSchemaName, config,
+                    new RandomSubnetObjectFactory());   
             }
         }
 
         [TestMethod]
-        public void GetNonExistingAddressTest()
+        public void GetNonExistingSubnetTest()
         {
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config, new RandomAddressObjectFactory());
+                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, SubnetObject>(
+                    Schema.AddressSchemaName,
+                    config,
+                    new RandomSubnetObjectFactory());
             }
         }
     }

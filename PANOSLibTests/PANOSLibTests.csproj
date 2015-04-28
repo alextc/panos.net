@@ -72,6 +72,7 @@
     <Compile Include="API\Address\DeleteTests.cs" />
     <Compile Include="API\Logs\TrafficLogTests.cs" />
     <Compile Include="API\Logs\LogQueryFactoryTests.cs" />
+    <Compile Include="API\Subnet\GetSubnetTests.cs" />
     <Compile Include="Bases\BaseLogTest.cs" />
     <Compile Include="Bases\BaseTest.cs" />
     <Compile Include="Bases\DeleteTests.cs" />
