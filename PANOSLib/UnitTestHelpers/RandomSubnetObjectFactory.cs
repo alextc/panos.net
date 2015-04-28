@@ -7,7 +7,7 @@
 
     public class RandomSubnetObjectFactory : IRandomFirewallObjectGenerator<SubnetObject>
     {
-        private static string GenerateRandomName()
+        private string GenerateRandomName()
         {
             Thread.Sleep(1000); // Sleeping to create a new seed https://msdn.microsoft.com/en-us/library/ctssatww(v=vs.110).aspx
             var rnd = new Random();
@@ -15,7 +15,7 @@
             return randomSubnetName;
         }
 
-        private IPAddress GenerateRandomIpSubnetAddress()
+        public IPAddress GenerateRandomIpSubnetAddress()
         {
             Thread.Sleep(1000); // Sleeping to create a new seed https://msdn.microsoft.com/en-us/library/ctssatww(v=vs.110).aspx
             var rnd = new Random();

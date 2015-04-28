@@ -30,7 +30,7 @@
 
         public override void Mutate()
         {
-            Address = RandomObjectFactory.GenerateRandomIpAddress();
+            Address = new RandomAddressObjectFactory().GenerateRandomIpAddress();
         }
 
         public bool Equals(AddressObject other)

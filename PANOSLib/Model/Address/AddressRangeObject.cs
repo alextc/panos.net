@@ -35,7 +35,7 @@
 
         public override void Mutate()
         {
-            var randomRange = RandomObjectFactory.GenerateRandomAddressRange();
+            var randomRange = new RandomAddressRangeObjectFactory().Generate();
             RangeStartAddress = randomRange.RangeStartAddress;
             RangeEndAddress = randomRange.RangeEndAddress;
         }

@@ -32,7 +32,7 @@
 
         public override void Mutate()
         {
-            Address = RandomObjectFactory.GenerateRandomIpSubnetAddress();
+            Address = new RandomSubnetObjectFactory().GenerateRandomIpSubnetAddress();
             SubnetMask = 24; // RandomSubnet is always /24
         }
 
