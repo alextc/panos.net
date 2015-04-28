@@ -111,6 +111,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityUtils\Network.cs" />
     <Compile Include="SecurityUtils\SecureStringUtils.cs" />
+    <Compile Include="UnitTestHelpers\IRandomObjectGenerator.cs" />
+    <Compile Include="UnitTestHelpers\RandomAddressObjectFactory.cs" />
     <Compile Include="UnitTestHelpers\RandomObjectFactory.cs" />
     <Compile Include="XML\AddressGroup\AddressGroupXml.cs" />
     <Compile Include="XML\AddressGroup\GetAll\GetAllAddressGroupApiResponse.cs" />

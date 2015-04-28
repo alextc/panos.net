@@ -7,14 +7,16 @@
 
     public class GetTests : BaseConfigTest
     {
-        public bool GetAllObjects<TDeserializer, TObject>(string schemaName, ConfigTypes configType) 
+        public void GetAllObjects<TDeserializer, TObject>(
+            string schemaName, ConfigTypes configType,
+            IRandomFirewallObjectGenerator<TObject> randomObjectFactory) 
             where TDeserializer : ApiResponseForGetAll where TObject : FirewallObject
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = new List<TObject>
                 {
-                    RandomObjectFactory.GenerateRandomObject<TObject>(),
-                    RandomObjectFactory.GenerateRandomObject<TObject>()
+                    randomObjectFactory.Generate(),
+                    randomObjectFactory.Generate()
                 };
             ConfigRepository.Set(objectsUnderTest[0]);
             ConfigRepository.Set(objectsUnderTest[1]);
@@ -49,16 +51,17 @@
                     }
                 }
             }
-
-            return true;
         }
 
-        public bool GetSingleObject<TDeserializer, TObject>(string schemaName, ConfigTypes configType)
+        public void GetSingleObject<TDeserializer, TObject>(
+            string schemaName,
+            ConfigTypes configType, 
+            IRandomFirewallObjectGenerator<TObject> randomObjectFactory)
             where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
             // Setup
-            var objectUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();
+            var objectUnderTest = randomObjectFactory.Generate();
             ConfigRepository.Set(objectUnderTest);
 
             if (configType == ConfigTypes.Running)
@@ -72,17 +75,16 @@
 
             // Clean-up
             ConfigRepository.Delete(schemaName, objectUnderTest.Name);
-
-            return true;
         }
 
-        public bool GetNonExistingObject<TDeserializer, TObject>(string schemaName, ConfigTypes configType)
+        public void GetNonExistingObject<TDeserializer, TObject>(
+            string schemaName, ConfigTypes configType,
+            IRandomFirewallObjectGenerator<TObject> randomObjectFactory)
             where TDeserializer : ApiResponseForGetSingle
             where TObject : FirewallObject
         {
-            var objectUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();
+            var objectUnderTest = randomObjectFactory.Generate();
             Assert.AreEqual(ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, objectUnderTest.Name, configType).Count(), 0);
-            return true;
         }
     }
 }

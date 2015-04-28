@@ -2,9 +2,7 @@
 {
     using System;
     using System.Configuration;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using PANOS;
 
     [TestClass]
@@ -22,10 +20,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if(config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                Assert.IsTrue(this.baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetAllObjects<GetAllAddressesApiResponse, SubnetObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressRangeObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetAllObjects<GetAllAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, config));
+                baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, config, new RandomAddressObjectFactory());
             }
         }
 
@@ -35,9 +30,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                Assert.IsTrue(this.baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetSingleObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, config));
+                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config, new RandomAddressObjectFactory());   
             }
         }
 
@@ -47,10 +40,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                Assert.IsTrue(this.baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, SubnetObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressRangeObject>(Schema.AddressSchemaName, config));
-                Assert.IsTrue(this.baseGetTests.GetNonExistingObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, config));
+                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config, new RandomAddressObjectFactory());
             }
         }
     }
