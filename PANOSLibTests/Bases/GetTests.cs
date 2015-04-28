@@ -5,18 +5,26 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
 
-    public class GetTests : BaseConfigTest
+    public class GetTests<T, TGetSingleDeserializer, TGetAllDeserializer> : BaseConfigTest 
+        where T: FirewallObject 
+        where TGetSingleDeserializer : ApiResponseForGetSingle
+        where TGetAllDeserializer : ApiResponseForGetAll
     {
-        public void GetAllObjects<TDeserializer, TObject>(
-            string schemaName, ConfigTypes configType,
-            IRandomFirewallObjectGenerator<TObject> randomObjectFactory) 
-            where TDeserializer : ApiResponseForGetAll where TObject : FirewallObject
+
+        private readonly IRandomFirewallObjectGenerator<T> randomFirewallObjectGenerator;
+
+        public GetTests(IRandomFirewallObjectGenerator<T> randomFirewallObjectGenerator )
+        {
+            this.randomFirewallObjectGenerator = randomFirewallObjectGenerator;
+        }
+
+        public void GetAllObjects(string schemaName, ConfigTypes configType) 
         {
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = new List<TObject>
+            var objectsUnderTest = new List<T>
                 {
-                    randomObjectFactory.Generate(),
-                    randomObjectFactory.Generate()
+                    randomFirewallObjectGenerator.Generate(),
+                    randomFirewallObjectGenerator.Generate()
                 };
             ConfigRepository.Set(objectsUnderTest[0]);
             ConfigRepository.Set(objectsUnderTest[1]);
@@ -27,12 +35,12 @@
             }
 
             // Test
-            var result = this.ConfigRepository.GetAll<TDeserializer, TObject>(schemaName, configType);
+            var result = this.ConfigRepository.GetAll<TGetAllDeserializer, T>(schemaName, configType);
             foreach (var obj in objectsUnderTest)
             {
                 var match = result[obj.Name];
                 Assert.IsNotNull(match);
-                Assert.IsInstanceOfType(match, typeof(TObject));
+                Assert.IsInstanceOfType(match, typeof(T));
                 Assert.AreEqual(match, obj);
             }
 
@@ -53,15 +61,10 @@
             }
         }
 
-        public void GetSingleObject<TDeserializer, TObject>(
-            string schemaName,
-            ConfigTypes configType, 
-            IRandomFirewallObjectGenerator<TObject> randomObjectFactory)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        public void GetSingleObject(string schemaName, ConfigTypes configType)
         {
             // Setup
-            var objectUnderTest = randomObjectFactory.Generate();
+            var objectUnderTest = randomFirewallObjectGenerator.Generate();
             ConfigRepository.Set(objectUnderTest);
 
             if (configType == ConfigTypes.Running)
@@ -70,21 +73,18 @@
             }
             
             // Test
-            var retrievedObject = ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, objectUnderTest.Name, configType).Single();
+            var retrievedObject = ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, objectUnderTest.Name, configType).Single();
             Assert.AreEqual(objectUnderTest, retrievedObject);
 
             // Clean-up
             ConfigRepository.Delete(schemaName, objectUnderTest.Name);
         }
 
-        public void GetNonExistingObject<TDeserializer, TObject>(
-            string schemaName, ConfigTypes configType,
-            IRandomFirewallObjectGenerator<TObject> randomObjectFactory)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        public void GetNonExistingObject(string schemaName, ConfigTypes configType)
+           
         {
-            var objectUnderTest = randomObjectFactory.Generate();
-            Assert.AreEqual(ConfigRepository.GetSingle<TDeserializer, TObject>(schemaName, objectUnderTest.Name, configType).Count(), 0);
+            var objectUnderTest = randomFirewallObjectGenerator.Generate();
+            Assert.AreEqual(ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, objectUnderTest.Name, configType).Count(), 0);
         }
     }
 }

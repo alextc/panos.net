@@ -8,16 +8,16 @@
     [TestClass]
     public class GetAddressGroupTests : BaseConfigTest
     {
-        private readonly GetTests baseGetTests = new GetTests();
-        private readonly IAddableRepository addableRepository;
-
+        private readonly GetTests<AddressGroupObject, GetSingleAddressGroupApiResponse, GetAllAddressGroupApiResponse> baseGetTests;
+        
         // Running tests against the Running config requires calling Commit, which makes tests much slower
         // Don't forget to switch this on once in a while
         private readonly bool testAgainstRunningConfig = Boolean.Parse(ConfigurationManager.AppSettings["TestAgainstRunningConfig"]);
 
         public GetAddressGroupTests()
         {
-            addableRepository = new AddableRepository(ConfigCommandFactory);
+            baseGetTests = new GetTests<AddressGroupObject, GetSingleAddressGroupApiResponse, GetAllAddressGroupApiResponse>(
+                new RandomAddressGroupObjectFactory(new AddableRepository(ConfigCommandFactory)));
         }
         
         [TestMethod]
@@ -26,10 +26,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if(config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetAllObjects<GetAllAddressGroupApiResponse, AddressGroupObject>(
-                    Schema.AddressGroupSchemaName,
-                    config,
-                    new RandomAddressGroupObjectFactory(addableRepository));
+                baseGetTests.GetAllObjects(Schema.AddressGroupSchemaName, config);
             }
         }
 
@@ -39,10 +36,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetSingleObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(
-                    Schema.AddressGroupSchemaName,
-                    config,
-                    new RandomAddressGroupObjectFactory(addableRepository));   
+                baseGetTests.GetSingleObject(Schema.AddressGroupSchemaName, config);   
             }
         }
 
@@ -52,10 +46,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetNonExistingObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(
-                    Schema.AddressGroupSchemaName,
-                    config,
-                    new RandomAddressGroupObjectFactory(addableRepository));
+                baseGetTests.GetNonExistingObject(Schema.AddressGroupSchemaName, config);
             }
         }
     }

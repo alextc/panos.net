@@ -8,7 +8,8 @@
     [TestClass]
     public class GetAddressTests : BaseConfigTest
     {
-        private readonly GetTests baseGetTests = new GetTests();
+        private readonly GetTests<AddressObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse> baseGetTests = 
+            new GetTests<AddressObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(new RandomAddressObjectFactory());
 
         // Running tests against the Running config requires calling Commit, which makes tests much slower
         // Don't forget to switch this on once in a while
@@ -20,10 +21,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if(config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressObject>(
-                    Schema.AddressSchemaName,
-                    config,
-                    new RandomAddressObjectFactory());
+                baseGetTests.GetAllObjects(Schema.AddressSchemaName, config);
             }
         }
 
@@ -33,7 +31,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config, new RandomAddressObjectFactory());   
+                baseGetTests.GetSingleObject(Schema.AddressSchemaName, config);   
             }
         }
 
@@ -43,7 +41,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressObject>(Schema.AddressSchemaName, config, new RandomAddressObjectFactory());
+                baseGetTests.GetNonExistingObject(Schema.AddressSchemaName, config);
             }
         }
     }

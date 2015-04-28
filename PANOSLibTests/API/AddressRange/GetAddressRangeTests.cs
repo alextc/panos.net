@@ -8,7 +8,8 @@
     [TestClass]
     public class GetAddressRangeTests : BaseConfigTest
     {
-        private readonly GetTests baseGetTests = new GetTests();
+        private readonly GetTests<AddressRangeObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse> baseGetTests =
+            new GetTests<AddressRangeObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(new RandomAddressRangeObjectFactory());
 
         // Running tests against the Running config requires calling Commit, which makes tests much slower
         // Don't forget to switch this on once in a while
@@ -20,10 +21,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if(config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetAllObjects<GetAllAddressesApiResponse, AddressRangeObject>(
-                    Schema.AddressSchemaName,
-                    config,
-                    new RandomAddressRangeObjectFactory());
+                baseGetTests.GetAllObjects(Schema.AddressSchemaName, config);
             }
         }
 
@@ -33,10 +31,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetSingleObject<GetSingleAddressApiResponse, AddressRangeObject>(
-                    Schema.AddressSchemaName,
-                    config,
-                    new RandomAddressRangeObjectFactory());   
+                baseGetTests.GetSingleObject(Schema.AddressSchemaName, config);   
             }
         }
 
@@ -46,10 +41,7 @@
             foreach (ConfigTypes config in Enum.GetValues(typeof(ConfigTypes)))
             {
                 if (config == ConfigTypes.Running && !this.testAgainstRunningConfig) continue;
-                baseGetTests.GetNonExistingObject<GetSingleAddressApiResponse, AddressRangeObject>(
-                    Schema.AddressSchemaName,
-                    config,
-                    new RandomAddressRangeObjectFactory());
+                baseGetTests.GetNonExistingObject(Schema.AddressSchemaName, config);
             }
         }
     }
