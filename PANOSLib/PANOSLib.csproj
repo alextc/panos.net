@@ -112,7 +112,9 @@
     <Compile Include="SecurityUtils\Network.cs" />
     <Compile Include="SecurityUtils\SecureStringUtils.cs" />
     <Compile Include="UnitTestHelpers\IRandomObjectGenerator.cs" />
+    <Compile Include="UnitTestHelpers\RandomAddressGroupObjectFactory.cs" />
     <Compile Include="UnitTestHelpers\RandomAddressObjectFactory.cs" />
+    <Compile Include="UnitTestHelpers\RandomAddressRangeObjectFactory.cs" />
     <Compile Include="UnitTestHelpers\RandomObjectFactory.cs" />
     <Compile Include="UnitTestHelpers\RandomSubnetObjectFactory.cs" />
     <Compile Include="XML\AddressGroup\AddressGroupXml.cs" />
