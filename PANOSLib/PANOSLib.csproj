@@ -84,6 +84,8 @@
     <Compile Include="Model\Job\Job.cs" />
     <Compile Include="Model\Log\TrafficLogEntryObject.cs" />
     <Compile Include="Model\Schema.cs" />
+    <Compile Include="Repository\FirewallConfig\AddableRepository.cs" />
+    <Compile Include="Repository\FirewallConfig\IAddableRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IConfigRepository.cs" />
     <Compile Include="Repository\FirewallConfig\ConfigRepository.cs" />
     <Compile Include="Repository\FirewallLog\ILogRepository.cs" />

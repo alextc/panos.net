@@ -7,11 +7,12 @@
 
     public class RandomAddressGroupObjectFactory : IRandomFirewallObjectGenerator<AddressGroupObject>
     {
-        private readonly IConfigRepository configRepository;
+        private readonly IAddableRepository addableRepository;
 
-        public RandomAddressGroupObjectFactory(IConfigRepository configRepository)
+        // TODO: Make this depend only on Set Method of the IConfigRepository
+        public RandomAddressGroupObjectFactory(IAddableRepository addableRepository)
         {
-            this.configRepository = configRepository;
+            this.addableRepository = addableRepository;
         }
 
          private string GenerateRandomName()
@@ -27,9 +28,9 @@
             var address = new RandomAddressObjectFactory().Generate();
             var subnet = new RandomSubnetObjectFactory().Generate();
             var range = new RandomAddressRangeObjectFactory().Generate();
-            this.configRepository.Set(address);
-            this.configRepository.Set(subnet);
-            this.configRepository.Set(range);
+            this.addableRepository.Add(address);
+            this.addableRepository.Add(subnet);
+            this.addableRepository.Add(range);
 
             var members = new List<string> { address.Name, subnet.Name, range.Name };
             return new AddressGroupObject(GenerateRandomName(), members);

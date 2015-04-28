@@ -9,10 +9,16 @@
     public class GetAddressGroupTests : BaseConfigTest
     {
         private readonly GetTests baseGetTests = new GetTests();
+        private readonly IAddableRepository addableRepository;
 
         // Running tests against the Running config requires calling Commit, which makes tests much slower
         // Don't forget to switch this on once in a while
         private readonly bool testAgainstRunningConfig = Boolean.Parse(ConfigurationManager.AppSettings["TestAgainstRunningConfig"]);
+
+        public GetAddressGroupTests()
+        {
+            addableRepository = new AddableRepository(ConfigCommandFactory);
+        }
         
         [TestMethod]
         public void GetAllAddressesGroupTest()
@@ -23,7 +29,7 @@
                 baseGetTests.GetAllObjects<GetAllAddressGroupApiResponse, AddressGroupObject>(
                     Schema.AddressGroupSchemaName,
                     config,
-                    new RandomAddressGroupObjectFactory(ConfigRepository));
+                    new RandomAddressGroupObjectFactory(addableRepository));
             }
         }
 
@@ -36,7 +42,7 @@
                 baseGetTests.GetSingleObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(
                     Schema.AddressGroupSchemaName,
                     config,
-                    new RandomAddressGroupObjectFactory(ConfigRepository));   
+                    new RandomAddressGroupObjectFactory(addableRepository));   
             }
         }
 
@@ -49,7 +55,7 @@
                 baseGetTests.GetNonExistingObject<GetSingleAddressGroupApiResponse, AddressGroupObject>(
                     Schema.AddressGroupSchemaName,
                     config,
-                    new RandomAddressGroupObjectFactory(ConfigRepository));
+                    new RandomAddressGroupObjectFactory(addableRepository));
             }
         }
     }
