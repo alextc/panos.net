@@ -66,27 +66,24 @@
   </Choose>
   <ItemGroup>
     <Compile Include="API\AddressGroup\DeltaTests.cs" />
-    <Compile Include="API\AddressGroup\GetAddressGroupTests.cs" />
     <Compile Include="API\AddressGroup\MemberShipTests.cs" />
     <Compile Include="API\AddressGroup\CompareTests.cs" />
     <Compile Include="API\AddressRange\ConstructorTests.cs" />
-    <Compile Include="API\AddressRange\GetAddressRangeTests.cs" />
     <Compile Include="API\Address\DeleteTests.cs" />
+    <Compile Include="API\Runners\Get\GetTestsRunner.cs" />
     <Compile Include="API\Logs\TrafficLogTests.cs" />
     <Compile Include="API\Logs\LogQueryFactoryTests.cs" />
-    <Compile Include="API\Subnet\GetSubnetTests.cs" />
-    <Compile Include="Bases\BaseLogTest.cs" />
-    <Compile Include="Bases\BaseTest.cs" />
-    <Compile Include="Bases\DeleteTests.cs" />
-    <Compile Include="Bases\GetTests.cs" />
+    <Compile Include="APITests\BaseLogTest.cs" />
+    <Compile Include="APITests\BaseTest.cs" />
+    <Compile Include="APITests\DeleteTests.cs" />
+    <Compile Include="APITests\GetTests.cs" />
     <Compile Include="API\Address\RenameTest.cs" />
     <Compile Include="API\Subnet\ConstructorTests.cs" />
-    <Compile Include="Bases\BaseConfigTest.cs" />
-    <Compile Include="API\Address\GetAddressTests.cs" />
+    <Compile Include="APITests\BaseConfigTest.cs" />
     <Compile Include="API\Address\SetTests.cs" />
     <Compile Include="API\Commit\CommitTests.cs" />
-    <Compile Include="Bases\RenameTests.cs" />
-    <Compile Include="Bases\SetTests.cs" />
+    <Compile Include="APITests\RenameTests.cs" />
+    <Compile Include="APITests\SetTests.cs" />
     <Compile Include="Delta\DeltaTests.cs" />
     <Compile Include="Deserealization\DeserealizationTests.cs" />
     <Compile Include="Integration\ADIntegrationTests.cs" />

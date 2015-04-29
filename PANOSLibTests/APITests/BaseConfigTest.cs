@@ -12,8 +12,10 @@
 
         public ICommitCommandFactory CommitCommandFactory { get; set; }
 
+        // Need to get rid of this
         public IConfigRepository ConfigRepository { get; private set; }
 
+        // Need to get rid of this
         public RandomObjectFactory RandomObjectFactory { get; set; }
 
         protected BaseConfigTest()

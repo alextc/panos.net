@@ -10,15 +10,17 @@
         where TGetSingleDeserializer : ApiResponseForGetSingle
         where TGetAllDeserializer : ApiResponseForGetAll
     {
-
         private readonly IRandomFirewallObjectGenerator<T> randomFirewallObjectGenerator;
 
-        public GetTests(IRandomFirewallObjectGenerator<T> randomFirewallObjectGenerator )
+        private readonly string schemaName;
+
+        public GetTests(IRandomFirewallObjectGenerator<T> randomFirewallObjectGenerator, string schemaName )
         {
             this.randomFirewallObjectGenerator = randomFirewallObjectGenerator;
+            this.schemaName = schemaName;
         }
 
-        public void GetAllObjects(string schemaName, ConfigTypes configType) 
+        public void GetAllObjects(ConfigTypes configType) 
         {
             // Setup - Ensure that at least 2 addresses are present
             var objectsUnderTest = new List<T>
@@ -61,7 +63,7 @@
             }
         }
 
-        public void GetSingleObject(string schemaName, ConfigTypes configType)
+        public void GetSingleObject(ConfigTypes configType)
         {
             // Setup
             var objectUnderTest = randomFirewallObjectGenerator.Generate();
@@ -80,7 +82,7 @@
             ConfigRepository.Delete(schemaName, objectUnderTest.Name);
         }
 
-        public void GetNonExistingObject(string schemaName, ConfigTypes configType)
+        public void GetNonExistingObject(ConfigTypes configType)
            
         {
             var objectUnderTest = randomFirewallObjectGenerator.Generate();
