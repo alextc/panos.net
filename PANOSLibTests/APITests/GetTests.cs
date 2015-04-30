@@ -11,14 +11,12 @@
         where TGetSingleDeserializer : ApiResponseForGetSingle
         where TGetAllDeserializer : ApiResponseForGetAll
     {
-        private readonly IRandomFirewallObjectGenerator<T> randomFirewallObjectGenerator;
         private readonly string schemaName;
         private readonly ConfigTypes configType;
         private List<T> sut;
         
-        public GetTests(IRandomFirewallObjectGenerator<T> randomFirewallObjectGenerator, string schemaName, ConfigTypes configType)
+        public GetTests(string schemaName, ConfigTypes configType)
         {
-            this.randomFirewallObjectGenerator = randomFirewallObjectGenerator;
             this.schemaName = schemaName;
             this.configType = configType;
             this.Setup();
@@ -45,7 +43,7 @@
 
         public void ShouldNotGetAnythingWhenNonExistingNameSupplied()
         {
-            var objectUnderTest = randomFirewallObjectGenerator.Generate();
+            var objectUnderTest = RandomObjectFactory.GenerateRandomObject<T>();
             Assert.AreEqual(ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, objectUnderTest.Name, configType).Count(), 0);
         }
 
@@ -53,8 +51,8 @@
         {
             this.sut = new List<T>
             {
-                randomFirewallObjectGenerator.Generate(),
-                randomFirewallObjectGenerator.Generate()
+                RandomObjectFactory.GenerateRandomObject<T>(),
+                RandomObjectFactory.GenerateRandomObject<T>()
             };
 
             foreach (var objectUnderTest in this.sut)

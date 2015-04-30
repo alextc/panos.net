@@ -14,26 +14,21 @@
         public GetTestsRunner()
         {
             addressGetTests = new GetTests<AddressObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(
-                 new RandomAddressObjectFactory(),
                  Schema.AddressSchemaName,
                  ConfigTypes.Candidate);
 
             subnetGetTests = new GetTests<SubnetObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(
-                new RandomSubnetObjectFactory(),
                 Schema.AddressSchemaName,
                 ConfigTypes.Candidate);
 
             addressRangeGetTests = 
                 new GetTests<AddressRangeObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(
-                    new RandomAddressRangeObjectFactory(),
                     Schema.AddressSchemaName,
                     ConfigTypes.Candidate);
 
             addressGroupGetTests  = new GetTests<AddressGroupObject, GetSingleAddressGroupApiResponse, GetAllAddressGroupApiResponse>(
-                new RandomAddressGroupObjectFactory(
-                    new AddableRepository(ConfigCommandFactory)),
-                    Schema.AddressGroupSchemaName,
-                    ConfigTypes.Candidate);
+                Schema.AddressGroupSchemaName,
+                ConfigTypes.Candidate);
         }
         
         [TestMethod]

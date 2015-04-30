@@ -15,7 +15,6 @@
         // Need to get rid of this
         public IConfigRepository ConfigRepository { get; private set; }
 
-        // Need to get rid of this
         public RandomObjectFactory RandomObjectFactory { get; set; }
 
         protected BaseConfigTest()
@@ -34,7 +33,7 @@
 
             this.ConfigRepository = new ConfigRepository(this.ConfigCommandFactory);
 
-            RandomObjectFactory = new RandomObjectFactory(this.ConfigRepository);
+            RandomObjectFactory = new RandomObjectFactory(new AddableRepository(ConfigCommandFactory));
         }
 
         protected void CommitCandidateConfig(bool waitForCompletion = true)
