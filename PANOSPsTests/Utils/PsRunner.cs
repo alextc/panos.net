@@ -25,7 +25,6 @@
 
         public static Collection<PSObject> ExecutePanosPowerShellScript(string scriptToTest)
         {
-
             var connectionPropertiesCommand = 
                 string.Format("$connection = New-PANOSConnection -HostName '{0}' -Vsys '{1}' -AccessToken (ConvertTo-SecureString '{2}' -AsPlainText -Force)", 
                     ConfigurationManager.AppSettings["FirewallHostName"],

@@ -15,49 +15,52 @@
         {
             addressGetTests = new GetTests<AddressObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(
                  new RandomAddressObjectFactory(),
-                 Schema.AddressSchemaName);
+                 Schema.AddressSchemaName,
+                 ConfigTypes.Candidate);
 
             subnetGetTests = new GetTests<SubnetObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(
                 new RandomSubnetObjectFactory(),
-                Schema.AddressSchemaName);
+                Schema.AddressSchemaName,
+                ConfigTypes.Candidate);
 
             addressRangeGetTests = 
                 new GetTests<AddressRangeObject, GetSingleAddressApiResponse, GetAllAddressesApiResponse>(
                     new RandomAddressRangeObjectFactory(),
-                    Schema.AddressSchemaName);
+                    Schema.AddressSchemaName,
+                    ConfigTypes.Candidate);
 
             addressGroupGetTests  = new GetTests<AddressGroupObject, GetSingleAddressGroupApiResponse, GetAllAddressGroupApiResponse>(
                 new RandomAddressGroupObjectFactory(
                     new AddableRepository(ConfigCommandFactory)),
-                    Schema.AddressGroupSchemaName);
+                    Schema.AddressGroupSchemaName,
+                    ConfigTypes.Candidate);
         }
-
-
+        
         [TestMethod]
-        public void GetAllTests()
+        public void ShouldGetAllObjects()
         {
-            addressGetTests.GetAllObjects(ConfigTypes.Candidate);
-            subnetGetTests.GetAllObjects(ConfigTypes.Candidate);
-            addressRangeGetTests.GetAllObjects(ConfigTypes.Candidate);
-            addressGroupGetTests.GetAllObjects(ConfigTypes.Candidate);
-        }
-
-        [TestMethod]
-        public void GetSingleTests()
-        {
-            addressGetTests.GetSingleObject(ConfigTypes.Candidate);
-            subnetGetTests.GetSingleObject(ConfigTypes.Candidate);
-            addressRangeGetTests.GetSingleObject(ConfigTypes.Candidate);
-            addressGroupGetTests.GetAllObjects(ConfigTypes.Candidate);
+            addressGetTests.ShouldGetAllObjects();
+            subnetGetTests.ShouldGetAllObjects();
+            addressRangeGetTests.ShouldGetAllObjects();
+            addressGroupGetTests.ShouldGetAllObjects();
         }
 
         [TestMethod]
-        public void GetNonExistingTests()
+        public void ShouldGetSingleObjectRequestedByName()
         {
-            addressGetTests.GetNonExistingObject(ConfigTypes.Candidate);
-            subnetGetTests.GetNonExistingObject(ConfigTypes.Candidate);
-            addressRangeGetTests.GetNonExistingObject(ConfigTypes.Candidate);
-            addressGroupGetTests.GetNonExistingObject(ConfigTypes.Candidate);
+            addressGetTests.ShouldGetSingleObjectRequestedByName();
+            subnetGetTests.ShouldGetSingleObjectRequestedByName();
+            addressRangeGetTests.ShouldGetSingleObjectRequestedByName();
+            addressGroupGetTests.ShouldGetSingleObjectRequestedByName();
+        }
+
+        [TestMethod]
+        public void ShouldNotGetAnythingWhenNonExistingNameSupplied()
+        {
+            addressGetTests.ShouldNotGetAnythingWhenNonExistingNameSupplied();
+            subnetGetTests.ShouldNotGetAnythingWhenNonExistingNameSupplied();
+            addressRangeGetTests.ShouldNotGetAnythingWhenNonExistingNameSupplied();
+            addressGroupGetTests.ShouldNotGetAnythingWhenNonExistingNameSupplied();
         }
     }
 }
