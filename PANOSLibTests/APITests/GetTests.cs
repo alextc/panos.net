@@ -2,10 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using NUnit.Framework;
     using PANOS;
 
-    using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-
+    [TestFixture(typeof(AddressObject), typeof(GetSingleAddressApiResponse), typeof(GetAllAddressesApiResponse), Schema.AddressSchemaName, ConfigTypes.Candidate)]
+    [TestFixture(typeof(SubnetObject), typeof(GetSingleAddressApiResponse), typeof(GetAllAddressesApiResponse), Schema.AddressSchemaName, ConfigTypes.Candidate)]
+    [TestFixture(typeof(AddressRangeObject), typeof(GetSingleAddressApiResponse), typeof(GetAllAddressesApiResponse), Schema.AddressSchemaName, ConfigTypes.Candidate)]
+    [TestFixture(typeof(AddressGroupObject), typeof(GetSingleAddressGroupApiResponse), typeof(GetAllAddressGroupApiResponse), Schema.AddressGroupSchemaName, ConfigTypes.Candidate)]
     public class GetTests<T, TGetSingleDeserializer, TGetAllDeserializer> : BaseConfigTest 
         where T: FirewallObject 
         where TGetSingleDeserializer : ApiResponseForGetSingle
@@ -19,35 +22,10 @@
         {
             this.schemaName = schemaName;
             this.configType = configType;
-            this.Setup();
         }
 
-        
-        public void ShouldGetAllObjects() 
-        {
-            var result = this.ConfigRepository.GetAll<TGetAllDeserializer, T>(schemaName, configType);
-            foreach (var obj in this.sut)
-            {
-                var match = result[obj.Name];
-                Assert.IsNotNull(match);
-                Assert.IsInstanceOfType(match, typeof(T));
-                Assert.AreEqual(match, obj);
-            }
-        }
-        
-        public void ShouldGetSingleObjectRequestedByName()
-        {
-            var retrievedObject = ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, this.sut.First().Name, configType).Single();
-            Assert.AreEqual(this.sut.First(), retrievedObject); 
-        }
-
-        public void ShouldNotGetAnythingWhenNonExistingNameSupplied()
-        {
-            var objectUnderTest = RandomObjectFactory.GenerateRandomObject<T>();
-            Assert.AreEqual(ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, objectUnderTest.Name, configType).Count(), 0);
-        }
-
-        private void Setup()
+        [TestFixtureSetUp]
+        public void Setup()
         {
             this.sut = new List<T>
             {
@@ -66,7 +44,8 @@
             }
         }
 
-        private void CleanUp()
+        [TestFixtureTearDown]
+        public void CleanUp()
         {
             foreach (var obj in this.sut)
             {
@@ -83,5 +62,32 @@
                 }
             }
         }
+
+        [Test]
+        public void ShouldGetAllObjects() 
+        {
+            var result = ConfigRepository.GetAll<TGetAllDeserializer, T>(schemaName, configType);
+            foreach (var obj in sut)
+            {
+                var match = result[obj.Name];
+                Assert.IsNotNull(match);
+                Assert.IsInstanceOf<T>(match);
+                Assert.AreEqual(match, obj);
+            }
+        }
+        
+        [Test]
+        public void ShouldGetSingleObjectRequestedByName()
+        {
+            var retrievedObject = ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, sut.First().Name, configType).Single();
+            Assert.AreEqual(this.sut.First(), retrievedObject); 
+        }
+
+        [Test]
+        public void ShouldNotGetAnythingWhenNonExistingNameSupplied()
+        {
+            var objectUnderTest = RandomObjectFactory.GenerateRandomObject<T>();
+            Assert.AreEqual(ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, objectUnderTest.Name, configType).Count(), 0);
+        }  
     }
 }
