@@ -70,7 +70,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ModelTests\AddressGroup\DeltaTests.cs" />
-    <Compile Include="ModelTests\AddressGroup\MemberShipTests.cs" />
+    <Compile Include="APITests\MemberShipTests.cs" />
     <Compile Include="ModelTests\AddressGroup\CompareTests.cs" />
     <Compile Include="ModelTests\AddressRange\ConstructorTests.cs" />
     <Compile Include="LogTests\TrafficLogTests.cs" />

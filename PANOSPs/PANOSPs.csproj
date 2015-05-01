@@ -50,7 +50,6 @@
     <Compile Include="Address\RemoveAddress.cs" />
     <Compile Include="Address\GetAddress.cs" />
     <Compile Include="Integration\GetRootForestDomainControllersAsAddressGroup.cs" />
-    <Compile Include="Bases\RequiresConfigRepository.cs" />
     <Compile Include="Bases\RequiresConnection.cs" />
     <Compile Include="Bases\RequiresLogRepository.cs" />
     <Compile Include="Bases\SearchesObjects.cs" />

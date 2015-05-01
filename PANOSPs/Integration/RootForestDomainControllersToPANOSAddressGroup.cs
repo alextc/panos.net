@@ -92,12 +92,10 @@
             // Firewall Group may not exist
             if (fwView != null)
             {
-                var allTObjects = addressSearchableRepository.GetAll<GetAllAddressesApiResponse>(ConfigTypes.Running);
-                fwView.MemberObjects.AddRange(
-                    (from tObject in allTObjects
-                     where fwView.Members.Contains(tObject.Key)
-                     select tObject.Value)
-                    .ToList());
+                membershipRepository.InflateMembers<AddressObject, GetAllAddressesApiResponse>(
+                    addressSearchableRepository,
+                    fwView,
+                    ConfigTypes.Running);
             }
             else
             {
