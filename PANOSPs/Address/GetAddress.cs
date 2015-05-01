@@ -13,10 +13,16 @@
         protected override void BeginProcessing()
         {
             base.BeginProcessing();
+
+            ISearchableRepository<AddressObject> searchableRepository = new SearchableRepository<AddressObject>(
+               new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host), 
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+               Schema.AddressSchemaName);
             
             try
             {
-                result = ConfigRepository.GetAll<GetAllAddressesApiResponse, AddressObject>(Schema.AddressSchemaName, ConfigType);
+                result = searchableRepository.GetAll<GetAllAddressesApiResponse>(ConfigType);
             }
             catch (ResponseFailure ex)
             {

@@ -14,10 +14,16 @@
         protected override void BeginProcessing()
         {
             base.BeginProcessing();
+
+            ISearchableRepository<SubnetObject> searchableRepository = new SearchableRepository<SubnetObject>(
+               new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+               Schema.AddressSchemaName);
             
             try
             {
-                result = this.ConfigRepository.GetAll<GetAllAddressesApiResponse, SubnetObject>(Schema.AddressSchemaName, ConfigType);
+                result = searchableRepository.GetAll<GetAllAddressesApiResponse>(ConfigType);
             }
             catch (ResponseFailure ex)
             {

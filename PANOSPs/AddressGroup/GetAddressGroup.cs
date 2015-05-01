@@ -14,9 +14,15 @@
         {
             base.BeginProcessing();
 
+            ISearchableRepository<AddressGroupObject> searchableRepository = new SearchableRepository<AddressGroupObject>(
+               new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+               Schema.AddressGroupSchemaName);
+
             try
             {
-                result = this.ConfigRepository.GetAll<GetAllAddressGroupApiResponse, AddressGroupObject>(Schema.AddressGroupSchemaName, ConfigType);
+                result = searchableRepository.GetAll<GetAllAddressGroupApiResponse>(ConfigType);
             }
             catch (ResponseFailure ex)
             {
