@@ -42,7 +42,7 @@
             var sut = RandomObjectFactory.GenerateRandomObject<T>();
 
             // Test
-            ConfigRepository.Delete(sut.SchemaName, sut.Name);
+            DeletableRepository.Delete(sut.SchemaName, sut.Name);
         }
     }
 }

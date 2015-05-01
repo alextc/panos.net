@@ -90,8 +90,10 @@
     <Compile Include="Repository\FirewallConfig\IConfigRepository.cs" />
     <Compile Include="Repository\FirewallConfig\ConfigRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IDeletableRepository.cs" />
+    <Compile Include="Repository\FirewallConfig\IMembershipRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IRenamableRepository.cs" />
     <Compile Include="Repository\FirewallConfig\ISearchableRepository.cs" />
+    <Compile Include="Repository\FirewallConfig\MembershipRepository.cs" />
     <Compile Include="Repository\FirewallConfig\RenamableRepository.cs" />
     <Compile Include="Repository\FirewallConfig\SearchableRepository.cs" />
     <Compile Include="Repository\FirewallLog\ILogRepository.cs" />

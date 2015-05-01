@@ -3,7 +3,7 @@
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.Remove, "PANOSAddress")]
-    public class DeleteAddress : RequiresConfigRepository
+    public class DeleteAddress : RequiresConnection
     {
         [Parameter(
             ParameterSetName = "Object",
@@ -20,6 +20,16 @@
         [Parameter]
         public SwitchParameter PassThru { get; set; }
 
+        private IDeletableRepository deletableRepository;
+
+        protected override void BeginProcessing()
+        {
+            base.BeginProcessing();
+            deletableRepository = new DeletableRepository(new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
+        }
+
         protected override void ProcessRecord()
         {
             switch (ParameterSetName)
@@ -27,14 +37,14 @@
                 case "Properties":
                     foreach (var name in Name)
                     {
-                        ConfigRepository.Delete(Schema.AddressSchemaName, name);
+                        deletableRepository.Delete(Schema.AddressSchemaName, name);
                         if (PassThru) WriteObject(name);
                     }
                     break;
                 case "Object":
                     foreach (var addressObject in PanosAddress)
                     {
-                        ConfigRepository.Delete(Schema.AddressSchemaName, addressObject.Name);
+                        deletableRepository.Delete(Schema.AddressSchemaName, addressObject.Name);
                         if (PassThru) WriteObject(addressObject);
                     }
                     break;

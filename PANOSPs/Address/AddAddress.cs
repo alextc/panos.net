@@ -4,7 +4,7 @@
     using System.Net;
 
     [Cmdlet(VerbsCommon.Add, "PANOSAddress")]
-    public class AddAddress : RequiresConfigRepository
+    public class AddAddress : RequiresConnection
     {
         [Parameter(
             ParameterSetName = "Object",
@@ -31,19 +31,31 @@
         [Parameter]
         public SwitchParameter PassThru { get; set; }
 
+        private IAddableRepository addableRepository;
+
+        protected override void BeginProcessing()
+        {
+            base.BeginProcessing();
+            addableRepository = new AddableRepository(
+               new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys))
+               );
+        }
+
         protected override void ProcessRecord()
         {
             switch (ParameterSetName)
             {
                 case "Properties":
                     var newAddress = new AddressObject(Name, IPAddress.Parse(IpAddress), Description);
-                    ConfigRepository.Set(newAddress);
+                    addableRepository.Add(newAddress);
                     if (PassThru) WriteObject(newAddress);
                     break;
                 case "Object":
                     foreach (var addressObject in PanosAddress)
                     {
-                        ConfigRepository.Set(addressObject);
+                        addableRepository.Add(addressObject);
                         if (PassThru) WriteObject(addressObject);
                     }
                     break;

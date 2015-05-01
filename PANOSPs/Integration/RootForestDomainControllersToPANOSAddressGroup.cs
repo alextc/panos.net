@@ -6,7 +6,7 @@
     using PANOS.Logging;
 
     [Cmdlet(VerbsData.Import, "RootForestDomainControllersToPANOSAddressGroup")]
-    public class SyncDomainControllersIpToPanosAddressGroup : RequiresConfigRepository
+    public class SyncDomainControllersIpToPanosAddressGroup : RequiresConnection
     {
         private ICommand<ApiEnqueuedResponse> commitCommand; 
        
@@ -22,6 +22,11 @@
         [Parameter]
         public PSCredential Credential { get; set; }
 
+        private ISearchableRepository<AddressGroupObject> addressGroupSearchableRepository;
+        private ISearchableRepository<AddressObject> addressSearchableRepository;
+        private IAddableRepository addableRepository;
+        private IMembershipRepository membershipRepository;
+
         protected override void BeginProcessing()
         {
            base.BeginProcessing();
@@ -33,6 +38,28 @@
             commitCommand = commitCommandFactory.CreateCommit(true);
 
             activeDirectoryRepository = new ActiveDirectoryRepository(ForestName, Credential);
+
+            addressGroupSearchableRepository = new SearchableRepository<AddressGroupObject>(
+                new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+               Schema.AddressGroupSchemaName);
+
+            addressSearchableRepository = new SearchableRepository<AddressObject>(
+                new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+               Schema.AddressSchemaName);
+
+            addableRepository = new AddableRepository(
+                new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
+
+            membershipRepository = new MembershipRepository(
+                new ConfigCommandFactory(
+                   new ApiUriFactory(Connection.Host),
+                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
         }
 
         protected override void ProcessRecord()
@@ -41,8 +68,7 @@
             // TODO: Sanity check, ex 0 members returned
 
             // This will throw an exception if the group does not exist - Is this Ok?
-            var fwView = ConfigRepository.GetSingle<GetSingleAddressGroupApiResponse, AddressGroupObject>(
-                Schema.AddressGroupSchemaName,
+            var fwView = addressGroupSearchableRepository.GetSingle<GetSingleAddressGroupApiResponse>(
                 this.AddressGroupName,
                 ConfigTypes.Running).
                 Single();
@@ -66,10 +92,12 @@
             // Firewall Group may not exist
             if (fwView != null)
             {
-                this.ConfigRepository.InflateMembers<GetAllAddressesApiResponse, AddressObject>(
-                    fwView,
-                    Schema.AddressSchemaName,
-                    ConfigTypes.Running);
+                var allTObjects = addressSearchableRepository.GetAll<GetAllAddressesApiResponse>(ConfigTypes.Running);
+                fwView.MemberObjects.AddRange(
+                    (from tObject in allTObjects
+                     where fwView.Members.Contains(tObject.Key)
+                     select tObject.Value)
+                    .ToList());
             }
             else
             {
@@ -88,7 +116,7 @@
                 WriteVerbose("Address configuration drifted:");
                 foreach (var address in addressObjectsDetla)
                 {
-                    ConfigRepository.Set(address);
+                    addableRepository.Add(address);
                     WriteVerbose(string.Format("Updating {0}", address.Name));
                 }
             }
@@ -107,13 +135,13 @@
             if (fwView != null)
             {
                 // Group already exist using Edit API
-                var groupUpdateResult = ConfigRepository.SetGroupMembership(adView);
-                WriteVerbose(string.Format("Updating {0} - {1}", AddressGroupName, groupUpdateResult.Message));
+                membershipRepository.SetGroupMembership(adView);
+                WriteVerbose(string.Format("Updating {0}", AddressGroupName));
             }
             else
             {
                 // Creating group brand new using Set API
-                ConfigRepository.Set(adView);
+                addableRepository.Add(adView);
                 WriteVerbose(string.Format("Setting {0}", AddressGroupName));
             }
         }
