@@ -88,6 +88,8 @@
     <Compile Include="Repository\FirewallConfig\IAddableRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IConfigRepository.cs" />
     <Compile Include="Repository\FirewallConfig\ConfigRepository.cs" />
+    <Compile Include="Repository\FirewallConfig\ISearchableRepository.cs" />
+    <Compile Include="Repository\FirewallConfig\SearchableRepository.cs" />
     <Compile Include="Repository\FirewallLog\ILogRepository.cs" />
     <Compile Include="Repository\FirewallLog\LogRepository.cs" />
     <Compile Include="ResponseProcessing\Exceptions\AnotherCommitInProgress.cs" />

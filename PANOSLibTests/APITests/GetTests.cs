@@ -17,11 +17,13 @@
         private readonly string schemaName;
         private readonly ConfigTypes configType;
         private List<T> sut;
+        private readonly ISearchableRepository<T> searchableRepository;
         
         public GetTests(string schemaName, ConfigTypes configType)
         {
             this.schemaName = schemaName;
             this.configType = configType;
+            searchableRepository = new SearchableRepository<T>(ConfigCommandFactory, schemaName);
         }
 
         [TestFixtureSetUp]
@@ -66,7 +68,7 @@
         [Test]
         public void ShouldGetAllObjects() 
         {
-            var result = ConfigRepository.GetAll<TGetAllDeserializer, T>(schemaName, configType);
+            var result = searchableRepository.GetAll<TGetAllDeserializer>(configType);
             foreach (var obj in sut)
             {
                 var match = result[obj.Name];
@@ -79,7 +81,7 @@
         [Test]
         public void ShouldGetSingleObjectRequestedByName()
         {
-            var retrievedObject = ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, sut.First().Name, configType).Single();
+            var retrievedObject = searchableRepository.GetSingle<TGetSingleDeserializer>(sut.First().Name, configType).Single();
             Assert.AreEqual(this.sut.First(), retrievedObject); 
         }
 
@@ -87,7 +89,7 @@
         public void ShouldNotGetAnythingWhenNonExistingNameSupplied()
         {
             var objectUnderTest = RandomObjectFactory.GenerateRandomObject<T>();
-            Assert.AreEqual(ConfigRepository.GetSingle<TGetSingleDeserializer, T>(schemaName, objectUnderTest.Name, configType).Count(), 0);
+            Assert.AreEqual(searchableRepository.GetSingle<TGetSingleDeserializer>(objectUnderTest.Name, configType).Count(), 0);
         }  
     }
 }
