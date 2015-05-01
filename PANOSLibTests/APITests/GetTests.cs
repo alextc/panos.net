@@ -82,7 +82,7 @@
         public void ShouldGetSingleObjectRequestedByName()
         {
             var retrievedObject = searchableRepository.GetSingle<TGetSingleDeserializer>(sut.First().Name, configType).Single();
-            Assert.AreEqual(this.sut.First(), retrievedObject); 
+            Assert.AreEqual(sut.First(), retrievedObject); 
         }
 
         [Test]

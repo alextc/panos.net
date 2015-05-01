@@ -1,43 +1,55 @@
 ﻿namespace PANOSLibTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+
+    using NUnit.Framework;
     using PANOS;
-
-    public class RenameTests : BaseConfigTest
+    
+    [TestFixture(typeof(AddressObject), typeof(GetSingleAddressApiResponse), Schema.AddressSchemaName)]
+    [TestFixture(typeof(SubnetObject), typeof(GetSingleAddressApiResponse), Schema.AddressSchemaName)]
+    [TestFixture(typeof(AddressRangeObject), typeof(GetSingleAddressApiResponse), Schema.AddressSchemaName)]
+    [TestFixture(typeof(AddressGroupObject), typeof(GetSingleAddressGroupApiResponse), Schema.AddressGroupSchemaName)]
+    public class RenameTests<T, TDeserializer> : BaseConfigTest
+        where T : FirewallObject
+        where TDeserializer : ApiResponseForGetSingle
     {
-        public bool RenameObject<TDeserializer, TObject>()
-            where TObject : FirewallObject
-            where TDeserializer : ApiResponseForGetSingle
+        private readonly ISearchableRepository<T> searchableRepository;
+        private readonly IRenamableRepository renamableRepository;
+
+        public RenameTests(string schemaName)
         {
-            // Setup
-            var obj = RandomObjectFactory.GenerateRandomObject<TObject>();
-            ConfigRepository.Set(obj);
-
-            // Test
-            var newName = RandomObjectFactory.GenerateRandomName();
-           ConfigRepository.Rename(obj.SchemaName, obj.Name, newName);
-
-            // Postcondition
-            Assert.IsNotNull(this.ConfigRepository.GetSingle<TDeserializer, TObject>(obj.SchemaName, newName, ConfigTypes.Candidate));
-            Assert.IsNull(this.ConfigRepository.GetSingle<TDeserializer, TObject>(obj.SchemaName, obj.Name, ConfigTypes.Candidate));
-
-            // Clean-up
-            ConfigRepository.Delete(obj.SchemaName, newName);
-            // Commit Changes --- effectively backing-out
-            // CommitCandidateConfig();
-
-            return true;
+            searchableRepository = new SearchableRepository<T>(ConfigCommandFactory, schemaName);
+            renamableRepository = new RenamableRepository(ConfigCommandFactory);
         }
 
-
-        public void RenameNonExistingTest<TObject>() where TObject : FirewallObject
-            
+        [Test]
+        public void ShouldRenameObject()  
         {
-            // Precondition
-            var obj = RandomObjectFactory.GenerateRandomObject<TObject>();
+            // Setup
+            var sut = RandomObjectFactory.GenerateRandomObject<T>();
+            AddableRepository.Add(sut);
 
             // Test
-            ConfigRepository.Rename(obj.SchemaName, obj.Name, "foo");
+           var newName = RandomObjectFactory.GenerateRandomName();
+           renamableRepository.Rename(sut.SchemaName, sut.Name, newName);
+
+            // Postcondition
+            Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(newName, ConfigTypes.Candidate).Any());
+            Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
+
+            // Clean-up
+            DeletableRepository.Delete(sut.SchemaName, newName);
+        }
+
+        [Test]
+        [ExpectedException(typeof(AttemptToRenameNonExistingObject))]
+        public void ShouldNotRenameNonExistingTest()
+        {
+            // Precondition
+            var obj = RandomObjectFactory.GenerateRandomObject<T>();
+
+            // Test
+            renamableRepository.Rename(obj.SchemaName, obj.Name, "foo");
         }
     }
 }

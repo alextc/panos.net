@@ -69,20 +69,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="API\AddressGroup\DeltaTests.cs" />
-    <Compile Include="API\AddressGroup\MemberShipTests.cs" />
-    <Compile Include="API\AddressGroup\CompareTests.cs" />
-    <Compile Include="API\AddressRange\ConstructorTests.cs" />
-    <Compile Include="API\Logs\TrafficLogTests.cs" />
-    <Compile Include="API\Logs\LogQueryFactoryTests.cs" />
+    <Compile Include="ModelTests\AddressGroup\DeltaTests.cs" />
+    <Compile Include="ModelTests\AddressGroup\MemberShipTests.cs" />
+    <Compile Include="ModelTests\AddressGroup\CompareTests.cs" />
+    <Compile Include="ModelTests\AddressRange\ConstructorTests.cs" />
+    <Compile Include="LogTests\TrafficLogTests.cs" />
+    <Compile Include="LogTests\LogQueryFactoryTests.cs" />
     <Compile Include="APITests\BaseLogTest.cs" />
     <Compile Include="APITests\BaseTest.cs" />
     <Compile Include="APITests\DeleteTests.cs" />
     <Compile Include="APITests\GetTests.cs" />
-    <Compile Include="API\Address\RenameTest.cs" />
-    <Compile Include="API\Subnet\ConstructorTests.cs" />
+    <Compile Include="ModelTests\Subnet\ConstructorTests.cs" />
     <Compile Include="APITests\BaseConfigTest.cs" />
-    <Compile Include="API\Commit\CommitTests.cs" />
+    <Compile Include="CommitTests\CommitTests.cs" />
     <Compile Include="APITests\RenameTests.cs" />
     <Compile Include="APITests\AddTests.cs" />
     <Compile Include="Delta\DeltaTests.cs" />
