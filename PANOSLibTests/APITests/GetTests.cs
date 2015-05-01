@@ -37,12 +37,12 @@
 
             foreach (var objectUnderTest in this.sut)
             {
-                this.ConfigRepository.Set(objectUnderTest);
+                AddableRepository.Add(objectUnderTest);
             }
 
             if (configType == ConfigTypes.Running)
             {
-                this.CommitCandidateConfig();
+                CommitCandidateConfig();
             }
         }
 
@@ -51,7 +51,7 @@
         {
             foreach (var obj in this.sut)
             {
-                this.ConfigRepository.Delete(this.schemaName, obj.Name);
+                DeletableRepository.Delete(this.schemaName, obj.Name);
 
                 // If this is a group object, delete its members
                 // TODO: Deal with nested Groups
@@ -59,7 +59,7 @@
                 {
                     foreach (var member in (obj as AddressGroupObject).Members)
                     {
-                        this.ConfigRepository.Delete(Schema.AddressSchemaName, member);
+                        DeletableRepository.Delete(Schema.AddressSchemaName, member);
                     }
                 }
             }

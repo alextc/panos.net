@@ -9,7 +9,6 @@
     {
         private Dictionary<string, SubnetObject> result;
         
-        
         // I assume that it is as expensive to get all addresses as one address so getting them all - later in ProcessRecord filtering out based on what the user requested
         protected override void BeginProcessing()
         {

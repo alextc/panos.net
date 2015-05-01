@@ -15,6 +15,10 @@
         // Need to get rid of this
         public IConfigRepository ConfigRepository { get; private set; }
 
+        protected IAddableRepository AddableRepository { get; private set; }
+
+        protected IDeletableRepository DeletableRepository { get; private set; }
+
         public RandomObjectFactory RandomObjectFactory { get; set; }
 
         protected BaseConfigTest()
@@ -27,11 +31,13 @@
                         Connection.AccessToken,
                         Connection.Vsys));
 
-            this.CommitCommandFactory = new CommitApiCommandFactory(
+            CommitCommandFactory = new CommitApiCommandFactory(
                 new ApiUriFactory(Connection.Host),
                 new CommitApiPostKeyValuePairFactory(Connection.AccessToken));
 
-            this.ConfigRepository = new ConfigRepository(this.ConfigCommandFactory);
+            ConfigRepository = new ConfigRepository(ConfigCommandFactory);
+            AddableRepository = new AddableRepository(ConfigCommandFactory);
+            DeletableRepository = new DeletableRepository(ConfigCommandFactory);
 
             RandomObjectFactory = new RandomObjectFactory(new AddableRepository(ConfigCommandFactory));
         }
