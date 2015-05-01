@@ -73,7 +73,6 @@
     <Compile Include="API\AddressGroup\MemberShipTests.cs" />
     <Compile Include="API\AddressGroup\CompareTests.cs" />
     <Compile Include="API\AddressRange\ConstructorTests.cs" />
-    <Compile Include="API\Address\DeleteTests.cs" />
     <Compile Include="API\Logs\TrafficLogTests.cs" />
     <Compile Include="API\Logs\LogQueryFactoryTests.cs" />
     <Compile Include="APITests\BaseLogTest.cs" />
