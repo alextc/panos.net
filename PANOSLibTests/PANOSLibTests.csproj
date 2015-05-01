@@ -82,10 +82,9 @@
     <Compile Include="API\Address\RenameTest.cs" />
     <Compile Include="API\Subnet\ConstructorTests.cs" />
     <Compile Include="APITests\BaseConfigTest.cs" />
-    <Compile Include="API\Address\SetTests.cs" />
     <Compile Include="API\Commit\CommitTests.cs" />
     <Compile Include="APITests\RenameTests.cs" />
-    <Compile Include="APITests\SetTests.cs" />
+    <Compile Include="APITests\AddTests.cs" />
     <Compile Include="Delta\DeltaTests.cs" />
     <Compile Include="Deserealization\DeserealizationTests.cs" />
     <Compile Include="Integration\ADIntegrationTests.cs" />
