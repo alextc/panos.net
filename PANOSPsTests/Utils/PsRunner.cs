@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
+    using NUnit.Framework;
 
     using PANOS;
 
@@ -25,8 +26,8 @@
 
         public static Collection<PSObject> ExecutePanosPowerShellScript(string scriptToTest)
         {
-            var connectionPropertiesCommand = 
-                string.Format("$connection = New-PANOSConnection -HostName '{0}' -Vsys '{1}' -AccessToken (ConvertTo-SecureString '{2}' -AsPlainText -Force)", 
+            var connectionPropertiesCommand =
+                string.Format("$connection = New-PANOSConnection -HostName '{0}' -Vsys '{1}' -AccessToken (ConvertTo-SecureString '{2}' -AsPlainText -Force) -StoreInSession | Out-Null", 
                     ConfigurationManager.AppSettings["FirewallHostName"],
                     ConfigurationManager.AppSettings["Vsys"],
                     ConfigurationManager.AppSettings["FirewallAccessToken"] );
@@ -65,6 +66,9 @@
             // This is will throw an exception if match is not foudn in the Pipeline
             var obj = psObjects.Single(o => o.BaseObject.Equals(firewallObject));
             return true;
-        } 
+        }
+
+
+        
     }
 }
