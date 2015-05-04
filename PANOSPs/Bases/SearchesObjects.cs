@@ -5,7 +5,6 @@
     using System.Management.Automation;
 
     public class SearchesObjects : RequiresConnection
-
     {
         [Parameter(
             ParameterSetName = "Name",
