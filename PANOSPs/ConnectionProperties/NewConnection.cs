@@ -7,6 +7,8 @@
     [OutputType(typeof(Connection))]
     public class NewConnection : PSCmdlet
     {
+        private const string ConnectionSessionVariable = "PanosConnectionSessionVariable";
+
         [Parameter(Mandatory = true)]
         public string HostName { get; set; }
 
@@ -16,8 +18,16 @@
         [Parameter(Mandatory = true)]
         public string Vsys { get; set; }
 
-        protected override void ProcessRecord() 
+        [Parameter]
+        public SwitchParameter StoreInSession { get; set; }
+
+        protected override void ProcessRecord()
         {
+            var connection = new Connection(HostName, AccessToken, Vsys);
+            if (StoreInSession)
+            {
+                SessionState.PSVariable.Set(ConnectionSessionVariable, connection);
+            }
             WriteObject(new Connection(HostName, AccessToken, Vsys));
         }
     }

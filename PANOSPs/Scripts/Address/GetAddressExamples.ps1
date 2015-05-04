@@ -2,6 +2,10 @@
 $connection = New-PANOSConnection -HostName 'palab.redmond.corp.microsoft.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken)
 Get-PANOSAddress -Connection $connection -FromCandidateConfig
 
+#Use session var
+New-PANOSConnection -HostName 'palab.redmond.corp.microsoft.com' -Vsys 'vsys1' -AccessToken (Import-CliXml c:\PSScripts\panosAccessToken) -StoreInSession | Out-Null
+Get-PANOSAddress -FromCandidateConfig
+
 #Get specific address by name
 Get-PANOSAddress -Connection $connection -Name CP1PD1SLKAPP01
 
