@@ -1,15 +1,12 @@
 ﻿namespace PANOSPsTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    using NUnit.Framework;
     using PANOS;
 
-    using PANOSLibTest;
-
-    [TestClass]
-    public class CommitUnitTests : BaseConfigTest
+    [TestFixture]
+    public class CommitUnitTests : BasePsTest
     {
-        [TestMethod]
+        [Test]
         public void CommitTest()
         {
             // Setup
@@ -35,8 +32,8 @@
             this.ConfigRepository.Delete(newObj.SchemaName, newObj.Name);    
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(System.Management.Automation.CmdletInvocationException), AllowDerivedTypes = true)]
+        [Test]
+        [ExpectedException(typeof(System.Management.Automation.CmdletInvocationException))]
         public void CommitWhileAnotherCommitIsInProgressTest()
         {
             // Setup

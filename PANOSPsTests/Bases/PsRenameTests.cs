@@ -1,10 +1,9 @@
 ﻿namespace PANOSPsTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using PANOS;
-    using PANOSLibTest;
-
-    public class PsRenameTests : BaseConfigTest
+    
+    public class PsRenameTests : BasePsTest
     {
         public bool RenameSingleFromObjectPassedAsParameter<TDeserializer, TObject>()
             where TDeserializer : ApiResponseForGetSingle
@@ -25,7 +24,7 @@
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
-            Assert.IsInstanceOfType(results[0].BaseObject, typeof(string));
+            Assert.That(results[0].BaseObject, Is.InstanceOf<string>());
             var response = results[0].BaseObject as string;
             Assert.IsNotNull(response);
             Assert.AreEqual(response, newName);
@@ -58,7 +57,7 @@
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
-            Assert.IsInstanceOfType(results[0].BaseObject, typeof(string));
+            Assert.That(results[0].BaseObject, Is.InstanceOf<string>());
             var response = results[0].BaseObject as string;
             Assert.IsNotNull(response);
             Assert.AreEqual(response, newName);
@@ -96,7 +95,7 @@
 
             for (var i = 0; i < results.Count; i++)
             {
-                Assert.IsInstanceOfType(results[i].BaseObject, typeof(string));
+                Assert.That(results[i].BaseObject, Is.InstanceOf<string>());
                 var response = results[i].BaseObject as string;
                 Assert.IsNotNull(response);
                 Assert.AreEqual(response, objectsUnderTest[i].Name + "00");

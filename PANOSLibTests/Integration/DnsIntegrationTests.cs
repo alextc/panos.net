@@ -1,13 +1,13 @@
 ﻿namespace PANOSLibTest.Integration
 {
     using System.Net;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using PANOS.Integration;
 
-    [TestClass]
+    [TestFixture]
     public class DnsIntegrationTests
     {
-        [TestMethod]
+        [Test]
         public void ResolveHostNameFromIpTest()
         {
             var dnsRepository = new DnsRepository();
@@ -15,7 +15,7 @@
             Assert.AreEqual(hostName, "db3-red-dc-04.redmond.corp.microsoft.com");
         }
 
-        [TestMethod]
+        [Test]
         public void ResolveHostNameFromIpAndDnsQueryFailsTest()
         {
             var dnsRepository = new DnsRepository();

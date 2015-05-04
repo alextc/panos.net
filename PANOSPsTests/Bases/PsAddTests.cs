@@ -1,10 +1,9 @@
 ﻿namespace PANOSPsTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using PANOS;
-    using PANOSLibTest;
-
-    public class PsAddTests : BaseConfigTest
+    
+    public class PsAddTests : BasePsTest
     {
         // TODO: Test to simulate a failure from PANOS during addition.
         // Not sure how to inject a fault at the moment, perhaps illegal character in the name?

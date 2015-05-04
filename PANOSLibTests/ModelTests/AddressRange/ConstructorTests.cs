@@ -1,16 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace PANOSLibTest.API.AddressRange
+﻿namespace PANOSLibTest
 {
+    using System;
     using System.Net;
+    using NUnit.Framework;
     using PANOS;
 
-    [TestClass]
+    [TestFixture]
     public class ConstructorTests
     {
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), AllowDerivedTypes = true)]
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void StartIsGreaterThanEnd()
         {
             var addressStartOfRange = IPAddress.Parse("10.10.255.5");
@@ -18,8 +17,8 @@ namespace PANOSLibTest.API.AddressRange
             var addressRange = new AddressRangeObject("Test", addressStartOfRange, addressEndOfRange);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), AllowDerivedTypes = true)]
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void StartIsEqualToEnd()
         {
             var addressStartOfRange = IPAddress.Parse("10.10.255.5");
@@ -27,7 +26,7 @@ namespace PANOSLibTest.API.AddressRange
             var addressRange = new AddressRangeObject("Test", addressStartOfRange, addressEndOfRange);
         }
 
-        [TestMethod]
+        [Test]
         public void ValidMaskBoundaryTest()
         {
             var addressStartOfRange = IPAddress.Parse("10.10.255.5");

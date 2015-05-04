@@ -2,11 +2,10 @@
 {
     using System;
     using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using PANOS;
-    using PANOSLibTest;
-
-    public class PsDeleteTests : BaseConfigTest
+    
+    public class PsDeleteTests : BasePsTest
     {
         public void DeleteSingleByObjectPassedAsParameter<TDeserializer, TObject>(string noun)
             where TDeserializer : ApiResponseForGetSingle

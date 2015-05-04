@@ -1,15 +1,14 @@
 ﻿namespace PANOSPsTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using PANOS;
-    using PANOSLibTest;
-
-    [TestClass]
-    public class DeleteTests : BaseConfigTest
+    
+    [TestFixture]
+    public class DeleteTests : BasePsTest
     {
         private readonly PsDeleteTests deleteTests = new PsDeleteTests();
 
-        [TestMethod]
+        [Test]
         public void DeleteSingleAddresByObjectPassedAsParameter()
         {
             deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
@@ -18,7 +17,7 @@
             // deleteTests.DeleteSingleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddressGroup");
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteSingleAddressByNamePassedAsParameter()
         {
             deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
@@ -27,7 +26,7 @@
             //deleteTests.DeleteSingleByNamePassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteMultipleAddressesFromObjectsPassedAsParameter()
         {
             deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
@@ -36,7 +35,7 @@
             //deleteTests.DeleteMultipleByObjectPassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteMultipleAddressesByNamesPassedAsParameter()
         {
             deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
@@ -45,7 +44,7 @@
             //deleteTests.DeleteMultipleByNamePassedAsParameter<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteMultipleAddressesByNamesPassedViaPipeline()
         {
             deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
@@ -54,7 +53,7 @@
             //deleteTests.DeleteMultipleByNamePassedViaPipeline<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteMultipleAddressesByObjectPassedViaPipeline()
         {
             deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
@@ -63,13 +62,13 @@
             //deleteTests.DeleteMultipleByObjectPassedViaPipeline<GetSingleAddressGroupApiResponse, AddressGroupObject>());
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteAndPassThruObject()
         {
             deleteTests.DeleteAndPassThruObjectTest<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteAndPassThruName()
         {
             deleteTests.DeleteAndPassThruName<GetSingleAddressApiResponse, AddressObject>("PANOSAddress");

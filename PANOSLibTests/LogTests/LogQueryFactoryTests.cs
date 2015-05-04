@@ -1,18 +1,18 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace PANOSLibTest.API.Logs
+﻿namespace PANOSLibTest
 {
+    using System;
     using System.Net;
+
+    using NUnit.Framework;
 
     using PANOS;
 
-    [TestClass]
+    [TestFixture]
     public class LogQueryFactoryTests
     {
         // ( action eq deny) and ( addr.src in 10.127.63.254 ) and ( receive_time leq '2015/03/16 12:46:23' ) and (receive_time geq '2015/03/16 00:45:00')
 
-        [TestMethod]
+        [Test]
         public void DroppedTrafficFromSourceInTimeRangeTest()
         {
             var logQueryFactory = new LogQueryFactory();

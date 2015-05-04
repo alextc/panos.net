@@ -1,13 +1,27 @@
-﻿namespace PANOSLibTest
+﻿namespace PANOSPsTest
 {
     using System;
+    using System.Configuration;
     using System.Diagnostics;
     using System.Threading;
+
     using NUnit.Framework;
+
     using PANOS;
 
-    public class BaseConfigTest : BaseTest
+    public class BasePsTest
     {
+        protected static Connection Connection
+        {
+            get
+            {
+                return new Connection(
+                    ConfigurationManager.AppSettings["FirewallHostName"],
+                    SecureStringUtils.ConvertToSecureString((ConfigurationManager.AppSettings["FirewallAccessToken"])),
+                    ConfigurationManager.AppSettings["Vsys"]);
+            }
+        }
+
         public IConfigCommandFactory ConfigCommandFactory { get; set; }
 
         public ICommitCommandFactory CommitCommandFactory { get; set; }
@@ -21,7 +35,8 @@
 
         public RandomObjectFactory RandomObjectFactory { get; set; }
 
-        protected BaseConfigTest()
+
+        protected BasePsTest()
         {
             this.ConfigCommandFactory = 
                 new ConfigCommandFactory(

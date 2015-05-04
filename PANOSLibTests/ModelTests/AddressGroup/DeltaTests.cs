@@ -3,15 +3,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    using NUnit.Framework;
     using PANOS;
 
-    [TestClass]
+    [TestFixture]
     public class DeltaTests
     {
-        [TestMethod]
+        [Test]
         public void EqualGroupsTest()
         {
             var sourceMemberList = new List<FirewallObject> { new AddressObject("host1", IPAddress.Parse("10.10.10.1")), new AddressObject("host2", IPAddress.Parse("10.10.10.2")) };
@@ -28,7 +26,7 @@
             Assert.IsNull(sourceGroup.GetDelta(targetGroup));
         }
 
-        [TestMethod]
+        [Test]
         public void IpMismatchGroupsTest()
         {
             var sourceMemberList = new List<FirewallObject>
@@ -56,7 +54,7 @@
             Assert.AreEqual(delta[0], new AddressObject("host1", IPAddress.Parse("10.10.10.3")));
         }
 
-        [TestMethod]
+        [Test]
         public void ExtraMembersInTargetAreNotIncludedInTheResultTest()
         {
             var sourceMemberList = new List<FirewallObject>

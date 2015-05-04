@@ -1,18 +1,29 @@
 ﻿namespace PANOSPsTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using PANOS;
-    using PANOSLibTest;
 
-    public class PsGetTests : BaseConfigTest
+    [TestFixture(typeof(AddressObject), "PANOSAddress", ConfigTypes.Candidate)]
+    public class PsGetTests<T> : BasePsTest where T : FirewallObject
     {
-        public bool GetAll<T>(string noun, ConfigTypes configType) where T: FirewallObject
+
+        private readonly string noun;
+        private readonly ConfigTypes configType;
+
+        public PsGetTests(string noun, ConfigTypes configType)
+        {
+            this.noun = noun;
+            this.configType = configType;
+        }
+
+        [Test]
+        public void ShouldGetAll() 
         {
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
-            foreach (var obj in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(obj);
+                 AddableRepository.Add(obj);
             }
 
             if (configType == ConfigTypes.Running)
@@ -30,21 +41,21 @@
 
             // Validate
             Assert.IsTrue(results.Count > 1);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, objectsUnderTest));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects(results, sut));
 
             // Clean-up 
-            foreach (var obj in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+                this.DeletableRepository.Delete(obj.SchemaName, obj.Name);
             }
-            return true;
         }
 
-        public bool GetSingleByName<T>(string noun, ConfigTypes configType) where T : FirewallObject
+        [Test]
+        public void ShouldGetSingleByName() 
         {
             // Setup 
-            var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<T>();
-            this.ConfigRepository.Set(objectUnderTest);
+            var sut = this.RandomObjectFactory.GenerateRandomObject<T>();
+            this.AddableRepository.Add(sut);
            
             if (configType == ConfigTypes.Running)
             {
@@ -55,25 +66,24 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1}" :
-                    "Get-{0} -Connection $Connection -Name {1}", noun, objectUnderTest.Name );
+                    "Get-{0} -Connection $Connection -Name {1}", noun, sut.Name );
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
             Assert.IsTrue(results.Count == 1);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject<T>(results, objectUnderTest));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject(results, sut));
 
             // Clean-up 
-            this.ConfigRepository.Delete(objectUnderTest.SchemaName, objectUnderTest.Name);
-            
-            return true;
+            this.DeletableRepository.Delete(sut.SchemaName, sut.Name);
         }
 
-        public bool GetSingleByObject<T>(string noun, ConfigTypes configType) where T : FirewallObject
+        [Test]
+        public void ShouldGetSingleByObject() 
         {
             // Setup 
-            var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<T>();
-            this.ConfigRepository.Set(objectUnderTest);
+            var sut = this.RandomObjectFactory.GenerateRandomObject<T>();
+            this.AddableRepository.Add(sut);
 
             if (configType == ConfigTypes.Running)
             {
@@ -84,25 +94,24 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "$fwObject = {0}; Get-{1} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject" :
-                    "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), noun);
+                    "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", sut.ToPsScript(), noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
             Assert.IsTrue(results.Count == 1);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject<T>(results, objectUnderTest));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject(results, sut));
 
             // Clean-up 
-            this.ConfigRepository.Delete(objectUnderTest.SchemaName, objectUnderTest.Name);
-
-            return true;
+            this.DeletableRepository.Delete(sut.SchemaName, sut.Name);
         }
 
-        public bool GetSingleByObjectWhereObjectsAreNotEqualButMatchOnName<T>(string noun, ConfigTypes configType) where T : FirewallObject
+        [Test]
+        public void ShouldGetSingleByObjectWhenObjectsAreNotEqualButMatchOnName() 
         {
             // Setup 
-            var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<T>();
-            this.ConfigRepository.Set(objectUnderTest);
+            var sut = this.RandomObjectFactory.GenerateRandomObject<T>();
+            this.AddableRepository.Add(sut);
 
             if (configType == ConfigTypes.Running)
             {
@@ -110,11 +119,11 @@
             }
 
             // Test
-            objectUnderTest.Mutate();
+            sut.Mutate();
             var script = string.Format(
                  configType == ConfigTypes.Candidate ?
                      "$fwObject = {0}; Get-{1} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject" :
-                     "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", objectUnderTest.ToPsScript(), noun);
+                     "$fwObject = {0}; Get-{1} -Connection $Connection -FirewallObject $fwObject", sut.ToPsScript(), noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
@@ -122,19 +131,18 @@
             Assert.IsTrue(results.Count == 0);
             
             // Clean-up 
-            this.ConfigRepository.Delete(objectUnderTest.SchemaName, objectUnderTest.Name);
-
-            return true;
+            this.DeletableRepository.Delete(sut.SchemaName, sut.Name);
         }
 
-        public bool GetMultipleByName<T>(string noun, ConfigTypes configType) where T : FirewallObject
+        [Test]
+        public void ShouldGetMultipleByName() 
         {
             // Setup 
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
-            foreach (var obj in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(obj);
+                this.AddableRepository.Add(obj);
             }
 
             if (configType == ConfigTypes.Running)
@@ -146,29 +154,30 @@
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1},{2}" :
-                    "Get-{0} -Connection $Connection -Name {1},{2}", noun, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
+                    "Get-{0} -Connection $Connection -Name {1},{2}", noun, sut[0].Name, sut[1].Name);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
             Assert.IsTrue(results.Count == 2);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, objectsUnderTest));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, sut));
 
             // Clean-up 
-            foreach (var obj in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+                this.DeletableRepository.Delete(obj.SchemaName, obj.Name);
             }
-            return true;
+            
         }
 
-        public bool GetMultipleByNameWhereSomeDontExist<T>(string noun, ConfigTypes configType) where T : FirewallObject
+        [Test]
+        public void ShouldGetMultipleByNameWhereSomeDontExist() 
         {
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
-            foreach (var obj in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                ConfigRepository.Set(obj);
+                AddableRepository.Add(obj);
             }
 
             if (configType == ConfigTypes.Running)
@@ -177,36 +186,36 @@
             }
 
             // Test
-            var nameBefore = objectsUnderTest[0].Name;
-            objectsUnderTest[0].Name += "1";  // this should not exist
+            var nameBefore = sut[0].Name;
+            sut[0].Name += "1";  // this should not exist
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "Get-{0} -Connection $Connection -FromCandidateConfig -Name {1},{2}" :
-                    "Get-{0} -Connection $Connection -Name {1},{2}", noun, objectsUnderTest[0].Name, objectsUnderTest[1].Name);
+                    "Get-{0} -Connection $Connection -Name {1},{2}", noun, sut[0].Name, sut[1].Name);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
 
             // Validate
             Assert.IsTrue(results.Count == 1);
             Assert.IsTrue(results[0].BaseObject is T);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject<T>(results, objectsUnderTest[1]));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject(results, sut[1]));
 
             // Clean-up 
-            objectsUnderTest[0].Name = nameBefore;
-            foreach (var obj in objectsUnderTest)
+            sut[0].Name = nameBefore;
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+                this.DeletableRepository.Delete(obj.SchemaName, obj.Name);
             }
-            return true;
         }
 
-        public bool GetMultipleByObjectWhereSomeFailEqualsTests<T>(string noun, ConfigTypes configType) where T : FirewallObject
+        [Test]
+        public void ShouldGetMultipleByObjectWhenSomeFailEqualsTests() 
         {
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
-            foreach (var obj in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(obj);
+                this.AddableRepository.Add(obj);
             }
 
             if (configType == ConfigTypes.Running)
@@ -216,13 +225,13 @@
 
             // Test
             
-            objectsUnderTest[0].Mutate(); // This should not match antything
+            sut[0].Mutate(); // This should not match antything
             var script = string.Format(
                 configType == ConfigTypes.Candidate ?
                     "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject1, $fwObject2" :
                     "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FirewallObject $fwObject1, $fwObject2",
-                        objectsUnderTest[0].ToPsScript(),
-                        objectsUnderTest[1].ToPsScript(),
+                        sut[0].ToPsScript(),
+                        sut[1].ToPsScript(),
                         noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
@@ -230,23 +239,23 @@
             // Validate
             Assert.IsTrue(results.Count == 1);
             Assert.IsTrue(results[0].BaseObject is T);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject<T>(results, (T)objectsUnderTest[1]));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObject<T>(results, (T)sut[1]));
 
             // Clean-up 
-            foreach (var obj in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+                this.DeletableRepository.Delete(obj.SchemaName, obj.Name);
             }
-            return true;
         }
 
-        public bool GetMultipleByObject<T>(string noun, ConfigTypes configType) where T : FirewallObject
+        [Test]
+        public void ShouldGetMultipleByObject() 
         {
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
-            foreach (var obj in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(obj);
+                this.AddableRepository.Add(obj);
             }
 
             if (configType == ConfigTypes.Running)
@@ -259,8 +268,8 @@
                 configType == ConfigTypes.Candidate ?
                     "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FromCandidateConfig -FirewallObject $fwObject1, $fwObject2" :
                     "$fwObject1 = {0};$fwObject2 = {1};Get-{2} -Connection $Connection -FirewallObject $fwObject1, $fwObject2",
-                        objectsUnderTest[0].ToPsScript(),
-                        objectsUnderTest[1].ToPsScript(),
+                        sut[0].ToPsScript(),
+                        sut[1].ToPsScript(),
                         noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
@@ -269,23 +278,24 @@
             Assert.IsTrue(results.Count == 2);
             Assert.IsTrue(results[0].BaseObject is T);
             Assert.IsTrue(results[1].BaseObject is T);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, objectsUnderTest));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, sut));
 
             // Clean-up 
-            foreach (var obj in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+                this.DeletableRepository.Delete(obj.SchemaName, obj.Name);
             }
-            return true;
+            
         }
-        
-        public bool GetMultipleByObjectFromPipeline<T>(string noun, ConfigTypes configType) where T : FirewallObject
+
+        [Test]
+        public void ShouldGetMultipleByObjectFromPipeline() 
         {
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
-            foreach (var obj in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(obj);
+                this.AddableRepository.Add(obj);
             }
 
             if (configType == ConfigTypes.Running)
@@ -298,8 +308,8 @@
                 configType == ConfigTypes.Candidate ?
                     "$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | Get-{2} -Connection $Connection -FromCandidateConfig" :
                     "$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | Get-{2} -Connection $Connection",
-                        objectsUnderTest[0].ToPsScript(),
-                        objectsUnderTest[1].ToPsScript(),
+                        sut[0].ToPsScript(),
+                        sut[1].ToPsScript(),
                         noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
@@ -308,24 +318,23 @@
             Assert.IsTrue(results.Count == 2);
             Assert.IsTrue(results[0].BaseObject is T);
             Assert.IsTrue(results[1].BaseObject is T);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, objectsUnderTest));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, sut));
 
             // Clean-up 
-            foreach (var obj in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+                this.DeletableRepository.Delete(obj.SchemaName, obj.Name);
             }
-
-            return true;
         }
-        
-        public bool GetMultipleByNameFromPipeline<T>(string noun, ConfigTypes configType) where T : FirewallObject
+
+        [Test]
+        public void ShouldGetMultipleByNameFromPipeline() 
         {
             // Setup - Ensure that at least 2 addresses are present
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<T>();
-            foreach (var obj in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(obj);
+                this.AddableRepository.Add(obj);
             }
 
             if (configType == ConfigTypes.Running)
@@ -338,8 +347,8 @@
                 configType == ConfigTypes.Candidate ?
                     "$fwObject1 = {0};$fwObject2 = {1};$fwObject1.Name,$fwObject2.Name | Get-{2} -Connection $Connection -FromCandidateConfig" :
                     "$fwObject1 = {0};$fwObject2 = {1};$fwObject1.Name,$fwObject2.Name | Get-{2} -Connection $Connection",
-                        objectsUnderTest[0].ToPsScript(),
-                        objectsUnderTest[1].ToPsScript(),
+                        sut[0].ToPsScript(),
+                        sut[1].ToPsScript(),
                         noun);
 
             var results = PsRunner.ExecutePanosPowerShellScript(script);
@@ -348,22 +357,13 @@
             Assert.IsTrue(results.Count == 2);
             Assert.IsTrue(results[0].BaseObject is T);
             Assert.IsTrue(results[1].BaseObject is T);
-            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, objectsUnderTest));
+            Assert.IsTrue(PsRunner.PipelineContainsFirewallObjects<T>(results, sut));
 
             // Clean-up 
-            foreach (var obj in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Delete(obj.SchemaName, obj.Name);
+                this.DeletableRepository.Delete(obj.SchemaName, obj.Name);
             }
-
-            return true;
-        }
-
-        public void RejectInvalidName(string noun)
-        {
-            // Test
-            var script = string.Format("Get-{0} -Connection $Connection -FromCandidateConfig -Name '{1}'", noun, "<script");
-            PsRunner.ExecutePanosPowerShellScript(script);
         }
     }
 }

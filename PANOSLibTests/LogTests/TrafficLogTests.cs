@@ -1,15 +1,15 @@
-﻿namespace PANOSLibTest.API.Logs
+﻿namespace PANOSLibTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class TrafficLogTests : BaseLogTest
     {
-        [TestMethod]
+        [Test]
         public void GetTrafficLogNoPagingTest()
         {
             int numberOfRoundTrips = 0;
-            foreach (var subResult in LogRepository.GetTrafficLog("", false, 4))
+            foreach (var subResult in this.LogRepository.GetTrafficLog("", false, 4))
             {
                 Assert.IsNotNull(subResult);
                 Assert.AreEqual(subResult.Count, 5000);
@@ -19,12 +19,12 @@
             Assert.AreEqual(numberOfRoundTrips, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void GetTrafficLogNoPagedTest()
         {
             int numberOfRoundTrips = 0;
             int totalNumberOfRecords = 0;
-            foreach (var subResult in LogRepository.GetTrafficLog("", true, 4))
+            foreach (var subResult in this.LogRepository.GetTrafficLog("", true, 4))
             {
                 Assert.IsNotNull(subResult);
                 // Provisioning for the overalap between requests

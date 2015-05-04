@@ -3,15 +3,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    using NUnit.Framework;
     using PANOS;
 
-    [TestClass]
+    [TestFixture]
     public class CompareTests
     {
-        [TestMethod]
+        [Test]
         public void ShallowEqualsTest()
         {
             // Identical members
@@ -43,7 +41,7 @@
             Assert.AreNotEqual(groupSource, groupTarget);
         }
 
-        [TestMethod]
+        [Test]
         public void AddressObjectListsCompareTestIdenticalObjects()
         {
             var sourceMemberList = new List<FirewallObject> {new AddressObject("host1", IPAddress.Parse("10.10.10.1")), new AddressObject("host2", IPAddress.Parse("10.10.10.2"))};
@@ -60,7 +58,7 @@
             Assert.IsTrue(sourceGroup.DeepCompare(targetGroup));
         }
 
-        [TestMethod]
+        [Test]
         public void AddressObjectListsCompareTestIdenticalObjectsDifferentOrder()
         {
             var sourceMemberList = new List<FirewallObject> { new AddressObject("host1", IPAddress.Parse("10.10.10.1")), new AddressObject("host2", IPAddress.Parse("10.10.10.2")) };
@@ -77,7 +75,7 @@
             Assert.IsTrue(sourceGroup.DeepCompare(targetGroup));
         }
 
-        [TestMethod]
+        [Test]
         public void AddressObjectListsCompareTestIpMismatch()
         {
             var sourceMemberList = new List<FirewallObject> { new AddressObject("host1", IPAddress.Parse("10.10.10.1")), new AddressObject("host2", IPAddress.Parse("10.10.10.2")) };
@@ -94,7 +92,7 @@
             Assert.IsFalse(sourceGroup.DeepCompare(targetGroup));
         }
 
-        [TestMethod]
+        [Test]
         public void AddressObjectListsCompareTestNameMismatch()
         {
             var sourceMemberList = new List<FirewallObject> { new AddressObject("host1", IPAddress.Parse("10.10.10.1")), new AddressObject("host2", IPAddress.Parse("10.10.10.2")) };
@@ -111,7 +109,7 @@
             Assert.IsFalse(sourceGroup.DeepCompare(targetGroup));
         }
 
-        [TestMethod]
+        [Test]
         public void AddressObjectListsCompareTestMissingMember()
         {
             var sourceMemberList = new List<FirewallObject> { new AddressObject("host1", IPAddress.Parse("10.10.10.1")), new AddressObject("host2", IPAddress.Parse("10.10.10.2")) };
@@ -128,7 +126,7 @@
             Assert.IsFalse(sourceGroup.DeepCompare(targetGroup));
         }
 
-        [TestMethod]
+        [Test]
         public void AddressObjectListsCompareTestExtraMember()
         {
             var sourceMemberList = new List<FirewallObject> { new AddressObject("host1", IPAddress.Parse("10.10.10.1")), new AddressObject("host2", IPAddress.Parse("10.10.10.2")), new AddressObject("host3", IPAddress.Parse("10.10.10.3")) };

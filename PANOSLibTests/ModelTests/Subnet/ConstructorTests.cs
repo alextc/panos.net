@@ -1,17 +1,16 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace PANOSLibTest.API.Subnet
+﻿namespace PANOSLibTest
 {
+    using System;
     using System.Net;
+    using NUnit.Framework;
     using PANOS;
 
     // TODO: IPV6
-    [TestClass]
-    public class ConstructorTests
+    [TestFixture]
+    public class SubnetConstructorTests
     {
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), AllowDerivedTypes = true)]
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void InvalidMaskBoundaryTest()
         {
             var address = IPAddress.Parse("10.10.255.0");
@@ -19,7 +18,7 @@ namespace PANOSLibTest.API.Subnet
             var subnetMask = new SubnetObject("Test", address, Mask);
         }
 
-        [TestMethod]
+        [Test]
         public void ValidMaskBoundaryTest()
         {
             var address = IPAddress.Parse("10.10.254.0");

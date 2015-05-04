@@ -1,13 +1,13 @@
 ﻿namespace PANOSLibTest.Integration
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PANOS;
     using PANOS.Integration;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class AdIntegrationTests : BaseConfigTest
     {
-        [TestMethod]
+        [Test]
         public void AddressGroupFromDomainControllersInRootDomainTest()
         {
             var activeDirectoryRepository = new ActiveDirectoryRepository("NTDEV.CORP.MICROSOFT.COM", null);
@@ -17,7 +17,7 @@
             foreach (var memberObject in group.MemberObjects)
             {
                 Assert.IsTrue(group.Members.Contains(memberObject.Name));
-                Assert.IsInstanceOfType(memberObject, typeof(AddressObject));
+                Assert.That(memberObject, Is.TypeOf<AddressObject>());
             }
         }
     }

@@ -2,18 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Net;
-    using System.Text;
     using System.Text.RegularExpressions;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    using NUnit.Framework;
     using PANOS;
 
     // PANOS DateTime pattern 2015/03/25 16:29:02
 
-    [TestClass]
+    [TestFixture]
     public class TrafficQueryParsingTests
     {
         // private readonly List<string> timeBasedAttributes = new List<string> { "receive_time", "time_generated " };
@@ -24,7 +19,7 @@
         const string PanosRecieveTimeLeqClauseFormat = "(receive_time leq '{0:yyyy/MM/dd HH:mm:ss}')";
         
         
-        [TestMethod]
+        [Test]
         public void FindReceiveTimeClausesTest()
         {
             const string QueryWithBothTimeAttributes =
@@ -50,7 +45,7 @@
             Assert.AreEqual(recieveDateTimes[1], new DateTime(2015, 2, 25, 16, 29, 02));
         }
 
-        [TestMethod]
+        [Test]
         public void TimeRecieveUpdateTests()
         {
             const string QueryWithBothTimeAttributes =

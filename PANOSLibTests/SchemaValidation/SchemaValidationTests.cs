@@ -6,20 +6,19 @@
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Schema;
+    using NUnit.Framework;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    [TestClass]
+    [TestFixture]
     public class SchemaValidationTests
     {
-        [TestMethod]
+        [Test]
         public void AllAddressesResponseXsdEmbededInAssembly()
         {
             var schemas = CreateSchemaSetFromXSDResource("PANOS.XML.Schema.AllAddressesResponse.xsd");
             Assert.IsNotNull(schemas);
         }
 
-        [TestMethod]
+        [Test]
         public void ProperAllAddressResponseValidationDoesNotThrowException()
         {
             var allAddressesResponseSchemaSet = CreateSchemaSetFromXSDResource("PANOS.XML.Schema.AllAddressesResponse.xsd");
@@ -27,7 +26,7 @@
             allAddressesResponseDocument.Validate(allAddressesResponseSchemaSet, null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(XmlSchemaValidationException))]
         public void NonAllAddressResponseValidationThrowsException()
         {
