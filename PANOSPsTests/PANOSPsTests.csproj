@@ -57,7 +57,6 @@
   <ItemGroup>
     <Compile Include="Address\DeleteTests.cs" />
     <Compile Include="Address\RenameTests.cs" />
-    <Compile Include="Address\AddTests.cs" />
     <Compile Include="Bases\BasePsTest.cs" />
     <Compile Include="Bases\PsDeleteTests.cs" />
     <Compile Include="Bases\PsGetTests.cs" />

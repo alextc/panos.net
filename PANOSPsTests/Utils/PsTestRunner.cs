@@ -23,5 +23,15 @@
         {
             return PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>().ToList();
         }
+
+        public void ExecuteCommand(string script)
+        {
+            PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>();
+        }
+
+        public T ExecuteCommandWithPasThru(string script)
+        {
+            return PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>().Single();
+        }
     }
 }
