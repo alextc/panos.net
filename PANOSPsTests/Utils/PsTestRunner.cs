@@ -4,12 +4,13 @@
     using System.Configuration;
     using System.Linq;
     using System.Management.Automation;
+
     using PANOS;
 
     public class PsTestRunner<T> where T : FirewallObject
     {
         private readonly string connection;
-
+        
         public PsTestRunner()
         {
             connection = string.Format("$connection = New-PANOSConnection -HostName '{0}' -Vsys '{1}' -AccessToken (ConvertTo-SecureString '{2}' -AsPlainText -Force) -StoreInSession | Out-Null",

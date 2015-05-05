@@ -126,7 +126,7 @@
         [Test]
         public void ShouldGetMultipleByObjectFromPipeline() 
         {
-            var script = string.Format("$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | " + command, sut[0].ToPsScript(), sut[1].ToPsScript());
+            var script = string.Format("$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | {2}", sut[0].ToPsScript(), sut[1].ToPsScript(), command);
             var result = psTestRunner.ExecuteQuery(script);
             Assert.IsTrue(result.Count == 2);
             Assert.IsTrue(result[0].Equals(sut[0]));
