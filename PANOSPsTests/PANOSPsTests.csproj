@@ -55,7 +55,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Address\DeleteTests.cs" />
     <Compile Include="Address\RenameTests.cs" />
     <Compile Include="Bases\BasePsTest.cs" />
     <Compile Include="Bases\PsDeleteTests.cs" />

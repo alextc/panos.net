@@ -1,5 +1,4 @@
-﻿
-namespace PANOS
+﻿namespace PANOS
 {
     using System.Management.Automation;
 

@@ -1,229 +1,182 @@
 ﻿namespace PANOSPsTest
 {
-    using System;
     using System.Linq;
     using NUnit.Framework;
     using PANOS;
-    
-    public class PsDeleteTests : BasePsTest
+
+    [TestFixture(typeof(AddressObject), typeof(GetSingleAddressApiResponse), "PANOSAddress", Schema.AddressSchemaName)]
+    public class PsDeleteTests<T, TDeserializer> : BasePsTest
+        where TDeserializer : ApiResponseForGetSingle
+        where T : FirewallObject
     {
-        public void DeleteSingleByObjectPassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        private readonly string noun;
+        private readonly PsTestRunner<T> psTestRunner;
+        private readonly ISearchableRepository<T> searchableRepository;
+        
+        public PsDeleteTests(string noun, string schemaName)
+        {
+            this.noun = noun;
+            psTestRunner = new PsTestRunner<T>();
+            searchableRepository = new SearchableRepository<T>(ConfigCommandFactory, schemaName);
+        }
+
+        [Test]
+        public void ShouldDeleteSingleByObjectPassedAsParameter()
         {
             // Setup
-            var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<TObject>();
-            this.ConfigRepository.Set(objectUnderTest);
+            var sut = RandomObjectFactory.GenerateRandomObject<T>();
+            this.AddableRepository.Add(sut);
+            Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format(
-                "$obj = {0};Remove-{1} -Connection $Connection -{2} $obj;",
-                    objectUnderTest.ToPsScript(),
-                    noun,
-                    noun);
-            PsRunner.ExecutePanosPowerShellScript(script);
+            var script = string.Format("$obj = {0};Remove-{1} -{2} $obj;", sut.ToPsScript(), noun, noun);
+            psTestRunner.ExecuteCommand(script);
 
             // Validate
-            Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
+            Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
             
         }
 
-        public void DeleteMultipleByObjectPassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        [Test]
+        public void ShouldDeleteMultipleByObjectPassedAsParameter()
         {
             // Setup
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>();
-            foreach (var objectUnderTest in objectsUnderTest)
+            var sut = RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(objectUnderTest);
+                AddableRepository.Add(obj);
+                Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
             
             // Test
-            var script = string.Format(
-                "$obj1 = {0}; $obj2 = {1}; Remove-{2} -Connection $Connection -{3} $obj1, $obj2;",
-                    objectsUnderTest[0].ToPsScript(),
-                    objectsUnderTest[1].ToPsScript(),
-                    noun,
-                    noun);
-            PsRunner.ExecutePanosPowerShellScript(script);
+            var script = string.Format("$obj1 = {0}; $obj2 = {1}; Remove-{2} -{3} $obj1, $obj2;", sut[0].ToPsScript(), sut[1].ToPsScript(), noun, noun);
+            psTestRunner.ExecuteCommand(script);
 
             // Validate
-            foreach (var objectUnderTest in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
+                Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
         }
 
-        public void DeleteSingleByNamePassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        [Test]
+        public void ShouldDeleteSingleByNamePassedAsParameter()
         {
             // Setup
-            var objectUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();
-            this.ConfigRepository.Set(objectUnderTest);
+            var sut = RandomObjectFactory.GenerateRandomObject<T>();
+            AddableRepository.Add(sut);
+            Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format(
-                "$name = '{0}';Remove-{1} -Connection $Connection -Name $name;",
-                    objectUnderTest.Name,
-                    noun);
-            PsRunner.ExecutePanosPowerShellScript(script);
+            var script = string.Format("$name = '{0}';Remove-{1} -Name $name;", sut.Name, noun);
+            psTestRunner.ExecuteCommand(script);
 
             // Validate
-            Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
+            Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
         }
 
-        public void DeleteMultipleByNamePassedAsParameter<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        [Test]
+        public void ShouldDeleteMultipleByNamePassedAsParameter()
         {
             // Setup
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>();
-            foreach (var objectUnderTest in objectsUnderTest)
+            var sut = RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(objectUnderTest);
+                AddableRepository.Add(obj);
+                Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
 
             // Test
-            var script = string.Format(
-                "$name1 = '{0}'; $name2 = '{1}'; Remove-{2} -Connection $Connection -Name $name1, $name2;",
-                    objectsUnderTest[0].Name,
-                    objectsUnderTest[1].Name,
-                    noun);
-            PsRunner.ExecutePanosPowerShellScript(script);
+            var script = string.Format("$name1 = '{0}'; $name2 = '{1}'; Remove-{2} -Name $name1, $name2;", sut[0].Name, sut[1].Name, noun);
+            psTestRunner.ExecuteCommand(script);
 
             // Validate
-            foreach (var objectUnderTest in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
+                Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
         }
 
-        public void DeleteMultipleByNamePassedViaPipeline<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        [Test]
+        public void ShouldDeleteMultipleByNamePassedViaPipeline()
         {
             // Setup
-            var objectsUnderTest = RandomObjectFactory.GenerateRandomObjects<TObject>();
-            foreach (var objectUnderTest in objectsUnderTest)
+            var sut = RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                ConfigRepository.Set(objectUnderTest);
+                AddableRepository.Add(obj);
+                Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
 
             // Test
-            var script = string.Format(
-                "$name1 = '{0}'; $name2 = '{1}'; $name1, $name2 | Remove-{2} -Connection $Connection;",
-                    objectsUnderTest[0].Name,
-                    objectsUnderTest[1].Name,
-                    noun);
-            PsRunner.ExecutePanosPowerShellScript(script);
+            var script = string.Format("$name1 = '{0}'; $name2 = '{1}'; $name1, $name2 | Remove-{2};",sut[0].Name, sut[1].Name, noun);
+            psTestRunner.ExecuteCommand(script);
 
             // Validate
-            foreach (var objectUnderTest in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
+                Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
         }
 
-        public void DeleteMultipleByObjectPassedViaPipeline<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle where TObject : FirewallObject
+        [Test]
+        public void ShouldDeleteMultipleByObjectPassedViaPipeline()
         {
             // Setup
-            var objectsUnderTest = this.RandomObjectFactory.GenerateRandomObjects<TObject>();
-            foreach (var objectUnderTest in objectsUnderTest)
+            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            foreach (var obj in sut)
             {
-                this.ConfigRepository.Set(objectUnderTest);
+                AddableRepository.Add(obj);
+                Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
 
             // Test
             var script =
-                string.Format(
-                    "$obj1 = {0}; $obj2 = {1}; $obj1, $obj2 | Remove-{2} -Connection $Connection;",
-                    objectsUnderTest[0].ToPsScript(),
-                    objectsUnderTest[1].ToPsScript(),
-                    noun);
-            PsRunner.ExecutePanosPowerShellScript(script);
+                string.Format("$obj1 = {0}; $obj2 = {1}; $obj1, $obj2 | Remove-{2};", sut[0].ToPsScript(), sut[1].ToPsScript(), noun);
+            psTestRunner.ExecuteCommand(script);
 
             // Validate
-            foreach (var objectUnderTest in objectsUnderTest)
+            foreach (var obj in sut)
             {
-                Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
+                Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(obj.Name, ConfigTypes.Candidate).Any());
             }
         }
 
-        public void DeleteAndPassThruObjectTest<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        [Test]
+        public void ShouldDeleteAndPassThruObjectTest()
         {
-
             // Setup
-            var objectUnderTest = this.RandomObjectFactory.GenerateRandomObject<TObject>();
-            this.ConfigRepository.Set(objectUnderTest);
+            var sut = RandomObjectFactory.GenerateRandomObject<T>();
+            AddableRepository.Add(sut);
+            Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format(
-                "$obj = {0};Remove-{1} -Connection $Connection -{2} $obj -PassThru;",
-                    objectUnderTest.ToPsScript(),
-                    noun,
-                    noun);
-            var pipeline =  PsRunner.ExecutePanosPowerShellScript(script);
+            var script = string.Format("$obj = {0};Remove-{1} -{2} $obj -PassThru;", sut.ToPsScript(), noun, noun);
+            var passThruObject =  psTestRunner.ExecuteCommandWithPasThru(script);
 
             // Validate
-            Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
-
-            Assert.IsNotNull(pipeline[0]);
-            var passThruObject = pipeline[0].BaseObject as TObject;
+            Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
             Assert.IsNotNull(passThruObject);
-            Assert.AreEqual(passThruObject, objectUnderTest);
+            Assert.AreEqual(passThruObject, sut);  
         }
 
-        public void DeleteAndPassThruName<TDeserializer, TObject>(string noun)
-            where TDeserializer : ApiResponseForGetSingle
-            where TObject : FirewallObject
+        [Test]
+        public void ShouldDeleteAndPassThruName()
         {
             // Setup
-            var objectUnderTest = RandomObjectFactory.GenerateRandomObject<TObject>();
-            this.ConfigRepository.Set(objectUnderTest);
+            var sut = RandomObjectFactory.GenerateRandomObject<T>();
+            AddableRepository.Add(sut);
+            Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format(
-                "$name = '{0}';Remove-{1} -Connection $Connection -Name $name -PassThru;",
-                    objectUnderTest.Name,
-                    noun);
-            var pipeline =  PsRunner.ExecutePanosPowerShellScript(script);
+            var script = string.Format("$name = '{0}';Remove-{1} -Name $name -PassThru;", sut.Name, noun);
+            var passThruObj =  psTestRunner.ExecuteCommandWithPasThru<string>(script);
 
             // Validate
-            Assert.IsFalse(
-                ConfigRepository.
-                    GetSingle<TDeserializer, TObject>(objectUnderTest.SchemaName, objectUnderTest.Name, ConfigTypes.Candidate).
-                    Any());
+            Assert.IsFalse(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
-            Assert.IsNotNull(pipeline[0]);
-            var passThruName = pipeline[0].BaseObject as String;
-            Assert.IsNotNull(passThruName);
-            Assert.AreEqual(passThruName, objectUnderTest.Name);
+            Assert.IsNotNull(passThruObj);
+            Assert.AreEqual(passThruObj, sut.Name);
         }
     }
 }

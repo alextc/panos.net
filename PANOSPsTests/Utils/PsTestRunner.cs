@@ -29,6 +29,13 @@
             PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>();
         }
 
+        // Example: Remove-PANOSAddress -Name TestAddress -PassThru 
+        // In this case the object being passed through is String and not AddressObject, so supply TPassThru explicitely
+        public TPassThru ExecuteCommandWithPasThru<TPassThru>(string script)
+        {
+            return PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<TPassThru>().Single();
+        }
+
         public T ExecuteCommandWithPasThru(string script)
         {
             return PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>().Single();
