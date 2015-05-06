@@ -11,7 +11,7 @@
         {
             // Setup
             var newObj = this.RandomObjectFactory.GenerateRandomObject<AddressObject>();
-            this.ConfigRepository.Set(newObj);
+            this.AddableRepository.Add(newObj);
             var makeChangeScript = string.Format(
                 "$obj = {0};Add-PANOSObject -ConnectionProperties $ConnectionProperties -FirewallObject $obj", newObj.ToPsScript());
             PsRunner.ExecutePanosPowerShellScript(makeChangeScript);
@@ -29,7 +29,7 @@
             Assert.IsTrue(job.Id > 0);
             
             // Cleanup
-            this.ConfigRepository.Delete(newObj.SchemaName, newObj.Name);    
+            this.DeletableRepository.Delete(newObj.SchemaName, newObj.Name);    
         }
 
         [Test]
@@ -38,7 +38,7 @@
         {
             // Setup
             var newObj = this.RandomObjectFactory.GenerateRandomObject<AddressObject>();
-            this.ConfigRepository.Set(newObj);
+            this.AddableRepository.Add(newObj);
             var makeChangeScript = string.Format(
                 "$obj = {0};Add-PANOSObject -ConnectionProperties $ConnectionProperties -FirewallObject $obj", newObj.ToPsScript());
             PsRunner.ExecutePanosPowerShellScript(makeChangeScript);

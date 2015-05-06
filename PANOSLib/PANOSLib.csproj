@@ -87,8 +87,6 @@
     <Compile Include="Repository\FirewallConfig\AddableRepository.cs" />
     <Compile Include="Repository\FirewallConfig\DeletableRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IAddableRepository.cs" />
-    <Compile Include="Repository\FirewallConfig\IConfigRepository.cs" />
-    <Compile Include="Repository\FirewallConfig\ConfigRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IDeletableRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IMembershipRepository.cs" />
     <Compile Include="Repository\FirewallConfig\IRenamableRepository.cs" />

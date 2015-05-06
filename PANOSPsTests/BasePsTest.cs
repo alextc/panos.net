@@ -26,9 +26,6 @@
 
         public ICommitCommandFactory CommitCommandFactory { get; set; }
 
-        // Need to get rid of this
-        public IConfigRepository ConfigRepository { get; private set; }
-
         protected IAddableRepository AddableRepository { get; private set; }
 
         protected IDeletableRepository DeletableRepository { get; private set; }
@@ -50,7 +47,6 @@
                 new ApiUriFactory(Connection.Host),
                 new CommitApiPostKeyValuePairFactory(Connection.AccessToken));
 
-            ConfigRepository = new ConfigRepository(ConfigCommandFactory);
             AddableRepository = new AddableRepository(ConfigCommandFactory);
             DeletableRepository = new DeletableRepository(ConfigCommandFactory);
 

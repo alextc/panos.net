@@ -8,18 +8,15 @@
 
     public class BaseConfigTest : BaseTest
     {
-        public IConfigCommandFactory ConfigCommandFactory { get; set; }
-
-        public ICommitCommandFactory CommitCommandFactory { get; set; }
-
-        // Need to get rid of this
-        public IConfigRepository ConfigRepository { get; private set; }
+        protected IConfigCommandFactory ConfigCommandFactory { get; set; }
 
         protected IAddableRepository AddableRepository { get; private set; }
 
         protected IDeletableRepository DeletableRepository { get; private set; }
 
-        public RandomObjectFactory RandomObjectFactory { get; set; }
+        protected RandomObjectFactory RandomObjectFactory { get; set; }
+
+        private ICommitCommandFactory CommitCommandFactory { get; set; }
 
         protected BaseConfigTest()
         {
@@ -35,7 +32,6 @@
                 new ApiUriFactory(Connection.Host),
                 new CommitApiPostKeyValuePairFactory(Connection.AccessToken));
 
-            ConfigRepository = new ConfigRepository(ConfigCommandFactory);
             AddableRepository = new AddableRepository(ConfigCommandFactory);
             DeletableRepository = new DeletableRepository(ConfigCommandFactory);
 
