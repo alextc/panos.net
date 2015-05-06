@@ -1,9 +1,11 @@
 ﻿namespace PANOSPsTest
 {
+    using System;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Linq;
     using System.Management.Automation;
+    using System.Management.Automation.Runspaces;
 
     using PANOS;
 
@@ -21,12 +23,19 @@
 
         public List<T> ExecuteQuery(string script)
         {
-            return PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>().ToList();
+            return PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>().ToList();    
         }
 
         public void ExecuteCommand(string script)
         {
-            PowerShell.Create().AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>();
+            using (var powerShellInstance = PowerShell.Create())
+            {
+                powerShellInstance.AddScript(string.Format("{0};{1}", connection, script)).Invoke<T>();
+                if (powerShellInstance.Streams.Error.Count > 0)
+                {
+                    throw new Exception(powerShellInstance.Streams.Error[0].Exception.Message);
+                }
+            }
         }
 
         // Example: Remove-PANOSAddress -Name TestAddress -PassThru 
