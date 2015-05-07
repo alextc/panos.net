@@ -46,6 +46,7 @@
     <Compile Include="AddressGroup\GetAddressGroup.cs" />
     <Compile Include="AddressGroup\NewAddressGroup.cs" />
     <Compile Include="AddressRange\GetAddressRange.cs" />
+    <Compile Include="Address\SetAddress.cs" />
     <Compile Include="Address\AddAddress.cs" />
     <Compile Include="Address\RemoveAddress.cs" />
     <Compile Include="Address\GetAddress.cs" />

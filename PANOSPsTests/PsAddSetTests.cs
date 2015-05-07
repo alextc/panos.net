@@ -4,20 +4,23 @@
     using NUnit.Framework;
     using PANOS;
 
-    [TestFixture(typeof(AddressObject), typeof(GetSingleAddressApiResponse), "PANOSAddress", Schema.AddressSchemaName)]
-    public class PsAddTests<T, TDeserializer> : BasePsTest
+    [TestFixture(typeof(AddressObject), typeof(GetSingleAddressApiResponse), "Add", "PANOSAddress", Schema.AddressSchemaName)]
+    [TestFixture(typeof(AddressObject), typeof(GetSingleAddressApiResponse), "Set", "PANOSAddress", Schema.AddressSchemaName)]
+    public class PsAddSetTests<T, TDeserializer> : BasePsTest
         where TDeserializer : ApiResponseForGetSingle
         where T : FirewallObject
     {
         // TODO: Test to simulate a failure from PANOS during addition.
         // Not sure how to inject a fault at the moment, perhaps illegal character in the name?
 
+        private readonly string verb;
         private readonly string noun;
         private readonly PsTestRunner<T> psTestRunner;
         private readonly ISearchableRepository<T> searchableRepository;
 
-        public PsAddTests(string noun, string schemaName)
+        public PsAddSetTests(string verb, string noun, string schemaName)
         {
+            this.verb = verb;
             this.noun = noun;
             psTestRunner = new PsTestRunner<T>();
             searchableRepository = new SearchableRepository<T>(ConfigCommandFactory, schemaName);
@@ -31,7 +34,7 @@
             
             // Test
             var script = string.Format(
-                "$obj = {0};Add-{1} -{2} $obj", sut.ToPsScript(), noun, noun);
+                "$obj = {0};{1}-{2} -{3} $obj", sut.ToPsScript(), verb, noun, noun);
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -51,7 +54,7 @@
             
             // Test
             var script = string.Format(
-                "$obj = {0};Add-{1} -{2} $obj -PassThru", sut.ToPsScript(), noun, noun);
+                "$obj = {0};{1}-{2} -{3} $obj -PassThru", sut.ToPsScript(), verb, noun, noun);
             var passedThruObj = psTestRunner.ExecuteCommandWithPasThru(script);
 
             // Validate
@@ -74,9 +77,10 @@
             
             // Test
             var script = string.Format(
-                "$obj1 = {0};$obj2={1};Add-{2} -{3} $obj1,$obj2",
+                "$obj1 = {0};$obj2={1};{2}-{3} -{4} $obj1,$obj2",
                     sut[0].ToPsScript(),
                     sut[1].ToPsScript(),
+                    verb,
                     noun, 
                     noun);
             psTestRunner.ExecuteCommand(script);
@@ -104,9 +108,10 @@
             
             // Test
             var script = string.Format(
-                "$obj1 = {0};$obj2={1}; $obj1,$obj2 | Add-{2}",
+                "$obj1 = {0};$obj2={1}; $obj1,$obj2 | {2}-{3}",
                     sut[0].ToPsScript(),
                     sut[1].ToPsScript(),
+                    verb,
                     noun);
             PsRunner.ExecutePanosPowerShellScript(script);
 
