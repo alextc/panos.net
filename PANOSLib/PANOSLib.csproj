@@ -164,7 +164,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "$(TargetDir)PANOSLib.pdb" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"</PostBuildEvent>
+copy /Y "$(TargetDir)PANOSLib.pdb" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+
+copy /Y "$(TargetDir)log4net.dll" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(TargetDir)log4net.xml" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(TargetDir)log4netConfig.xml" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
