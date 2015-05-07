@@ -3,8 +3,7 @@
     using System.DirectoryServices.ActiveDirectory;
     using System.Linq;
     using System.Management.Automation;
-    using PANOS.Logging;
-
+    
     public class ActiveDirectoryRepository
     {
         private string ForestName { get; set; }
@@ -24,10 +23,8 @@
                 new DirectoryContext(DirectoryContextType.Forest, ForestName);
 
             var forest = Forest.GetForest(context);
-            Logger.LogActiveDirectoryForestConnection(forest);
             var domainControllers = forest.RootDomain.DomainControllers;
-            Logger.LogDisoveredDomainControllers(domainControllers);
-
+            
             var domainControllersAddressObjects = domainControllers.Cast<DomainController>().
                 Select(domainController => dnsRepository.IpV4AddressObjectFromFqdn(domainController.Name)).
                 Where(address => address != null).

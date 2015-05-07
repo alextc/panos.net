@@ -55,7 +55,7 @@
     <Compile Include="Bases\RequiresLogRepository.cs" />
     <Compile Include="Bases\SearchesObjects.cs" />
     <Compile Include="Commit\Commit.cs" />
-    <Compile Include="ConnectionProperties\NewConnection.cs" />
+    <Compile Include="Connection\NewConnection.cs" />
     <Compile Include="Integration\RootForestDomainControllersToPANOSAddressGroup.cs" />
     <Compile Include="Logs\GetTrafficLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

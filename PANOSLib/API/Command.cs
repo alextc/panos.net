@@ -6,9 +6,7 @@
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
-
-    using PANOS.Logging;
-
+    
     public class Command<TApiResponse> : ICommand<TApiResponse> where TApiResponse : ApiResponse
     {
         private readonly Uri apiUri;
@@ -25,23 +23,13 @@
             string httpResponse;
             using (var client = new HttpClient())
             {
-                try
+                using (var response = client.PostAsync(apiUri, apiPostData).Result)
                 {
-                    using (var response = client.PostAsync(apiUri, apiPostData).Result)
+                    using (var content = response.Content)
                     {
-                        Logger.LogPanosResponseStatus(response);
-                        using (var content = response.Content)
-                        {
-                            httpResponse = content.ReadAsStringAsync().Result;
-                        }
+                        httpResponse = content.ReadAsStringAsync().Result;
                     }
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogPanosConnectionFailure(ex);    
-                    throw;
-                }
-                
+                }   
             }
 
             // I can't and probably should not log every response
@@ -84,21 +72,13 @@
 
         private static TApiResponse Deserialize(string xml)
         {
-            try
+            using (var memoryStream = new MemoryStream(Encoding.Unicode.GetBytes(xml)))
             {
-                using (var memoryStream = new MemoryStream(Encoding.Unicode.GetBytes(xml)))
+                using (var reader = XmlReader.Create(memoryStream))
                 {
-                    using (var reader = XmlReader.Create(memoryStream))
-                    {
-                        var ser = new XmlSerializer(typeof(TApiResponse));
-                        return (TApiResponse)ser.Deserialize(reader);
-                    }
+                    var ser = new XmlSerializer(typeof(TApiResponse));
+                    return (TApiResponse)ser.Deserialize(reader);
                 }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogDeserializationFailure(ex);  
-                throw;
             }
         }
     }

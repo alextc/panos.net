@@ -4,9 +4,7 @@
     using System.Linq;
     using System.Net;
     using System.Net.Sockets;
-
-    using PANOS.Logging;
-
+    
     public class DnsRepository
     {
         public AddressObject IpV4AddressObjectFromFqdn(string fqnd)
@@ -16,11 +14,9 @@
             // TODO: need to warn caller that some entreis were skipped
             if (address != null)
             {
-                Logger.LogDnsResolutionResult(fqnd, address);
                 return new AddressObject(fqnd.ToUpper(), address);
             }
             
-            Logger.LogDnsResolutionFailure(fqnd);
             return null;
         }
 

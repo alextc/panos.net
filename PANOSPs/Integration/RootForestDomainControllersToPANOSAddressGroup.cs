@@ -3,8 +3,7 @@
     using System.Linq;
     using System.Management.Automation;
     using PANOS.Integration;
-    using PANOS.Logging;
-
+    
     [Cmdlet(VerbsData.Import, "RootForestDomainControllersToPANOSAddressGroup")]
     public class SyncDomainControllersIpToPanosAddressGroup : RequiresConnection
     {
@@ -147,8 +146,7 @@
         private void Commit()
         {
             var commitResult = this.commitCommand.Execute();
-            Logger.LogPanosCommitResponse(commitResult);
-
+            
             this.WriteVerbose(
                 string.Format(
                     "Commit Request was submitted to PANOS. Request submission Status: {0}, Commit Job Id: {1}",
