@@ -123,8 +123,10 @@
     <Compile Include="UnitTestHelpers\RandomObjectFactory.cs" />
     <Compile Include="UnitTestHelpers\RandomSubnetObjectFactory.cs" />
     <Compile Include="Utils\FileUtils.cs" />
+    <Compile Include="Utils\HttpUtils.cs" />
     <Compile Include="Utils\Network.cs" />
     <Compile Include="Utils\SecureStringUtils.cs" />
+    <Compile Include="Utils\XmlUtils.cs" />
     <Compile Include="XML\AddressGroup\AddressGroupXml.cs" />
     <Compile Include="XML\AddressGroup\GetAll\GetAllAddressGroupApiResponse.cs" />
     <Compile Include="XML\AddressGroup\GetAll\GetAllAddressGroupApiResponseResult.cs" />

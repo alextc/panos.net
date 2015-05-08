@@ -1,21 +1,14 @@
 ﻿namespace PANOS
 {
-    using log4net;
-
     public class ConfigCommandFactory : IConfigCommandFactory
     {
         private readonly ApiUriFactory apiUriFactory;
         private readonly IConfigApiPostKeyValuePairFactory apiPostKeyValuePairFactory;
-        private readonly ILog log = LogManager.GetLogger(typeof(ConfigCommandFactory));
-       
-         
+        
         public ConfigCommandFactory(
             ApiUriFactory apiUriFactory,
             IConfigApiPostKeyValuePairFactory apiPostKeyValuePairFactory)
         {
-            Logger.Configure();
-            log.Info("Entered ConfigCommandFactory");
-
             this.apiUriFactory = apiUriFactory;
             this.apiPostKeyValuePairFactory = apiPostKeyValuePairFactory;
         }

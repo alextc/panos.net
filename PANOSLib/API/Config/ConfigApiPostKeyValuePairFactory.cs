@@ -87,8 +87,8 @@
         }
 
 
-        // It is possible  to call the resulting command against an existing object, in such a case the prior object will be update, but see below for a special case.
-        // // For objects that have a concept of a membership and in cases where the resulting commmand is called against an existing object,
+        // It is possible  to call the resulting command against an existing object, in such a case the prior object will be updated, but see below for a special case.
+        // For objects that have a concept of a membership and in cases where the resulting commmand is called against an existing object,
         // such command will only be able to add members, but NOT remove them.
         // Use CreateSetMembership to deal with Membership changes
         public FormUrlEncodedContent CreateSet(FirewallObject firewallObject)

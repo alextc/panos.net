@@ -6,20 +6,28 @@
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
-    
+    using log4net;
+
     public class Command<TApiResponse> : ICommand<TApiResponse> where TApiResponse : ApiResponse
     {
         private readonly Uri apiUri;
         private readonly FormUrlEncodedContent apiPostData;
+        private readonly ILog log = LogManager.GetLogger(typeof(Command<TApiResponse>));
         
         public Command(Uri uri, FormUrlEncodedContent postData)
         {
+            Logger.Configure();
             apiUri = uri;
             apiPostData = postData;
         }
 
         public TApiResponse Execute()
         {
+            if (log.IsDebugEnabled)
+            {
+                log.DebugFormat("About to POST to {0}, with the payload of {1}", apiUri, HttpUtils.PostDataToString(apiPostData));
+            }
+
             string httpResponse;
             using (var client = new HttpClient())
             {
@@ -28,6 +36,10 @@
                     using (var content = response.Content)
                     {
                         httpResponse = content.ReadAsStringAsync().Result;
+                        if (log.IsDebugEnabled)
+                        {
+                            log.DebugFormat("PANOS Responsed to POST with: {0}{1}", Environment.NewLine, XmlUtils.PetttyPrintXml(httpResponse));
+                        } 
                     }
                 }   
             }
@@ -50,7 +62,7 @@
             throw ErrorHandler.GenerateException(xml);
         }
 
-        private static ResponseStatus GetResponseStatus(string xml)
+        private ResponseStatus GetResponseStatus(string xml)
         {
             var responseBase = Deserialize(xml) as ApiResponse;
 
