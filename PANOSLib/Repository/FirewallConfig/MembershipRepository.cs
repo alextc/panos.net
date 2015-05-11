@@ -21,6 +21,15 @@
             }
         }
 
+        public void AddMember(string groupName, string schemaName, string memberName)
+        {
+            var response = commandFactory.CreateAddMember(groupName, schemaName, memberName).Execute();
+            if (!response.Status.Equals("success"))
+            {
+                throw new Exception(string.Format("Add Member Method failed. PANOS error code {0}", response.Status));
+            }
+        }
+
         public void InflateMembers<T, TDeserializer>(
             ISearchableRepository<T> searchableRepository,
             GroupFirewallObject groupFirewallObject,

@@ -33,5 +33,23 @@
                 new KeyValuePair<string, string>("element", groupFirewallObject.StaticMembershipSetRequestAsXml())
             });
         }
+
+        public FormUrlEncodedContent CreateAddMember(string groupName, string schemaName, string memberName)
+        {
+            return new FormUrlEncodedContent(new[]
+            {
+                accessTokenPair,
+                    typeConfigPair, 
+                    new KeyValuePair<string, string>("action", "set"),
+                    new KeyValuePair<string, string>(
+                        "xpath", 
+                        string.Format(
+                            "/config/devices/entry/vsys/entry[@name='{0}']/{1}/entry[@name='{2}']", 
+                                vsys,
+                                schemaName,
+                                groupName)),
+                    new KeyValuePair<string, string>("element", string.Format("<static><member>{0}</member></static>", memberName))
+            });
+        }
     }
 }

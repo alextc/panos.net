@@ -19,5 +19,12 @@
                 apiUriFactory.Create(),
                 apiPostKeyValuePairFactory.CreateSetMembership(groupFirewallObject));
         }
+
+        public ICommand<ApiResponseWithMessage> CreateAddMember(string groupName, string schemaName, string memberName)
+        {
+            return new Command<ApiResponseWithMessage>(
+               apiUriFactory.Create(),
+               apiPostKeyValuePairFactory.CreateAddMember(groupName, schemaName, memberName));
+        }
     }
 }

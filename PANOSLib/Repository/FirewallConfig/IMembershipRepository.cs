@@ -4,6 +4,8 @@
     {
         void SetGroupMembership(GroupFirewallObject firewallGroupObject);
 
+        void AddMember(string groupName, string schemaName, string memberName);
+
         void InflateMembers<T, TDeserializer>(
             ISearchableRepository<T> searchableRepository,
             GroupFirewallObject groupFirewallObject,
