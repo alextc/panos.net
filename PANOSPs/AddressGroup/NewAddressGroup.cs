@@ -1,5 +1,6 @@
 ﻿namespace PANOS
 {
+    using System;
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.New, "PANOSAddressGroup")]
@@ -23,7 +24,7 @@
         protected override void BeginProcessing()
         {
            // TODO: Add Validation
-
+            throw new NotImplementedException();
            WriteObject(new AddressGroupObject(Name, Members));
         }
     }

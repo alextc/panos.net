@@ -1,5 +1,6 @@
 ﻿namespace PANOSPsTest
 {
+    using System;
     using System.Linq;
     using NUnit.Framework;
     using PANOS;
@@ -46,6 +47,20 @@
             {
                 DeletableRepository.Delete(newMember.SchemaName, member);
             } 
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "is not a valid reference", MatchType = MessageMatch.Contains)]
+        public void ShouldThrowExceptionWhenAddingNonExistingMember()
+        {
+            // Setup
+            var sut = RandomObjectFactory.GenerateRandomObject<TGroup>();
+            AddableRepository.Add(sut);
+            var newMember = RandomObjectFactory.GenerateRandomName();
+            
+            // Test
+            var script = string.Format("Add-{0} -GroupName {1} -MemberName {2};", noun, sut.Name, newMember);
+            psTestRunner.ExecuteCommand(script);
         }
     }
 }

@@ -4,6 +4,7 @@
     using System.Net.Http;
     using System.Security;
 
+    // private const string RemoveMemberQueryTemplate = "{0}&type=config&action=delete&xpath=/config/devices/entry/vsys/entry[@name='{1}']/{2}/entry[@name='{3}']/static/member[text
     public class ConfigMembershipPostKeyValuePairFactory : IConfigMembershipPostKeyValuePairFactory
     {
         private readonly KeyValuePair<string, string> accessTokenPair;
