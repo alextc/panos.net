@@ -6,10 +6,26 @@
 
     public static class HttpUtils
     {
-        public static  string PostDataToString(FormUrlEncodedContent formUrlEncodedContent)
+        public static  string PrettyPrintPostData(FormUrlEncodedContent formUrlEncodedContent, bool excludeToken = true)
         {
-            var res = HttpUtility.UrlDecode(formUrlEncodedContent.ReadAsByteArrayAsync().Result, Encoding.ASCII);
-            return res;
+            var postData = HttpUtility.UrlDecode(formUrlEncodedContent.ReadAsByteArrayAsync().Result, Encoding.ASCII);
+            
+            if (postData != null)
+            {
+                var sb = new StringBuilder();
+                var postValuePairs = postData.Split('&');
+                foreach (var keyValuePair in postValuePairs)
+                {
+                    if(keyValuePair.StartsWith("key=") && excludeToken)
+                        continue;
+
+                    sb.AppendLine(keyValuePair);
+                }
+
+                return sb.ToString();
+            }
+
+            return "";
         }
     }
 }

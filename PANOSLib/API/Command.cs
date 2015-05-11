@@ -25,7 +25,7 @@
         {
             if (log.IsDebugEnabled)
             {
-                log.DebugFormat("About to POST to {0}, with the payload of {1}", apiUri, HttpUtils.PostDataToString(apiPostData));
+                log.DebugFormat("About to POST to {0}, with the payload of:{1}{2}", apiUri, Environment.NewLine, HttpUtils.PrettyPrintPostData(apiPostData));
             }
 
             string httpResponse;
@@ -36,17 +36,15 @@
                     using (var content = response.Content)
                     {
                         httpResponse = content.ReadAsStringAsync().Result;
-                        if (log.IsDebugEnabled)
-                        {
-                            log.DebugFormat("PANOS Responsed to POST with: {0}{1}", Environment.NewLine, XmlUtils.PetttyPrintXml(httpResponse));
-                        } 
                     }
                 }   
             }
 
-            // I can't and probably should not log every response
-            // Also I am limited to 32766 chars for the log payload
-            // Logger.LogPanosHttpResponse(httpResponse);
+            if (log.IsDebugEnabled)
+            {
+                log.DebugFormat("PANOS Responsed to POST with:{0}{1}", Environment.NewLine, XmlUtils.PetttyPrintXml(httpResponse));
+            } 
+
             return ProcessResponse(httpResponse);
         }
 
