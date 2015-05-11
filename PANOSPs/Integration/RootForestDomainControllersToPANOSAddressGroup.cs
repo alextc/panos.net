@@ -41,24 +41,24 @@
             addressGroupSearchableRepository = new SearchableRepository<AddressGroupObject>(
                 new ConfigCommandFactory(
                    new ApiUriFactory(Connection.Host),
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+                   new ConfigPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
                Schema.AddressGroupSchemaName);
 
             addressSearchableRepository = new SearchableRepository<AddressObject>(
                 new ConfigCommandFactory(
                    new ApiUriFactory(Connection.Host),
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+                   new ConfigPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
                Schema.AddressSchemaName);
 
             addableRepository = new AddableRepository(
                 new ConfigCommandFactory(
                    new ApiUriFactory(Connection.Host),
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
+                   new ConfigPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
 
             membershipRepository = new MembershipRepository(
-                new ConfigCommandFactory(
+                new ConfigMembershipCommandFactory(
                    new ApiUriFactory(Connection.Host),
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
+                   new ConfigMembershipPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
         }
 
         protected override void ProcessRecord()

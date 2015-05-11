@@ -5,9 +5,9 @@
 
     public  class MembershipRepository : IMembershipRepository
     {
-        private readonly IConfigCommandFactory commandFactory;
+        private readonly IConfigMembershipCommandFactory commandFactory;
 
-        public MembershipRepository(IConfigCommandFactory commandFactory)
+        public MembershipRepository(IConfigMembershipCommandFactory commandFactory)
         {
             this.commandFactory = commandFactory;
         }

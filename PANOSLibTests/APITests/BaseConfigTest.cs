@@ -10,6 +10,8 @@
     {
         protected IConfigCommandFactory ConfigCommandFactory { get; set; }
 
+        protected IConfigMembershipCommandFactory ConfigMembershipCommandFactory { get; set; }
+
         protected IAddableRepository AddableRepository { get; private set; }
 
         protected IDeletableRepository DeletableRepository { get; private set; }
@@ -24,7 +26,15 @@
                 new ConfigCommandFactory(
                     new ApiUriFactory(
                         Connection.Host), 
-                    new ConfigApiPostKeyValuePairFactory(
+                    new ConfigPostKeyValuePairFactory(
+                        Connection.AccessToken,
+                        Connection.Vsys));
+
+            this.ConfigMembershipCommandFactory =
+                new ConfigMembershipCommandFactory(
+                    new ApiUriFactory(
+                        Connection.Host),
+                    new ConfigMembershipPostKeyValuePairFactory(
                         Connection.AccessToken,
                         Connection.Vsys));
 
@@ -32,9 +42,10 @@
                 new ApiUriFactory(Connection.Host),
                 new CommitApiPostKeyValuePairFactory(Connection.AccessToken));
 
+            
             AddableRepository = new AddableRepository(ConfigCommandFactory);
             DeletableRepository = new DeletableRepository(ConfigCommandFactory);
-
+            
             RandomObjectFactory = new RandomObjectFactory(new AddableRepository(ConfigCommandFactory));
         }
 

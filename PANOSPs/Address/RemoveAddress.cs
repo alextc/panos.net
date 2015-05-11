@@ -27,7 +27,7 @@
             base.BeginProcessing();
             deletableRepository = new DeletableRepository(new ConfigCommandFactory(
                    new ApiUriFactory(Connection.Host),
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
+                   new ConfigPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)));
         }
 
         protected override void ProcessRecord()

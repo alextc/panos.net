@@ -1,9 +1,8 @@
 ﻿namespace PANOS
 {
-    using System.Collections.Generic;
     using System.Net.Http;
 
-    public interface IConfigApiPostKeyValuePairFactory
+    public interface IConfigPostKeyValuePairFactory
     {
         FormUrlEncodedContent CreateGetSingle(string schemaName, string name, ConfigTypes configType);
 
@@ -14,10 +13,5 @@
         FormUrlEncodedContent CreateRename(string schemaName, string oldName, string newName);
         
         FormUrlEncodedContent CreateSet(FirewallObject firewallObject);
-
-        FormUrlEncodedContent CreateSetMembership(GroupFirewallObject groupFirewallObject); 
-
-        // TODO: Consider adding an overload
-        // FormUrlEncodedContent CreateSetMembership(string name, string schemaName, List<string> members); 
     }
 }

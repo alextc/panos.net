@@ -39,7 +39,7 @@
             addableRepository = new AddableRepository(
                new ConfigCommandFactory(
                    new ApiUriFactory(Connection.Host),
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys))
+                   new ConfigPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys))
                );
         }
 

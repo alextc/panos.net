@@ -4,7 +4,7 @@
     using System.Net.Http;
     using System.Security;
 
-    public class ConfigApiPostKeyValuePairFactory : IConfigApiPostKeyValuePairFactory
+    public class ConfigPostKeyValuePairFactory : IConfigPostKeyValuePairFactory
     {
         private readonly KeyValuePair<string, string> accessTokenPair;
         private readonly KeyValuePair<string, string> typeConfigPair = new KeyValuePair<string, string>("type", "config");
@@ -12,7 +12,7 @@
         private readonly KeyValuePair<string, string> actionGetPair = new KeyValuePair<string, string>("action", "get");
         private readonly string vsys;
 
-        public ConfigApiPostKeyValuePairFactory(SecureString accessToken, string vsys = "vsys1")
+        public ConfigPostKeyValuePairFactory(SecureString accessToken, string vsys)
         {
             accessTokenPair = new KeyValuePair<string, string>("key", SecureStringUtils.ConvertToUnSecureString(accessToken));
             this.vsys = vsys;
@@ -109,24 +109,6 @@
             });
         }
         
-        public FormUrlEncodedContent CreateSetMembership(GroupFirewallObject groupFirewallObject)
-        {
-            return new FormUrlEncodedContent(new[]
-            {
-                accessTokenPair,
-                typeConfigPair, 
-                new KeyValuePair<string, string>("action", "edit"),
-                new KeyValuePair<string, string>(
-                    "xpath", 
-                    string.Format(
-                        "/config/devices/entry/vsys/entry[@name='{0}']/{1}/entry[@name='{2}']", 
-                            vsys,
-                            groupFirewallObject.SchemaName,
-                            groupFirewallObject.Name)),
-                new KeyValuePair<string, string>("element", groupFirewallObject.StaticMembershipSetRequestAsXml())
-            });
-        }
-
         //private static string GetSchemaName(MemberInfo type)
         //{
         //    // xmlRootAttribute contains the name of the schema object, ex [XmlRoot("address")]

@@ -17,7 +17,7 @@
             ISearchableRepository<AddressObject> searchableRepository = new SearchableRepository<AddressObject>(
                new ConfigCommandFactory(
                    new ApiUriFactory(Connection.Host), 
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+                   new ConfigPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
                Schema.AddressSchemaName);
             
             try

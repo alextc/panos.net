@@ -10,8 +10,6 @@ namespace PANOS
 
         ICommand<ApiResponseWithMessage> CreateSet(FirewallObject firewallObject);
 
-        ICommand<ApiResponseWithMessage> CreateSetMembership(GroupFirewallObject groupFirewallObject);
-
         ICommand<ApiResponseWithMessage> CreateDelete(string schemaName, string name);
 
         ICommand<ApiResponseWithMessage> CreateRename(string schemaName, string oldName, string newName);

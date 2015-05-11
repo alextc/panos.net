@@ -39,7 +39,7 @@
                 new ConfigCommandFactory(
                     new ApiUriFactory(
                         Connection.Host), 
-                    new ConfigApiPostKeyValuePairFactory(
+                    new ConfigPostKeyValuePairFactory(
                         Connection.AccessToken,
                         Connection.Vsys));
 

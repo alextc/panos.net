@@ -17,7 +17,7 @@
             ISearchableRepository<SubnetObject> searchableRepository = new SearchableRepository<SubnetObject>(
                new ConfigCommandFactory(
                    new ApiUriFactory(Connection.Host),
-                   new ConfigApiPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
+                   new ConfigPostKeyValuePairFactory(Connection.AccessToken, Connection.Vsys)),
                Schema.AddressSchemaName);
             
             try
