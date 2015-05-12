@@ -24,6 +24,7 @@ $connection = New-PANOSConnection `
 ```
 
 ###Getting Traffic Log
+Note that the query syntax is the same as in PAN-OS WebUI
 ```
 $query = @"
   ( receive_time leq '2015/04/20 10:16:44' ) and 
