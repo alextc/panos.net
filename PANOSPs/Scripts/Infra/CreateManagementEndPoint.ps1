@@ -8,36 +8,64 @@
             [Parameter(Position=2)]
               [DateTime]$RangeEnd = (Get-Date) 
         )
-
-    $accessToken = convertto-securestring "" -asplaintext -force
+    $accessToken = Import-Clixml c:\PSScripts\panosAccessTokenForFwDelegation
     $query =  [string]::Format("( action eq deny) and ( addr.src in {0} ) and ( receive_time leq '{1:yyyy/MM/dd HH:mm:ss}' ) and (receive_time geq '{2:yyyy/MM/dd HH:mm:ss}')", $SourceIp, $RangeEnd, $RangeStart)
-    $connectionPropertyFW1 = New-PANOSConnectionProperties -HostName 'firewall1.it.msft.net' -Vsys 'vsys3' -AccessToken $accessToken
-    $connectionPropertyFW2 = New-PANOSConnectionProperties -HostName 'firewall2.it.msft.net' -Vsys 'vsys3' -AccessToken $accessToken
-    Get-PANOSTrafficLog -Query $query -ConnectionProperties $connectionPropertyFW1,$connectionPropertyFW2 | Format-Table
+    $connectionFW1 = New-PANOSConnection -HostName 'firewall1.it.msft.net' -Vsys 'vsys3' -AccessToken $accessToken
+    $connectionFW2 = New-PANOSConnection -HostName 'firewall2.it.msft.net' -Vsys 'vsys3' -AccessToken $accessToken
+    Get-PANOSTrafficLog -Query $query -Connection $connectionFW1,$connectionFW2 | Format-Table
 }
 
-New-PSSessionConfigurationFile -Path c:\PSScripts\panos.pssc `
-                                -ModulesToImport PANOS, Microsoft.PowerShell.Utility `
+
+function GetSidForUserName ($userName)
+{
+    $objUser = New-Object System.Security.Principal.NTAccount($userName)
+    $strSID = $objUser.Translate([System.Security.Principal.SecurityIdentifier])
+    $strSID.Value
+}
+
+function Register-ConstrainedFwManagmentSession
+{
+    [CmdletBinding()]
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        $SessionName,
+        [Parameter(Mandatory=$true)]
+        $RunAsAccountName,
+        [Parameter(Mandatory=$true)]
+        $RunAsAccountPwd,
+        [Parameter(Mandatory=$true)]
+        $GrantExecuteTo
+    )
+
+    Process
+    {
+        New-PSSessionConfigurationFile -Path c:\PSScripts\panos.pssc `
                                -Description 'PANOS Delegation EndPoint' `
                                -ExecutionPolicy Restricted `
-                               -VisibleCmdlets 'Format-Table', 'Get-Help', 'Select-Object', 'Get-Date' `
                                -SessionType RestrictedRemoteServer `
                                -LanguageMode FullLanguage `
-                               -FunctionDefinitions @{Name="Get-BlockedTraffic";ScriptBlock=$getBlockedTraffic; Options="AllScope"}
+                               -FunctionDefinitions @{Name="Get-PANOSBlockedTraffic";ScriptBlock=$getBlockedTraffic; Options="AllScope"} `
+                               -VisibleProviders FileSystem `
+                               -ModulesToImport PANOS `
+                               -VisibleCmdlets Select-Object
 
-Unregister-pssessionconfiguration -name FirewallManagement -force
-Test-PSSessionConfigurationFile -Path c:\PSScripts\panos.pssc
+        Unregister-pssessionconfiguration -name $SessionName -force
+        Test-PSSessionConfigurationFile -Path c:\PSScripts\panos.pssc
 
-$secpasswd = ConvertTo-SecureString "" -AsPlainText -Force
-$sessionCreds = New-Object System.Management.Automation.PSCredential ("cxeredxjea02\panosjea", $secpasswd)
+        $secpasswd = ConvertTo-SecureString $RunAsAccountPwd -AsPlainText -Force
+        $sessionCreds = New-Object System.Management.Automation.PSCredential ($RunAsAccountName, $secpasswd)
+        $grantToSid = GetSidForUserName($GrantExecuteTo)
+        $securityDescriptor =  [string]::Format("O:NSG:BAD:P(A;;GA;;;BA)(A;;GR;;;IU)(A;;GXGR;;;{0})S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)", $grantToSid)
+        
+        Register-PSSessionConfiguration -Path 'c:\PSScripts\panos.pssc' `
+                                    -Name FirewallManagement `
+                                    -SecurityDescriptorSddl $securityDescriptor `
+                                    -RunAsCredential $sessionCreds `
+                                    -AccessMode Remote `
+                                    -Force
+    }
+}
 
-Register-PSSessionConfiguration -Path 'c:\PSScripts\panos.pssc' `
-                                -Name FirewallManagement `
-                                -ShowSecurityDescriptorUI `
-                                -RunAsCredential $sessionCreds `
-                                -AccessMode Remote `
-                                -Force
                                 
 
-
-                                
