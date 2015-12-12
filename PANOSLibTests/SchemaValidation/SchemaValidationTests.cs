@@ -27,12 +27,13 @@
         }
 
         [Test]
-        [ExpectedException(typeof(XmlSchemaValidationException))]
         public void NonAllAddressResponseValidationThrowsException()
         {
             var allAddressesResponseSchemaSet = CreateSchemaSetFromXSDResource("PANOS.XML.Schema.AllAddressesResponse.xsd");
             var allAddressesResponseDocument = LoadXMLDocument("SingleAddressResponse.xml");
-            allAddressesResponseDocument.Validate(allAddressesResponseSchemaSet, null);
+            Assert.That(
+                () => allAddressesResponseDocument.Validate(allAddressesResponseSchemaSet, null),
+                Throws.TypeOf<XmlSchemaValidationException>());
         }
 
         private XDocument LoadXMLDocument(string name)
@@ -43,11 +44,11 @@
 
         private XmlSchemaSet CreateSchemaSetFromXSDResource(string xsdResource)
         {
-            AppDomain currentDomain = AppDomain.CurrentDomain;
+            var currentDomain = AppDomain.CurrentDomain;
             var panosAssembly = currentDomain.Load("PANOS");
             Assert.IsNotNull(panosAssembly);
             Assert.IsTrue(panosAssembly.GetManifestResourceNames().ToList().Contains(xsdResource));
-            Stream stream = panosAssembly.GetManifestResourceStream(xsdResource);
+            var stream = panosAssembly.GetManifestResourceStream(xsdResource);
             Assert.IsNotNull(stream);
 
             var schemas = new XmlSchemaSet();

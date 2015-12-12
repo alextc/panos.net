@@ -1,7 +1,6 @@
 ﻿namespace PANOSLibTest
 {
     using System.Linq;
-
     using NUnit.Framework;
     using PANOS;
     
@@ -42,14 +41,16 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AttemptToRenameNonExistingObject))]
         public void ShouldNotRenameNonExistingTest()
         {
             // Precondition
             var obj = RandomObjectFactory.GenerateRandomObject<T>();
 
             // Test
-            renamableRepository.Rename(obj.SchemaName, obj.Name, "foo");
+            Assert.That( 
+                () => 
+                    renamableRepository.Rename(obj.SchemaName, obj.Name, "foo"),
+                    Throws.TypeOf<AttemptToRenameNonExistingObject>());
         }
     }
 }

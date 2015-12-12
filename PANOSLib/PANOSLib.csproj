@@ -37,8 +37,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -158,22 +159,22 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="log4netConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "$(TargetDir)PANOSLib.pdb" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(TargetDir)PANOSLib.pdb" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"
 
-copy /Y "$(TargetDir)log4net.dll" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "$(TargetDir)log4net.xml" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "$(TargetDir)log4netConfig.xml" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"</PostBuildEvent>
+copy /Y "$(TargetDir)log4net.dll" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(TargetDir)log4net.xml" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(TargetDir)log4netConfig.xml" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

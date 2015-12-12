@@ -29,7 +29,7 @@
             Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format("$obj = {0};Remove-{1} -{2} $obj;", sut.ToPsScript(), noun, noun);
+            var script = $"$obj = {sut.ToPsScript()};Remove-{this.noun} -{this.noun} $obj;";
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -49,7 +49,8 @@
             }
             
             // Test
-            var script = string.Format("$obj1 = {0}; $obj2 = {1}; Remove-{2} -{3} $obj1, $obj2;", sut[0].ToPsScript(), sut[1].ToPsScript(), noun, noun);
+            var script =
+                $"$obj1 = {sut[0].ToPsScript()}; $obj2 = {sut[1].ToPsScript()}; Remove-{noun} -{noun} $obj1, $obj2;";
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -68,7 +69,7 @@
             Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format("$name = '{0}';Remove-{1} -Name $name;", sut.Name, noun);
+            var script = $"$name = '{sut.Name}';Remove-{this.noun} -Name $name;";
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -87,7 +88,7 @@
             }
 
             // Test
-            var script = string.Format("$name1 = '{0}'; $name2 = '{1}'; Remove-{2} -Name $name1, $name2;", sut[0].Name, sut[1].Name, noun);
+            var script = $"$name1 = '{sut[0].Name}'; $name2 = '{sut[1].Name}'; Remove-{noun} -Name $name1, $name2;";
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -109,7 +110,7 @@
             }
 
             // Test
-            var script = string.Format("$name1 = '{0}'; $name2 = '{1}'; $name1, $name2 | Remove-{2};",sut[0].Name, sut[1].Name, noun);
+            var script = $"$name1 = '{sut[0].Name}'; $name2 = '{sut[1].Name}'; $name1, $name2 | Remove-{noun};";
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -123,7 +124,7 @@
         public void ShouldDeleteMultipleByObjectPassedViaPipeline()
         {
             // Setup
-            var sut = this.RandomObjectFactory.GenerateRandomObjects<T>();
+            var sut = RandomObjectFactory.GenerateRandomObjects<T>();
             foreach (var obj in sut)
             {
                 AddableRepository.Add(obj);
@@ -132,7 +133,7 @@
 
             // Test
             var script =
-                string.Format("$obj1 = {0}; $obj2 = {1}; $obj1, $obj2 | Remove-{2};", sut[0].ToPsScript(), sut[1].ToPsScript(), noun);
+                $"$obj1 = {sut[0].ToPsScript()}; $obj2 = {sut[1].ToPsScript()}; $obj1, $obj2 | Remove-{this.noun};";
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -151,7 +152,7 @@
             Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format("$obj = {0};Remove-{1} -{2} $obj -PassThru;", sut.ToPsScript(), noun, noun);
+            var script = $"$obj = {sut.ToPsScript()};Remove-{noun} -{noun} $obj -PassThru;";
             var passThruObject =  psTestRunner.ExecuteCommandWithPasThru(script);
 
             // Validate
@@ -169,7 +170,7 @@
             Assert.IsTrue(searchableRepository.GetSingle<TDeserializer>(sut.Name, ConfigTypes.Candidate).Any());
 
             // Test
-            var script = string.Format("$name = '{0}';Remove-{1} -Name $name -PassThru;", sut.Name, noun);
+            var script = $"$name = '{sut.Name}';Remove-{noun} -Name $name -PassThru;";
             var passThruObj =  psTestRunner.ExecuteCommandWithPasThru<string>(script);
 
             // Validate

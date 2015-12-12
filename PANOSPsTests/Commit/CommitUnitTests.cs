@@ -1,5 +1,6 @@
 ﻿namespace PANOSPsTest
 {
+    using System.Management.Automation;
     using NUnit.Framework;
     using PANOS;
 
@@ -10,10 +11,10 @@
         public void CommitTest()
         {
             // Setup
-            var newObj = this.RandomObjectFactory.GenerateRandomObject<AddressObject>();
-            this.AddableRepository.Add(newObj);
-            var makeChangeScript = string.Format(
-                "$obj = {0};Add-PANOSObject -ConnectionProperties $ConnectionProperties -FirewallObject $obj", newObj.ToPsScript());
+            var newObj = RandomObjectFactory.GenerateRandomObject<AddressObject>();
+            AddableRepository.Add(newObj);
+            var makeChangeScript =
+                $"$obj = {newObj.ToPsScript()};Add-PANOSObject -ConnectionProperties $ConnectionProperties -FirewallObject $obj";
             PsRunner.ExecutePanosPowerShellScript(makeChangeScript);
 
             // Test
@@ -33,20 +34,19 @@
         }
 
         [Test]
-        [ExpectedException(typeof(System.Management.Automation.CmdletInvocationException))]
         public void CommitWhileAnotherCommitIsInProgressTest()
         {
             // Setup
-            var newObj = this.RandomObjectFactory.GenerateRandomObject<AddressObject>();
-            this.AddableRepository.Add(newObj);
-            var makeChangeScript = string.Format(
-                "$obj = {0};Add-PANOSObject -ConnectionProperties $ConnectionProperties -FirewallObject $obj", newObj.ToPsScript());
+            var newObj = RandomObjectFactory.GenerateRandomObject<AddressObject>();
+            AddableRepository.Add(newObj);
+            var makeChangeScript =
+                $"$obj = {newObj.ToPsScript()};Add-PANOSObject -ConnectionProperties $ConnectionProperties -FirewallObject $obj";
             PsRunner.ExecutePanosPowerShellScript(makeChangeScript);
 
             // Test
             const string CommitScript = "Save-PANOSChanges -ConnectionProperties $ConnectionProperties";
             PsRunner.ExecutePanosPowerShellScript(CommitScript);
-            PsRunner.ExecutePanosPowerShellScript(CommitScript);
+            Assert.That(() => PsRunner.ExecutePanosPowerShellScript(CommitScript), Throws.TypeOf<CmdletInvocationException>());
         }
     }
 }

@@ -85,10 +85,10 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "$(TargetDir)PANOS.pdb" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "$(ProjectDir)Help\PANOS.dll-Help.xml" "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS"
-copy /Y "C:\Users\alextc\Documents\WindowsPowerShell\Modules\PANOS" "Y:\PAAutomation\PANOS"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(TargetDir)PANOS.pdb" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"
+copy /Y "$(ProjectDir)Help\PANOS.dll-Help.xml" "%25userprofile%25\Documents\WindowsPowerShell\Modules\PANOS"
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

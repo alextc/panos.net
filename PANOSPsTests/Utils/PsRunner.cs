@@ -8,7 +8,6 @@
     using System.Linq;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
-    using NUnit.Framework;
 
     using PANOS;
 
@@ -27,14 +26,9 @@
         public static Collection<PSObject> ExecutePanosPowerShellScript(string scriptToTest)
         {
             var connectionPropertiesCommand =
-                string.Format("$connection = New-PANOSConnection -HostName '{0}' -Vsys '{1}' -AccessToken (ConvertTo-SecureString '{2}' -AsPlainText -Force) -StoreInSession | Out-Null", 
-                    ConfigurationManager.AppSettings["FirewallHostName"],
-                    ConfigurationManager.AppSettings["Vsys"],
-                    ConfigurationManager.AppSettings["FirewallAccessToken"] );
+                $"$connection = New-PANOSConnection -HostName '{ConfigurationManager.AppSettings["FirewallHostName"]}' -Vsys '{ConfigurationManager.AppSettings["Vsys"]}' -AccessToken (ConvertTo-SecureString '{ConfigurationManager.AppSettings["FirewallAccessToken"]}' -AsPlainText -Force) -StoreInSession | Out-Null";
 
-            var script = string.Format("{0};{1}", 
-               connectionPropertiesCommand,
-                scriptToTest);
+            var script = $"{connectionPropertiesCommand};{scriptToTest}";
 
             Debug.WriteLine("PsRunner about to execute {0} {1}", Environment.NewLine, script);
 

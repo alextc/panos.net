@@ -16,7 +16,7 @@
 
         public DeleteTests(string schemaName)
         {
-            searchableRepository = new SearchableRepository<T>(ConfigCommandFactory, schemaName );
+            searchableRepository = new SearchableRepository<T>(ConfigCommandFactory, schemaName);
         }
 
         [Test]
@@ -35,14 +35,16 @@
         }
 
         [Test]
-        [ExpectedException(typeof(ObjectNotFound))]
         public void ShouldNOtDeleteNonExistingObject() 
         {
             // Precondition
             var sut = RandomObjectFactory.GenerateRandomObject<T>();
 
             // Test
-            DeletableRepository.Delete(sut.SchemaName, sut.Name);
+            Assert.That(
+                () => 
+                    DeletableRepository.Delete(sut.SchemaName, sut.Name),
+                    Throws.TypeOf<ObjectNotFound>());
         }
     }
 }

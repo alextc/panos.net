@@ -1,6 +1,5 @@
 ﻿namespace PANOSPsTest
 {
-    using System;
     using System.Linq;
     using NUnit.Framework;
     using PANOS;
@@ -32,7 +31,7 @@
             AddableRepository.Add(newMember);
             
             // Test
-            var script = string.Format("Add-{0} -GroupName {1} -MemberName {2};", noun, sut.Name, newMember.Name);
+            var script = $"Add-{noun} -GroupName {sut.Name} -MemberName {newMember.Name};";
             psTestRunner.ExecuteCommand(script);
 
             // Validate
@@ -50,7 +49,7 @@
         }
 
         [Test]
-        [ExpectedException(typeof(Exception), ExpectedMessage = "is not a valid reference", MatchType = MessageMatch.Contains)]
+        // "is not a valid reference"
         public void ShouldThrowExceptionWhenAddingNonExistingMember()
         {
             // Setup
@@ -59,8 +58,8 @@
             var newMember = RandomObjectFactory.GenerateRandomName();
             
             // Test
-            var script = string.Format("Add-{0} -GroupName {1} -MemberName {2};", noun, sut.Name, newMember);
-            psTestRunner.ExecuteCommand(script);
+            var script = $"Add-{noun} -GroupName {sut.Name} -MemberName {newMember};";
+            Assert.That(() => psTestRunner.ExecuteCommand(script), Throws.Exception);
         }
     }
 }

@@ -10,12 +10,13 @@
     public class SubnetConstructorTests
     {
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void InvalidMaskBoundaryTest()
         {
             var address = IPAddress.Parse("10.10.255.0");
             const uint Mask = 23;
-            var subnetMask = new SubnetObject("Test", address, Mask);
+            Assert.That(
+                () => new SubnetObject("Test", address, Mask),
+                Throws.TypeOf<ArgumentException>());
         }
 
         [Test]

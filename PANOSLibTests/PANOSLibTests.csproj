@@ -39,9 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -66,7 +66,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ModelTests\AddressGroup\DeltaTests.cs" />
-    <Compile Include="APITests\MemberShipTests.cs" />
     <Compile Include="ModelTests\AddressGroup\CompareTests.cs" />
     <Compile Include="ModelTests\AddressRange\ConstructorTests.cs" />
     <Compile Include="LogTests\TrafficLogTests.cs" />
@@ -78,7 +77,6 @@
     <Compile Include="ModelTests\Subnet\ConstructorTests.cs" />
     <Compile Include="APITests\BaseConfigTest.cs" />
     <Compile Include="APITests\RenameTests.cs" />
-    <Compile Include="APITests\AddTests.cs" />
     <Compile Include="Integration\ADIntegrationTests.cs" />
     <Compile Include="Integration\DnsIntegrationTests.cs" />
     <Compile Include="SchemaValidation\SchemaValidationTests.cs" />

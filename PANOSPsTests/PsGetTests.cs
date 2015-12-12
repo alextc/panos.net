@@ -21,7 +21,7 @@
             psTestRunner = new PsTestRunner<T>();
         }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             this.sut = new List<T>
@@ -41,10 +41,10 @@
             }
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void CleanUp()
         {
-            foreach (var obj in this.sut)
+            foreach (var obj in sut)
             {
                 DeletableRepository.Delete(obj.SchemaName, obj.Name);
 
@@ -69,7 +69,7 @@
         [Test]
         public void ShouldGetSingleByName() 
         {
-            var script = string.Format("{0} -Name {1}", command, sut.First().Name);
+            var script = $"{command} -Name {sut.First().Name}";
             var result = psTestRunner.ExecuteQuery(script);
             Assert.IsTrue(result.Count == 1);
             Assert.IsTrue(result.Single().Equals(sut.First()));
@@ -78,7 +78,7 @@
         [Test]
         public void ShouldGetSingleByObject() 
         {
-            var script = string.Format("$fwObject = {0};{1} -FirewallObject $fwObject", sut.First().ToPsScript(), command);
+            var script = $"$fwObject = {this.sut.First().ToPsScript()};{command} -FirewallObject $fwObject";
             var result = psTestRunner.ExecuteQuery(script);
             Assert.IsTrue(result.Count == 1);
             Assert.IsTrue(result.Single().Equals(sut.First()));
@@ -89,7 +89,7 @@
         {
             var temp = sut.First();
             temp.Mutate();
-            var script = string.Format("$fwObject = {0};{1} -FirewallObject $fwObject", temp.ToPsScript(), command);
+            var script = $"$fwObject = {temp.ToPsScript()};{this.command} -FirewallObject $fwObject";
             Assert.IsTrue(psTestRunner.ExecuteQuery(script).Count == 0);
         }
 
@@ -109,7 +109,7 @@
             // Test
             var nonExistingName = sut.First().Name;
             nonExistingName += "1";  // this should not exist
-            var script = string.Format("{0} -Name {1}", command, nonExistingName);
+            var script = $"{this.command} -Name {nonExistingName}";
             Assert.IsTrue(psTestRunner.ExecuteQuery(script).Count == 0);
         }
         
@@ -126,7 +126,8 @@
         [Test]
         public void ShouldGetMultipleByObjectFromPipeline() 
         {
-            var script = string.Format("$fwObject1 = {0};$fwObject2 = {1};$fwObject1,$fwObject2 | {2}", sut[0].ToPsScript(), sut[1].ToPsScript(), command);
+            var script =
+                $"$fwObject1 = {sut[0].ToPsScript()};$fwObject2 = {this.sut[1].ToPsScript()};$fwObject1,$fwObject2 | {command}";
             var result = psTestRunner.ExecuteQuery(script);
             Assert.IsTrue(result.Count == 2);
             Assert.IsTrue(result[0].Equals(sut[0]));
@@ -137,7 +138,7 @@
         public void ShouldGetMultipleByNameFromPipeline() 
         {
             // Test
-            var script = string.Format("'{0}','{1}' | {2}", sut[0].Name, sut[1].Name, command);
+            var script = $"'{sut[0].Name}','{sut[1].Name}' | {command}";
             var result = psTestRunner.ExecuteQuery(script);
             Assert.IsTrue(result.Count == 2);
             Assert.IsTrue(result[0].Equals(sut[0]));
