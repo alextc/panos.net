@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Management.Automation;
-    using PANOS.Integration;
+    using Integration;
     
     [Cmdlet(VerbsData.Import, "RootForestDomainControllersToPANOSAddressGroup")]
     public class SyncDomainControllersIpToPanosAddressGroup : RequiresConnection
@@ -32,7 +32,7 @@
             
            var commitCommandFactory = 
                new CommitApiCommandFactory(
-                   new ApiUriFactory(this.Connection.Host),
+                   new ApiUriFactory(Connection.Host),
                    new CommitApiPostKeyValuePairFactory(this.Connection.AccessToken));
             commitCommand = commitCommandFactory.CreateCommit(true);
 
@@ -68,7 +68,7 @@
 
             // This will throw an exception if the group does not exist - Is this Ok?
             var fwView = addressGroupSearchableRepository.GetSingle<GetSingleAddressGroupApiResponse>(
-                this.AddressGroupName,
+                AddressGroupName,
                 ConfigTypes.Running).
                 Single();
             InflateAddressGroupMembers(fwView);
@@ -98,10 +98,8 @@
             }
             else
             {
-                this.WriteVerbose(
-                    string.Format(
-                        "Unable to find an Address Group by the name of {0}, new group will be created",
-                        this.AddressGroupName));
+                WriteVerbose(
+                    $"Unable to find an Address Group by the name of {AddressGroupName}, new group will be created");
             }
         }
 
@@ -114,7 +112,7 @@
                 foreach (var address in addressObjectsDetla)
                 {
                     addableRepository.Add(address);
-                    WriteVerbose(string.Format("Updating {0}", address.Name));
+                    WriteVerbose($"Updating {address.Name}");
                 }
             }
         }
@@ -133,25 +131,22 @@
             {
                 // Group already exist using Edit API
                 membershipRepository.SetGroupMembership(adView);
-                WriteVerbose(string.Format("Updating {0}", AddressGroupName));
+                WriteVerbose($"Updating {AddressGroupName}");
             }
             else
             {
                 // Creating group brand new using Set API
                 addableRepository.Add(adView);
-                WriteVerbose(string.Format("Setting {0}", AddressGroupName));
+                WriteVerbose($"Setting {AddressGroupName}");
             }
         }
 
         private void Commit()
         {
             var commitResult = this.commitCommand.Execute();
-            
-            this.WriteVerbose(
-                string.Format(
-                    "Commit Request was submitted to PANOS. Request submission Status: {0}, Commit Job Id: {1}",
-                    commitResult.Status,
-                    commitResult.Job.Id));
+
+            WriteVerbose(
+                $"Commit Request was submitted to PANOS. Request submission Status: {commitResult.Status}, Commit Job Id: {commitResult.Job.Id}");
         }
     }
 }
