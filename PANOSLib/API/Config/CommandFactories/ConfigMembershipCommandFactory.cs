@@ -13,18 +13,14 @@
             this.apiPostKeyValuePairFactory = apiPostKeyValuePairFactory;
         }
 
-        public ICommand<ApiResponseWithMessage> CreateSetMembership(GroupFirewallObject groupFirewallObject)
-        {
-            return new Command<ApiResponseWithMessage>(
+        public ICommand<ApiResponseWithMessage> CreateSetMembership(GroupFirewallObject groupFirewallObject) => 
+            new Command<ApiResponseWithMessage>(
                 apiUriFactory.Create(),
                 apiPostKeyValuePairFactory.CreateSetMembership(groupFirewallObject));
-        }
-
-        public ICommand<ApiResponseWithMessage> CreateAddMember(string groupName, string schemaName, string memberName)
-        {
-            return new Command<ApiResponseWithMessage>(
+        
+        public ICommand<ApiResponseWithMessage> CreateAddMember(string groupName, string schemaName, string memberName) => 
+            new Command<ApiResponseWithMessage>(
                apiUriFactory.Create(),
                apiPostKeyValuePairFactory.CreateAddMember(groupName, schemaName, memberName));
-        }
     }
 }

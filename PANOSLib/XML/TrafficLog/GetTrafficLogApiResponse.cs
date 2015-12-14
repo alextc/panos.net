@@ -70,7 +70,7 @@
         public string Status { get; set; }
 
         [XmlElement("id")]
-        public UInt32 Id { get; set; }
+        public uint Id { get; set; }
     }
 
     [XmlType(AnonymousType = true)]

@@ -1,7 +1,5 @@
 namespace PANOS
 {
-    using System.Collections.Generic;
-
     public interface IConfigCommandFactory
     {
         ICommand<TApiResponse> CreateGetAll<TApiResponse>(string schemaName, ConfigTypes configType = ConfigTypes.Running) where TApiResponse : ApiResponse;

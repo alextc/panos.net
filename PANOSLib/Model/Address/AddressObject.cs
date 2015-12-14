@@ -8,10 +8,9 @@
     {
         public AddressObject(string name, IPAddress ipAddress, string description = "", string tag = "") : base(name, "address", description)
         {
-            this.Address = ipAddress;
+            Address = ipAddress;
         }
 
-        
         // ReSharper disable once MemberCanBeProtected.Global
         // This needs to be public, otherwise not visible in a PS session
         public IPAddress Address { get; set; }
@@ -19,13 +18,12 @@
         public override string ToXml()
         {
             // TODO: Add description and Tag
-            return string.Format(
-                "<ip-netmask>{0}</ip-netmask>", this.Address);
+            return $"<ip-netmask>{Address}</ip-netmask>";
         }
 
         public override string ToPsScript()
         {
-            return string.Format("New-Object -TypeName 'PANOS.AddressObject' -ArgumentList '{0}', '{1}';", this.Name, this.Address);
+            return $"New-Object -TypeName 'PANOS.AddressObject' -ArgumentList '{Name}', '{Address}';";
         }
 
         public override void Mutate()
@@ -35,8 +33,8 @@
 
         public bool Equals(AddressObject other)
         {
-            return this.Address.Equals(other.Address) && 
-                   this.Name.Equals(other.Name, StringComparison.InvariantCultureIgnoreCase);
+            return Address.Equals(other.Address) && 
+                   Name.Equals(other.Name, StringComparison.InvariantCulture);
         }
 
         public override string ToString()
@@ -54,7 +52,7 @@
                 return false;
             }
 
-            return this.Address.Equals(addressObject.Address) && this.Name.Equals(addressObject.Name, StringComparison.InvariantCultureIgnoreCase);
+            return Address.Equals(addressObject.Address) && Name.Equals(addressObject.Name, StringComparison.InvariantCulture);
         }
 
         public override int GetHashCode()

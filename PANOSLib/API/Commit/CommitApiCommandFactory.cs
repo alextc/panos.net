@@ -13,9 +13,7 @@
             this.apiPostKeyValuePairFactory = apiPostKeyValuePairFactory;  
         }
 
-        public ICommand<ApiEnqueuedResponse> CreateCommit(bool force) 
-        {
-            return new Command<ApiEnqueuedResponse>(apiUriFactory.Create(), apiPostKeyValuePairFactory.CreateCommit(true));
-        }
+        public ICommand<ApiEnqueuedResponse> CreateCommit(bool force) => 
+            new Command<ApiEnqueuedResponse>(apiUriFactory.Create(), apiPostKeyValuePairFactory.CreateCommit(true)); 
     }
 }

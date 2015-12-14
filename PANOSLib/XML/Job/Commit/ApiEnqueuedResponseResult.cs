@@ -13,12 +13,6 @@
         private uint Job { get; set; }
 
         [XmlIgnore]
-        public uint JobId
-        {
-            get
-            {
-                return uint.Parse(Regex.Match(Message.Line, "[0-9]+").Value);
-            }
-        }
+        public uint JobId => uint.Parse(Regex.Match(Message.Line, "[0-9]+").Value);
     }
 }

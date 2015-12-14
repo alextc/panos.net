@@ -1,6 +1,5 @@
 ﻿namespace PANOS
 {
-    using System;
     using System.Net;
     using System.Text;
     using System.Xml.Serialization;
@@ -44,7 +43,7 @@
                 return new SubnetObject(
                     Name,
                     IPAddress.Parse(Netmask.Split('/')[0]),
-                    UInt16.Parse(Netmask.Split('/')[1]),
+                    ushort.Parse(Netmask.Split('/')[1]),
                     Description);
             }
 

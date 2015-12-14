@@ -13,36 +13,32 @@
             this.apiPostKeyValuePairFactory = apiPostKeyValuePairFactory;
         }
 
-        public ICommand<TApiResponse> CreateGetAll<TApiResponse>(string schemaName, ConfigTypes configType = ConfigTypes.Running) where TApiResponse : ApiResponse
-        {
-            return new Command<TApiResponse>(apiUriFactory.Create(), apiPostKeyValuePairFactory.CreateGetAll(schemaName, configType));
-        }
+        public ICommand<TApiResponse> CreateGetAll<TApiResponse>(
+            string schemaName,
+            ConfigTypes configType = ConfigTypes.Running) where TApiResponse : ApiResponse => 
+                new Command<TApiResponse>(apiUriFactory.Create(), apiPostKeyValuePairFactory.CreateGetAll(schemaName, configType));
+        
 
-        public ICommand<TApiResponse> CreateGetSingle<TApiResponse>(string schemaName, string name, ConfigTypes configType = ConfigTypes.Running) where TApiResponse : ApiResponse
-        {
-            return new Command<TApiResponse>(apiUriFactory.Create(), apiPostKeyValuePairFactory.CreateGetSingle(schemaName, name, configType));
-        }
+        public ICommand<TApiResponse> CreateGetSingle<TApiResponse>(
+            string schemaName,
+            string name, ConfigTypes configType = ConfigTypes.Running) where TApiResponse : ApiResponse => 
+                new Command<TApiResponse>(apiUriFactory.Create(), apiPostKeyValuePairFactory.CreateGetSingle(schemaName, name, configType));
+        
 
-        public ICommand<ApiResponseWithMessage> CreateSet(FirewallObject firewallObject)
-        {
-            return new Command<ApiResponseWithMessage>(
+        public ICommand<ApiResponseWithMessage> CreateSet(FirewallObject firewallObject) => 
+            new Command<ApiResponseWithMessage>(
                 apiUriFactory.Create(),
                 apiPostKeyValuePairFactory.CreateSet(firewallObject));
-        }
-
         
-        public ICommand<ApiResponseWithMessage> CreateDelete(string schemaName, string name)
-        {
-            return new Command<ApiResponseWithMessage>(
+        public ICommand<ApiResponseWithMessage> CreateDelete(string schemaName, string name) => 
+            new Command<ApiResponseWithMessage>(
                 apiUriFactory.Create(),
                 apiPostKeyValuePairFactory.CreateDelete(schemaName, name));
-        }
+        
 
-        public ICommand<ApiResponseWithMessage> CreateRename(string schemaName, string oldName, string newName)
-        {
-            return new Command<ApiResponseWithMessage>(
+        public ICommand<ApiResponseWithMessage> CreateRename(string schemaName, string oldName, string newName) => 
+            new Command<ApiResponseWithMessage>(
                 apiUriFactory.Create(),
                 apiPostKeyValuePairFactory.CreateRename(schemaName, oldName, newName));
-        }
     }
 }

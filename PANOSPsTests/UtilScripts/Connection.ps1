@@ -1,0 +1,1 @@
+﻿$connection = New-PANOSConnection -HostName palab.redmond.corp.microsoft.com -Vsys vsys1 -AccessToken (ConvertTo-SecureString 'LUFRPT1YeUlGNGloRVVHbUdKRmpheHRuZTFOQ0Q4V3c9VnI2YmtCeGNMd0JqMTYyNEoyUldOQT09' -AsPlainText -Force) -StoreInSession

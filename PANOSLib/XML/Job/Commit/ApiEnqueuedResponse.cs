@@ -10,12 +10,6 @@
         public ApiEnqueuedResponseResult Result { get; set; }
 
         [XmlIgnore]
-        public Job Job
-        {
-            get
-            {
-                return new Job(Result.JobId, Result.Message.Line, Status);
-            }
-        }
+        public Job Job => new Job(Result.JobId, Result.Message.Line, Status);
     }
 }
